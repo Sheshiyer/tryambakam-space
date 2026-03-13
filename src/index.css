@@ -1,0 +1,130 @@
+:root {
+  font-size: 12px;
+  font-family: "Satoshi", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Brand palette — Goethe's Zur Farbenlehre (polarity, not spectrum) */
+  --color-void-black: #070b1d;
+  --color-witness-violet: #2d0050;
+  --color-flow-indigo: #0b50fb;
+  --color-sacred-gold: #c5a017;
+  --color-coherence-emerald: #10b5a7;
+  --color-parchment: #f0ede3;
+  --color-muted-silver: #8a9ba8;
+  --color-deep-surface: #0e1428;
+  --color-terracotta: #c65d3b;
+
+  /* Neutral palette */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-mid-gray: #888888;
+
+  /* Gradient arcs */
+  --gradient-kha: linear-gradient(135deg, var(--color-void-black), var(--color-witness-violet), var(--color-flow-indigo));
+  --gradient-ba: linear-gradient(135deg, var(--color-coherence-emerald), var(--color-sacred-gold));
+  --gradient-la: linear-gradient(135deg, var(--color-sacred-gold), var(--color-witness-violet), var(--color-void-black));
+
+  /* Semantic aliases */
+  --color-background: var(--color-void-black);
+  --color-text: var(--color-parchment);
+  --color-text-secondary: var(--color-muted-silver);
+  --color-accent: var(--color-sacred-gold);
+  --color-link: var(--color-sacred-gold);
+  --color-link-hover: #f59e0b;
+  --page-padding: 1.5rem;
+  --color-loader-bg: var(--color-void-black);
+  --color-loader-bar-bg: rgba(138, 155, 168, 0.15);
+  --color-loader-bar-fill: var(--color-flow-indigo);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-link);
+  outline: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--color-link-hover);
+}
+
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+}
+
+#root {
+  position: relative;
+  min-height: 100svh;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus-within {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background: var(--color-background);
+  color: var(--color-text);
+  z-index: 99999;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
+  }
+}
+
+/* ── Global focus-visible indicators for keyboard navigation (w4c-08) ── */
+*:focus-visible {
+  outline: 2px solid var(--color-flow-indigo, #0b50fb);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-flow-indigo, #0b50fb);
+  outline-offset: 2px;
+}

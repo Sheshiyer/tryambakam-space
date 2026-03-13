@@ -1,0 +1,292 @@
+.witnessContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-void-black);
+  color: var(--color-text);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding: 100px 0;
+  scroll-behavior: smooth;
+}
+
+/* Void Black meets Witness Violet blanket */
+.witnessContainer::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(45, 0, 80, 0.4) 0%, var(--color-void-black) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.egoFragment {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  z-index: 1;
+  pointer-events: none;
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.egoFragment svg {
+  width: 100%;
+  height: 100%;
+  filter: blur(2px);
+}
+
+.egoFragment.aligned svg {
+  filter: blur(0px);
+}
+
+.closeBtn {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  z-index: 100;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.closeBtn:hover {
+  background: var(--color-text);
+  color: var(--color-void-black);
+}
+
+/* Floating HUD */
+.hudSpecs {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 11px;
+}
+
+.hudCoord {
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  padding: 6px 12px;
+  border-left: 2px solid var(--color-witness-violet);
+}
+
+.hudLabel {
+  color: var(--color-text-secondary);
+}
+
+.hudValue {
+  color: #9b6bcf; /* WCAG fix: #2d0050 was 1.14:1 — #9B6BCF ≈ 5.5:1 on void-black */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Primary Grid */
+.observerGrid {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  min-height: 100%;
+  align-items: center;
+}
+
+.visualFrame {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.visualFrame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+.artworkImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+}
+
+.contentFrame {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-family: "Panchang", sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0 0 15px 0;
+  color: var(--color-text);
+  white-space: pre-wrap;
+}
+
+.subtitle {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 14px;
+  color: #9b6bcf; /* WCAG fix: #2d0050 was 1.14:1 — #9B6BCF ≈ 5.5:1 on void-black */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.psychText {
+  font-family: "Satoshi", sans-serif;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--color-text);
+  font-weight: 300;
+  margin-bottom: 60px;
+  max-width: 480px;
+  transition:
+    opacity 0.1s linear,
+    transform 0.1s linear;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 60px;
+  max-width: 480px;
+}
+
+.featureBlock {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 24px;
+}
+
+.featureTitle {
+  font-family: "Satoshi", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: var(--color-text);
+}
+
+.ghostText {
+  text-shadow:
+    -2px 0 var(--color-witness-violet),
+    2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.featureDesc {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.typewriter {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 4s steps(40, end) infinite;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  90% {
+    width: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+.ctaButton {
+  align-self: flex-start;
+  background: var(--color-witness-violet);
+  color: var(--color-text);
+  border: none;
+  padding: 16px 32px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.ctaButton:hover {
+  background: var(--color-text);
+  color: var(--color-void-black);
+}
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+  .observerGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 60px;
+  }
+
+  .hudSpecs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .hudCoord {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+
+  .closeBtn {
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    font-size: 9px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .psychText {
+    font-size: 18px;
+  }
+}

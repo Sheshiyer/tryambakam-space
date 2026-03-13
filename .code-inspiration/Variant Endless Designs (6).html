@@ -1,0 +1,425 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">FORMA OS | Workspace</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" vid="6"></script>
+    <style vid="7">
+        :root {
+            --bg-void: #050505;
+            --bg-panel: rgba(10, 10, 10, 0.85);
+            --fg-primary: #ffffff;
+            --fg-secondary: #666666;
+            --fg-tertiary: #333333;
+            --border-color: rgba(255, 255, 255, 0.15);
+            --accent-active: #00ff41;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --font-display: 'Inter', sans-serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 1200px;
+            height: 800px;
+            background-color: var(--bg-void);
+            color: var(--fg-primary);
+            font-family: var(--font-display);
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .workspace-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #viewport-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .header-hud {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 240px 1fr 240px;
+            height: 50px;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            align-items: center;
+        }
+
+        .hud-item {
+            padding: 0 20px;
+            color: var(--fg-secondary);
+            border-right: 1px solid var(--border-color);
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .hud-center {
+            justify-content: center;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .hud-right {
+            border-right: none;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .floating-panel {
+            position: absolute;
+            z-index: 10;
+            background: var(--bg-panel);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            pointer-events: all;
+        }
+
+        .panel-header {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border-color);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--fg-secondary);
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        
+        .tool-palette {
+            top: 70px;
+            left: 20px;
+            width: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 4px;
+        }
+
+        .tool-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .tool-btn:hover { background: rgba(255,255,255,0.1); }
+        .tool-btn.active { 
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--fg-primary);
+        }
+
+        
+        .params-panel {
+            top: 70px;
+            right: 20px;
+            width: 260px;
+        }
+
+        .control-group {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .label-row {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            margin-bottom: 8px;
+            color: var(--fg-secondary);
+        }
+
+        .slider {
+            width: 100%;
+            appearance: none;
+            height: 1px;
+            background: var(--fg-tertiary);
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 8px;
+            height: 8px;
+            background: var(--fg-primary);
+            cursor: pointer;
+        }
+
+        
+        .timeline-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            height: 80px;
+            z-index: 10;
+            background: var(--bg-panel);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timeline-track {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 2px;
+        }
+
+        .history-node {
+            width: 60px;
+            height: 24px;
+            background: var(--fg-tertiary);
+            border: 1px solid var(--border-color);
+            font-family: var(--font-mono);
+            font-size: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fg-secondary);
+            cursor: pointer;
+        }
+
+        .history-node.active {
+            background: var(--fg-primary);
+            color: var(--bg-void);
+        }
+
+        .history-node:not(.active):hover {
+            border-color: var(--fg-primary);
+        }
+
+        .scan-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 3px);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .viewport-labels {
+            position: absolute;
+            bottom: 110px;
+            left: 20px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--fg-secondary);
+            z-index: 5;
+        }
+
+        .status-pill {
+            display: inline-block;
+            padding: 2px 6px;
+            background: var(--accent-active);
+            color: black;
+            font-weight: bold;
+            font-size: 9px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body vid="8">
+    <div class="workspace-container" vid="9">
+        <header class="header-hud" vid="10">
+            <div class="hud-item" vid="11">
+                <span style="color:white; margin-right: 10px;" vid="12">FORMA</span> SESSION: 0X82F
+            </div>
+            <div class="hud-item hud-center" vid="13">
+                MODEL_REFINEMENT_BETA_V2
+            </div>
+            <div class="hud-item hud-right" vid="14">
+                <span style="color:var(--accent-active)" vid="15">● SYNCED</span>
+                <span vid="16">FPS: 144</span>
+            </div>
+        </header>
+
+        <div class="scan-lines" vid="17"></div>
+        <div id="viewport-canvas" vid="18"></div>
+
+        
+        <div class="floating-panel tool-palette" vid="19">
+            <div class="tool-btn active" title="Transform" vid="20">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" vid="21"><path d="M5 5l14 14m0-14L5 19" vid="22"></path></svg>
+            </div>
+            <div class="tool-btn" title="Extrude" vid="23">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" vid="24"><rect x="4" y="4" width="16" height="16" rx="2" vid="25"></rect></svg>
+            </div>
+            <div class="tool-btn" title="Subdivide" vid="26">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" vid="27"><path d="M3 3h18v18H3zM12 3v18M3 12h18" vid="28"></path></svg>
+            </div>
+            <div class="tool-btn" title="Smooth" vid="29">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" vid="30"><circle cx="12" cy="12" r="10" vid="31"></circle></svg>
+            </div>
+        </div>
+
+        
+        <div class="floating-panel params-panel" vid="32">
+            <div class="panel-header" vid="33">
+                <span vid="34">Geometry Settings</span>
+                <span vid="35">01</span>
+            </div>
+            <div class="control-group" vid="36">
+                <div class="label-row" vid="37">
+                    <span vid="38">TOPOLOGY DENSITY</span>
+                    <span id="val-density" vid="39">0.75</span>
+                </div>
+                <input type="range" class="slider" min="0" max="100" value="75" vid="40">
+            </div>
+            <div class="control-group" vid="41">
+                <div class="label-row" vid="42">
+                    <span vid="43">CURVATURE BIAS</span>
+                    <span id="val-bias" vid="44">1.24</span>
+                </div>
+                <input type="range" class="slider" min="0" max="200" value="124" vid="45">
+            </div>
+            <div class="control-group" vid="46">
+                <div class="label-row" vid="47">
+                    <span vid="48">LATENT SCALE</span>
+                    <span id="val-scale" vid="49">0.42</span>
+                </div>
+                <input type="range" class="slider" min="0" max="100" value="42" vid="50">
+            </div>
+            <div class="panel-header" style="border-top: 1px solid var(--border-color)" vid="51">
+                <span vid="52">Boolean Ops</span>
+            </div>
+            <div class="p-4 flex gap-2" vid="53">
+                <button class="flex-1 border border-[#333] py-2 text-[10px] font-mono hover:bg-white hover:text-black transition-colors" vid="54">UNION</button>
+                <button class="flex-1 border border-[#333] py-2 text-[10px] font-mono hover:bg-white hover:text-black transition-colors" vid="55">DIFF</button>
+            </div>
+        </div>
+
+        <div class="viewport-labels" vid="56">
+            <span class="status-pill" vid="57">ACTIVE</span> 
+            ISO: 400 | SHUTTER: 1/60 | LENS: 35MM PRIME
+        </div>
+
+        
+        <div class="timeline-container" vid="58">
+            <div class="panel-header" vid="59">
+                <span vid="60">Non-Destructive History</span>
+                <span vid="61">T-00:42:11</span>
+            </div>
+            <div class="timeline-track" vid="62">
+                <div class="history-node" vid="63">PRIMITIVE</div>
+                <div style="width: 20px; height: 1px; background: var(--fg-tertiary);" vid="64"></div>
+                <div class="history-node" vid="65">SUBDIV_L1</div>
+                <div style="width: 20px; height: 1px; background: var(--fg-tertiary);" vid="66"></div>
+                <div class="history-node" vid="67">EXTRUDE_F</div>
+                <div style="width: 20px; height: 1px; background: var(--fg-tertiary);" vid="68"></div>
+                <div class="history-node active" vid="69">REFINE_L2</div>
+                <div style="width: 20px; height: 1px; background: var(--fg-tertiary);" vid="70"></div>
+                <div class="history-node" style="opacity: 0.4;" vid="71">SMOOTH</div>
+            </div>
+        </div>
+    </div>
+
+    <script vid="72">
+        const container = document.getElementById('viewport-canvas');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050505, 0.01);
+
+        const camera = new THREE.PerspectiveCamera(50, 1200 / 800, 1, 1000);
+        camera.position.set(25, 15, 25);
+        camera.lookAt(0, 0, 0);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(1200, 800);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        
+        const group = new THREE.Group();
+        
+        const mainGeo = new THREE.IcosahedronGeometry(10, 2);
+        const wireframeMat = new THREE.MeshBasicMaterial({ 
+            color: 0xffffff, 
+            wireframe: true, 
+            transparent: true, 
+            opacity: 0.15 
+        });
+        
+        const pointMat = new THREE.PointsMaterial({
+            color: 0x00ff41,
+            size: 0.15,
+            transparent: true,
+            opacity: 0.8
+        });
+
+        const mainMesh = new THREE.Mesh(mainGeo, wireframeMat);
+        const mainPoints = new THREE.Points(mainGeo, pointMat);
+        
+        group.add(mainMesh);
+        group.add(mainPoints);
+
+        
+        const highlightGeo = new THREE.BoxGeometry(12, 1, 12);
+        const highlightMat = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.05
+        });
+        const highlight = new THREE.Mesh(highlightGeo, highlightMat);
+        group.add(highlight);
+
+        
+        const grid = new THREE.GridHelper(100, 40, 0x111111, 0x111111);
+        scene.add(grid);
+
+        scene.add(group);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            group.rotation.y += 0.002;
+            
+            
+            const time = Date.now() * 0.002;
+            pointMat.opacity = 0.5 + Math.sin(time) * 0.3;
+            
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        
+        document.querySelectorAll('.slider').forEach(slider => {
+            slider.addEventListener('input', (e) => {
+                const valDisplay = e.target.closest('.control-group').querySelector('span:last-child');
+                valDisplay.innerText = (e.target.value / 100).toFixed(2);
+                
+                
+                if(e.target.previousElementSibling.innerText.includes('SCALE')) {
+                    const s = 0.5 + (e.target.value / 100);
+                    group.scale.set(s, s, s);
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

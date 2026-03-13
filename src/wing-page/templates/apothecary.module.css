@@ -1,0 +1,650 @@
+/* ============================================================
+   Wing 10 — The Apothecary  |  Swarm 2D
+   High-End Premium Retail Grid · Luxury meets Ancient Wisdom
+   ============================================================ */
+
+.luxContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: #030303;
+  color: #e8e0d4;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+
+  --lux-bg: #030303;
+  --lux-bronze: #b08d57;
+  --lux-bronze-dim: rgba(176, 141, 87, 0.12);
+  --lux-bronze-glow: rgba(176, 141, 87, 0.25);
+  --lux-gold: #d4a853;
+  --lux-text: #e8e0d4;
+  --lux-text-dim: #8a7d6e; /* WCAG fix: #5a5347 was 2.71:1 — #8A7D6E ≈ 5.0:1 on #030303 */
+  --lux-text-mid: #8a8175;
+  --lux-border: rgba(176, 141, 87, 0.1);
+  --lux-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* W10-T07: Bioluminescent ambient glow beneath features */
+.ambientGlow {
+  position: fixed;
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: 60vh;
+  background: radial-gradient(ellipse at center, rgba(176, 141, 87, 0.06) 0%, rgba(176, 141, 87, 0.02) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Top Bar ---- */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.wingNum {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--lux-text-dim);
+  letter-spacing: 4px;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: var(--lux-text-dim);
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color 600ms var(--lux-ease);
+}
+
+.closeBtn:hover {
+  color: var(--lux-text);
+}
+
+/* ---- Scroll Body ---- */
+.scrollBody {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* ---- Hero Title — W10-T02: Extremely tracked-out Panchang ---- */
+.heroBlock {
+  text-align: center;
+  padding: 60px 48px 40px;
+  max-width: 900px;
+}
+
+.heroTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--lux-text);
+  margin: 0 0 24px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.heroSubtitle {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--lux-bronze);
+  margin: 0;
+}
+
+/* ---- Visual Shelf — W10-T01: Floating product shelf ---- */
+.visualShelf {
+  padding: 40px 48px 60px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+.artFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 480px;
+  overflow: hidden;
+}
+
+.artImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+  mix-blend-mode: screen;
+  transition: opacity 600ms var(--lux-ease);
+}
+
+.artFrame:hover .artImage {
+  opacity: 0.9;
+}
+
+/* W10-T04: Engine icon as subtle watermark */
+.engineWatermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 200px;
+  color: rgba(176, 141, 87, 0.03);
+  pointer-events: none;
+  font-family: serif;
+}
+
+/* ---- Thesis Section — W10-T08 ---- */
+.thesisSection {
+  text-align: center;
+  max-width: 560px;
+  padding: 0 48px 60px;
+}
+
+.thesisText {
+  font-family: "Satoshi", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--lux-text-mid);
+  margin: 0;
+  font-weight: 300;
+}
+
+/* ---- Spec Shelf — W10-T06: Minimalist ingredient labels ---- */
+.specShelf {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding: 40px 48px;
+  border-top: 1px solid var(--lux-border);
+  border-bottom: 1px solid var(--lux-border);
+  width: 100%;
+  max-width: 700px;
+}
+
+.specLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.specKey {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 9px;
+  color: var(--lux-text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.specDivider {
+  width: 16px;
+  height: 1px;
+  background: var(--lux-bronze-dim);
+}
+
+.specValue {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--lux-bronze);
+  letter-spacing: 1px;
+}
+
+/* ---- Feature Grid — W10-T01 + W10-T05: Floating shelves with slow hover ---- */
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  padding: 60px 48px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.featureCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--lux-border);
+  padding: 48px 36px;
+  text-align: center;
+  overflow: hidden;
+  /* W10-T05: Heavy deliberate hover — 600ms cubic-bezier */
+  transition:
+    transform 600ms var(--lux-ease),
+    border-color 600ms var(--lux-ease),
+    background 600ms var(--lux-ease);
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--lux-bronze-dim);
+  background: rgba(176, 141, 87, 0.03);
+}
+
+/* W10-T07: Bioluminescent glow beneath card */
+.cardGlow {
+  position: absolute;
+  bottom: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, var(--lux-bronze-glow) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 600ms var(--lux-ease);
+}
+
+.featureCard:hover .cardGlow {
+  opacity: 1;
+}
+
+.cardTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--lux-text);
+  margin: 0 0 12px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.cardDesc {
+  font-family: "Satoshi", sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--lux-text-dim);
+  margin: 0;
+  font-weight: 300;
+  position: relative;
+  z-index: 1;
+  transition: color 600ms var(--lux-ease);
+}
+
+.featureCard:hover .cardDesc {
+  color: var(--lux-text-mid);
+}
+
+/* ---- CTA — Luxury breath ---- */
+.ctaSection {
+  padding: 20px 48px 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.ctaBtn {
+  background: transparent;
+  border: 1px solid var(--lux-bronze);
+  color: var(--lux-bronze);
+  padding: 18px 56px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 600ms var(--lux-ease),
+    color 600ms var(--lux-ease),
+    box-shadow 600ms var(--lux-ease);
+}
+
+.ctaBtn:hover {
+  background: var(--lux-bronze);
+  color: var(--lux-bg);
+  box-shadow: 0 0 40px var(--lux-bronze-glow);
+}
+
+/* ---- W10-T09: Responsive — Shelves stack symmetrically with large margins ---- */
+@media (max-width: 900px) {
+  .heroBlock {
+    padding: 40px 32px 30px;
+  }
+
+  .heroTitle {
+    font-size: 42px;
+    letter-spacing: 0.15em;
+  }
+
+  .visualShelf {
+    padding: 20px 32px 40px;
+  }
+
+  .specShelf {
+    gap: 32px;
+    padding: 32px;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+    padding: 40px 32px;
+    gap: 24px;
+  }
+
+  .featureCard {
+    padding: 36px 28px;
+  }
+
+  .ctaSection {
+    padding: 20px 32px 60px;
+  }
+}
+
+@media (max-width: 500px) {
+  .topBar {
+    padding: 20px 24px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+  }
+
+  .specShelf {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+/* ---- Product Grid — Ritual Objects Shelf ---- */
+.productGrid {
+  padding: 4rem 2rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.shelfTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted-silver);
+  margin: 0 0 2rem;
+}
+
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.productCard {
+  background: rgba(14, 20, 40, 0.6);
+  border: 1px solid rgba(176, 141, 87, 0.12);
+  border-radius: 4px;
+  padding: 1.5rem;
+  transition: border-color 300ms ease;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  width: 100%;
+}
+
+.productCard:hover {
+  border-color: rgba(176, 141, 87, 0.35);
+}
+
+.productEngine {
+  font-family: "SF Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lux-bronze, #b08d57);
+  opacity: 0.7;
+}
+
+.productName {
+  font-family: "Panchang", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-parchment);
+  margin: 0.5rem 0;
+}
+
+.productDesc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-muted-silver);
+  margin: 0 0 1rem;
+}
+
+.productMeta {
+  display: flex;
+  justify-content: space-between;
+  font-family: "SF Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--color-muted-silver);
+  letter-spacing: 0.04em;
+}
+
+.productPrice {
+  color: var(--lux-bronze, #b08d57);
+  font-weight: 600;
+}
+
+/* ---- Product Images ---- */
+.productImageWrap {
+  width: 100%;
+  height: 160px;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.productCard:hover .productImage {
+  transform: scale(1.05);
+}
+
+.productModalImageWrap {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.productModalImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Product Detail Modal ---- */
+.productModal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.productEngineTag {
+  font-family: "SF Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-sacred-gold);
+  padding: 0.5rem 0.75rem;
+  background: rgba(197, 160, 23, 0.08);
+  border: 1px solid rgba(197, 160, 23, 0.15);
+  border-radius: 4px;
+}
+
+.priceDisplay {
+  font-family: "Panchang", sans-serif;
+  font-size: 1.25rem;
+  color: var(--color-parchment);
+  letter-spacing: 0.04em;
+}
+
+.reserveBtn {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(197, 160, 23, 0.1);
+  border: 1px solid rgba(197, 160, 23, 0.3);
+  border-radius: 4px;
+  color: var(--color-sacred-gold);
+  font-family: "Panchang", sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.reserveBtn:hover {
+  background: rgba(197, 160, 23, 0.2);
+  border-color: rgba(197, 160, 23, 0.5);
+}
+
+/* ── Standardized Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .heroTitle {
+    font-size: 56px;
+    letter-spacing: 0.2em;
+  }
+
+  .heroBlock {
+    padding: 48px 36px 32px;
+  }
+
+  .featureGrid {
+    gap: 24px;
+    padding: 48px 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .closeBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .ctaBtn {
+    min-height: 44px;
+    padding: 16px 40px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .featureCard {
+    padding: 32px 24px;
+  }
+
+  .productCard {
+    padding: 1.25rem;
+    min-height: 44px;
+  }
+
+  .shelf {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  .reserveBtn {
+    min-height: 44px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .heroSubtitle {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+  }
+
+  .thesisText {
+    font-size: 0.875rem;
+  }
+
+  .topBar {
+    padding: 20px 16px;
+  }
+
+  .thesisSection {
+    padding: 0 16px 40px;
+  }
+
+  .productGrid {
+    padding: 2rem 1rem;
+  }
+
+  .shelf {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaBtn {
+    padding: 14px 32px;
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .ctaSection {
+    padding: 16px 16px 48px;
+  }
+
+  .specShelf {
+    padding: 24px 16px;
+    gap: 16px;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+  }
+
+  .cardDesc {
+    font-size: 0.875rem;
+  }
+
+  .productName {
+    font-size: 0.9rem;
+  }
+
+  .productDesc {
+    font-size: 0.8rem;
+  }
+}

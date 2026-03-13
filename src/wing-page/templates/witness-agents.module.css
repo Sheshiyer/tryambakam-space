@@ -1,0 +1,603 @@
+/* ============================================================
+   Wing 07 — Witness Agents  |  Swarm 3A
+   Dual-Lane: Pichet (Structure) ↔ Aletheos (Flow)
+   ============================================================ */
+
+.dualContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-void-black, #050505);
+  color: var(--color-text, #ffffff);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+
+  --agent-indigo: var(--color-flow-indigo, #0b50fb);
+  --agent-violet: #9b6bcf; /* WCAG fix: #7c3aed was 3.43:1 — #9B6BCF ≈ 5.5:1 */
+  --agent-indigo-dim: rgba(11, 80, 251, 0.08);
+  --agent-violet-dim: rgba(155, 107, 207, 0.08);
+  --agent-border: rgba(255, 255, 255, 0.06);
+  --agent-text-dim: rgba(255, 255, 255, 0.6); /* WCAG fix: 0.35 was 3.12:1 — 0.6 ≈ 5.6:1 */
+  --agent-text-mid: rgba(255, 255, 255, 0.7); /* WCAG fix: 0.55 was 4.2:1 — 0.7 ≈ 6.7:1 */
+  --pane-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- Top Overlay ---- */
+.topOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.topOverlay > * {
+  pointer-events: auto;
+}
+
+.wingLabel {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--agent-text-dim);
+  text-transform: uppercase;
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid var(--agent-border);
+  color: var(--agent-text-dim);
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+
+.closeBtn:hover {
+  color: var(--color-text, #fff);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ---- W07-T01: Split Pane — 50/50 dual architecture ---- */
+.splitPane {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative;
+}
+
+/* W07-T05 + W07-T10: Flex-grow hover compression via transform-friendly transitions */
+.panePichet,
+.paneAletheos {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    flex 500ms var(--pane-ease),
+    opacity 500ms var(--pane-ease);
+  will-change: flex, opacity;
+}
+
+/* Hover dynamics: active pane grows, sibling compresses */
+.dualContainer[data-active="pichet"] .panePichet {
+  flex: 1.6;
+}
+.dualContainer[data-active="pichet"] .paneAletheos {
+  flex: 0.4;
+  opacity: 0.4;
+}
+.dualContainer[data-active="aletheos"] .paneAletheos {
+  flex: 1.6;
+}
+.dualContainer[data-active="aletheos"] .panePichet {
+  flex: 0.4;
+  opacity: 0.4;
+}
+
+/* ---- Pichet Pane (Left) — W07-T03: Flow Indigo ---- */
+.panePichet {
+  background: linear-gradient(135deg, rgba(11, 80, 251, 0.04) 0%, transparent 60%);
+  border-right: 1px solid var(--agent-border);
+}
+
+/* W07-T04: Rigid grid matrix */
+.gridMatrix {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gridCell {
+  border: 1px solid rgba(11, 80, 251, 0.04);
+}
+
+.paneContent {
+  position: relative;
+  z-index: 1;
+  padding: 60px 40px;
+  max-width: 360px;
+}
+
+/* W07-T02: Pichet — Rigid SF Mono */
+.pichetTitle {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--agent-indigo);
+  margin: 0 0 16px 0;
+}
+
+.pichetDesc {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--agent-text-mid);
+  margin: 0 0 24px 0;
+}
+
+/* ---- Aletheos Pane (Right) — W07-T03: Witness Violet ---- */
+.paneAletheos {
+  background: linear-gradient(225deg, rgba(124, 58, 237, 0.04) 0%, transparent 60%);
+}
+
+/* W07-T04: Organic bezier curves */
+.flowCurves {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* W07-T02: Aletheos — Fluid Satoshi italics */
+.aletheosTitle {
+  font-family: "Satoshi", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--agent-violet);
+  margin: 0 0 16px 0;
+}
+
+.aletheosDesc {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--agent-text-mid);
+  margin: 0 0 24px 0;
+  font-weight: 300;
+}
+
+/* ---- Shared spec rows inside panes ---- */
+.specRow {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.specKey {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--agent-text-dim);
+}
+
+.specVal {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text, #fff);
+}
+
+/* ---- Agent Portraits ---- */
+.agentPortrait {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.panePichet:hover .agentPortrait {
+  border-color: var(--agent-indigo);
+  box-shadow: 0 4px 30px rgba(11, 80, 251, 0.3);
+}
+
+.paneAletheos:hover .agentPortrait {
+  border-color: var(--agent-violet);
+  box-shadow: 0 4px 30px rgba(155, 107, 207, 0.3);
+}
+
+.portraitImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- W07-T06: Center Gutter with interlocking ring motif ---- */
+.centerGutter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.ringMotif {
+  width: 40px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.gutterSpec {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--agent-text-dim);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  margin-top: 16px;
+}
+
+/* W07-T07: Interference shader at centerline */
+.interference {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: linear-gradient(90deg, var(--agent-indigo-dim) 0%, rgba(255, 255, 255, 0.03) 50%, var(--agent-violet-dim) 100%);
+  mask-image: repeating-linear-gradient(0deg, rgba(0, 0, 0, 1) 0px, rgba(0, 0, 0, 1) 1px, transparent 1px, transparent 4px);
+  -webkit-mask-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0px,
+    rgba(0, 0, 0, 1) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  z-index: 0;
+}
+
+/* ---- Bottom Bar: Thesis + artwork + CTA ---- */
+.bottomBar {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 20px 40px;
+  border-top: 1px solid var(--agent-border);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+  z-index: 40;
+  max-height: 140px;
+}
+
+.footerArt {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  flex-shrink: 0;
+}
+
+.footerContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.mainTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.thesis {
+  font-family: "Satoshi", sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--agent-text-mid);
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.ctaBtn {
+  background: transparent;
+  border: 1px solid var(--agent-violet);
+  color: var(--agent-violet);
+  padding: 10px 28px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+.ctaBtn:hover {
+  background: var(--agent-violet);
+  color: var(--color-white);
+}
+
+/* ---- W07-T09: Responsive — 50/50 → top/bottom vertical stack ---- */
+
+/* ---- w4c-06: Expanded Kha / Ba content on hover ---- */
+.expandedContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  animation: fadeSlideIn 300ms ease-out;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.archetypeLabel {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-sacred-gold);
+  padding: 0.4rem 0.6rem;
+  background: rgba(197, 160, 23, 0.06);
+  border: 1px solid rgba(197, 160, 23, 0.12);
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.capList {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.capList li {
+  font-size: 0.7rem;
+  color: var(--color-muted-silver);
+  padding-left: 0.75rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.capList li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+/* Indigo bullets for Pichet / Kha */
+.capListIndigo li::before {
+  color: var(--agent-indigo, #0b50fb);
+}
+
+/* Violet bullets for Aletheos / Ba */
+.capListViolet li::before {
+  color: var(--agent-violet, #7c3aed);
+}
+
+.stance {
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--color-parchment);
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+@media (max-width: 900px) {
+  .splitPane {
+    flex-direction: column;
+  }
+
+  .panePichet {
+    border-right: none;
+    border-bottom: 1px solid var(--agent-border);
+  }
+
+  /* Disable flex-grow hover on mobile — stacked layout */
+  .dualContainer[data-active="pichet"] .panePichet,
+  .dualContainer[data-active="aletheos"] .paneAletheos {
+    flex: 1;
+  }
+  .dualContainer[data-active="pichet"] .paneAletheos,
+  .dualContainer[data-active="aletheos"] .panePichet {
+    flex: 1;
+    opacity: 1;
+  }
+
+  .centerGutter {
+    top: auto;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    height: 40px;
+    flex-direction: row;
+    position: relative;
+    border-top: 1px solid var(--agent-border);
+    border-bottom: 1px solid var(--agent-border);
+  }
+
+  .gutterSpec {
+    writing-mode: horizontal-tb;
+    margin-top: 0;
+    margin-left: 12px;
+  }
+
+  .ringMotif {
+    width: 24px;
+    height: 32px;
+  }
+
+  .paneContent {
+    padding: 40px 24px;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    max-height: none;
+    padding: 20px 24px;
+  }
+
+  .footerContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .mainTitle {
+    font-size: 18px;
+  }
+}
+
+/* ── Standardized Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .paneContent {
+    padding: 40px 32px;
+    max-width: 320px;
+  }
+
+  .bottomBar {
+    padding: 16px 32px;
+    gap: 24px;
+  }
+
+  .mainTitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .closeBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .ctaBtn {
+    min-height: 44px;
+    padding: 12px 24px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .thesis {
+    font-size: 12px;
+  }
+
+  .pichetTitle {
+    font-size: 16px;
+  }
+
+  .aletheosTitle {
+    font-size: 20px;
+  }
+
+  .specKey {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .paneContent {
+    padding: 24px 16px;
+    max-width: 100%;
+  }
+
+  .bottomBar {
+    padding: 16px;
+  }
+
+  .mainTitle {
+    font-size: 1.25rem;
+  }
+
+  .thesis {
+    font-size: 0.875rem;
+  }
+
+  .pichetDesc {
+    font-size: 11px;
+  }
+
+  .aletheosDesc {
+    font-size: 12px;
+  }
+
+  .topOverlay {
+    padding: 12px 16px;
+  }
+
+  .wingLabel {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .pichetTitle {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .aletheosTitle {
+    font-size: 18px;
+  }
+}

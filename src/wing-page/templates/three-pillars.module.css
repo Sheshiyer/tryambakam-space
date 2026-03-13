@@ -1,0 +1,371 @@
+.triptychContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-void-black);
+  color: var(--color-text);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+}
+
+.headerTitle {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  letter-spacing: 2px;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-sacred-gold);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.closeBtn:hover {
+  color: var(--color-white);
+}
+
+.trinityLines {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pillarsWrapper {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding-top: 140px;
+  padding-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 20px;
+  /* This allows the hover effect to dim the other pillars */
+}
+
+/* W03-T05: Interaction - Mousing over one dims others */
+.pillarsWrapper:has(.pillar:hover) .pillar:not(:hover) {
+  opacity: 0.15;
+  filter: grayscale(100%);
+}
+
+.pillar {
+  flex: 1;
+  background: rgba(17, 24, 39, 0.4);
+  border: 1px solid rgba(222, 172, 85, 0.05); /* Sacred gold faint */
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  position: relative;
+  cursor: pointer;
+  transition:
+    opacity 0.5s ease,
+    filter 0.5s ease,
+    border-color 0.5s ease,
+    box-shadow 0.5s ease,
+    all 300ms ease;
+}
+
+.pillar:hover {
+  border-color: rgba(222, 172, 85, 0.3); /* Sacred gold glow */
+  box-shadow: 0 0 40px rgba(222, 172, 85, 0.05);
+}
+
+.pillarNum {
+  font-family: "Panchang", sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--color-sacred-gold);
+  margin-bottom: 20px;
+}
+
+.pillarTitle {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-text);
+  margin: 0 0 40px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+}
+
+.verticalText {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: "Satoshi", sans-serif;
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: var(--color-text-secondary);
+  margin: auto 0;
+  opacity: 0.5;
+}
+
+.centerArt {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.triptychImage {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+  filter: sepia(0.5);
+  mix-blend-mode: screen;
+}
+
+/* Pillar-specific art for side pillars */
+.pillarArt {
+  width: 100%;
+  margin: 20px 0;
+  flex-shrink: 0;
+}
+
+.pillarImage {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 4px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.pillar:hover .pillarImage {
+  opacity: 1;
+}
+
+.starkThesis {
+  font-family: "Satoshi", sans-serif;
+  font-size: 15px;
+  line-height: 2.2; /* Heavily spaced line-height (W03-T02) */
+  color: var(--color-text);
+  margin-bottom: auto;
+  font-weight: 300;
+}
+
+.featureCross {
+  margin-top: 40px;
+  border-top: 1px solid var(--color-sacred-gold);
+  padding-top: 20px;
+  position: relative;
+}
+
+.crossDot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-sacred-gold);
+  border-radius: 50%;
+  position: absolute;
+  top: -3px;
+  left: 0;
+}
+
+.featureCross h3 {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--color-sacred-gold);
+  margin: 0 0 10px 0;
+}
+
+.featureCross p {
+  font-family: "Satoshi", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.exploreBtn {
+  margin-top: 30px;
+  background: transparent;
+  border: 1px solid var(--color-sacred-gold);
+  color: var(--color-sacred-gold);
+  padding: 16px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.exploreBtn:hover {
+  background: var(--color-sacred-gold);
+  color: var(--color-void-black);
+}
+
+/* === Pillar Expanded Detail Content === */
+
+.pillarExpanded {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  animation: pillarReveal 300ms ease-out;
+}
+
+@keyframes pillarReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pillarExpandLabel {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-sacred-gold);
+  margin-bottom: 0.5rem;
+}
+
+.pillarExpandList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pillarExpandList li {
+  font-size: 0.75rem;
+  color: var(--color-muted-silver);
+  line-height: 1.5;
+  padding-left: 0.75rem;
+  position: relative;
+}
+
+.pillarExpandList li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-sacred-gold);
+}
+
+/* W03-T09: Responsive Horizontal Snap-Carousel */
+@media (max-width: 1000px) {
+  .pillarsWrapper {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+  }
+
+  .pillar {
+    min-width: 85vw;
+    scroll-snap-align: center;
+    flex: none;
+  }
+
+  .trinityLines {
+    display: none;
+  }
+
+  .verticalText {
+    writing-mode: horizontal-tb;
+    margin: 20px 0;
+  }
+}
+
+/* ── Standardized Responsive Breakpoints ── */
+@media (max-width: 768px) {
+  .pillar {
+    min-width: 80vw;
+    padding: 32px 24px;
+  }
+
+  .header {
+    padding: 20px 24px;
+  }
+
+  .pillarTitle {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  .exploreBtn {
+    min-height: 44px;
+    padding: 14px;
+    width: 100%;
+  }
+
+  .closeBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .starkThesis {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .pillar {
+    min-width: 92vw;
+    padding: 24px 16px;
+  }
+
+  .pillarTitle {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .starkThesis {
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .featureCross h3 {
+    font-size: 10px;
+  }
+
+  .featureCross p {
+    font-size: 0.875rem;
+  }
+
+  .header {
+    padding: 16px;
+  }
+
+  .headerTitle {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .pillarNum {
+    font-size: 9px;
+  }
+}

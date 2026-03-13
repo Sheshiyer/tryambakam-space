@@ -1,0 +1,270 @@
+.frame {
+  padding: var(--page-padding, 1.5rem);
+  display: grid;
+  z-index: 1000;
+  position: fixed;
+  inset: 0;
+  grid-template-rows: auto 1fr auto;
+  pointer-events: none;
+  color: #f0ede3;
+  font-family: "Satoshi", sans-serif;
+  font-weight: 300;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.frame::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: normal;
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 50%,
+    rgba(10, 22, 40, 0.55) 0%,
+    rgba(10, 22, 40, 0.15) 50%,
+    transparent 100%
+  );
+}
+
+/* Grain noise: chaos at edges, clarity at center */
+.frame::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: normal;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.08;
+  mask-image: radial-gradient(
+    ellipse 50% 45% at 50% 50%,
+    transparent 0%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.3) 45%,
+    rgba(0, 0, 0, 0.7) 70%,
+    black 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 50% 45% at 50% 50%,
+    transparent 0%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.3) 45%,
+    rgba(0, 0, 0, 0.7) 70%,
+    black 100%
+  );
+  animation: grainShift 0.5s steps(2) infinite;
+}
+
+@keyframes grainShift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-5%, -5%);
+  }
+}
+
+.frame a,
+.frame button {
+  pointer-events: auto;
+  color: #f0ede3;
+  mix-blend-mode: difference;
+}
+
+/* ── Top bar ── */
+.frame__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  mix-blend-mode: difference;
+}
+
+.frame__logoImage {
+  height: 40px;
+  width: auto;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px rgba(213, 172, 90, 0.4));
+  transition: all 0.3s ease;
+  animation: subtleGlow 4s ease-in-out infinite;
+}
+
+.frame__logoImage:hover {
+  opacity: 1;
+  filter: drop-shadow(0 0 15px rgba(213, 172, 90, 0.8));
+  animation: none;
+}
+
+@keyframes subtleGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(213, 172, 90, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(213, 172, 90, 0.6));
+  }
+}
+
+/* ── Center hero text ── */
+.frame__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+  mix-blend-mode: difference;
+}
+
+.frame__super {
+  font-family: "Satoshi", sans-serif;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 300;
+  color: #8a9ba8;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  margin: 0;
+}
+
+.frame__title {
+  font-family: "Panchang", sans-serif;
+  font-size: clamp(2.5rem, 9vw, 7rem);
+  font-weight: 800;
+  line-height: 0.88;
+  margin: 0;
+  color: #f0ede3;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.frame__subtitle {
+  font-family: "Satoshi", sans-serif;
+  font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+  font-weight: 400;
+  color: #c4873b;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin: 0;
+}
+
+.frame__cta {
+  font-family: "Satoshi", sans-serif;
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
+  font-weight: 300;
+  color: #8a9ba8;
+  font-style: italic;
+  margin: 0.5rem 0 0;
+  max-width: 36ch;
+}
+
+/* ── Scattered Tags ── */
+.frame__scattered {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.scatteredTag {
+  position: absolute;
+  pointer-events: auto;
+  color: #f0ede3;
+  mix-blend-mode: difference;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  animation: textGlowPulse 5s ease-in-out infinite;
+}
+
+.scatteredTag:hover {
+  opacity: 1;
+  animation: none;
+  filter: drop-shadow(0 0 10px rgba(240, 237, 227, 0.8));
+}
+
+@keyframes textGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(240, 237, 227, 0.1));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(240, 237, 227, 0.5));
+  }
+}
+
+
+/* Position them strictly along the edges to match the cardinal style */
+.tag1 {
+  /* Top-Right (Horizontal) */
+  top: 24px;
+  right: 20%;
+  writing-mode: horizontal-tb;
+}
+
+.tag2 {
+  /* Bottom-Right (Horizontal) */
+  bottom: 24px;
+  right: 20%;
+  writing-mode: horizontal-tb;
+}
+
+.tag3 {
+  /* Bottom-Left (Horizontal) */
+  bottom: 24px;
+  left: 100px;
+  writing-mode: horizontal-tb;
+}
+
+.tag4 {
+  /* Mid-Right (Vertical) */
+  top: 25%;
+  right: 24px;
+  writing-mode: sideways-lr;
+}
+
+.tag5 {
+  /* Mid-Left (Vertical) */
+  bottom: 25%;
+  left: 24px;
+  writing-mode: sideways-lr;
+}
+
+/* ── Desktop ── */
+@media screen and (min-width: 53em) {
+  .frame {
+    padding: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .frame__logoImage {
+    height: 50px;
+  }
+}
+
+
+/* ── Mobile ── */
+@media screen and (max-width: 600px) {
+  .frame {
+    padding: calc(env(safe-area-inset-top, 16px) + 0.5rem) 0.5rem calc(env(safe-area-inset-bottom, 16px) + 0.5rem) 0.5rem;
+  }
+
+  .frame__logoImage {
+    height: 32px;
+  }
+
+  .frame__scattered {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}

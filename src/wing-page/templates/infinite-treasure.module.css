@@ -1,0 +1,509 @@
+/* ============================================================
+   Wing 09 — Infinite Treasure  |  Swarm 3C
+   Four-Quadrant Navigation · The Hunt Never Ends
+   ============================================================ */
+
+.treasureContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-void-black, #050505);
+  color: var(--color-text, #ffffff);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+
+  --q-stabilize: rgba(5, 150, 105, 0.06);
+  --q-heal: rgba(124, 58, 237, 0.06);
+  --q-create: rgba(11, 80, 251, 0.06);
+  --q-mutate: rgba(212, 168, 83, 0.06);
+  --q-stabilize-border: rgba(5, 150, 105, 0.15);
+  --q-heal-border: rgba(124, 58, 237, 0.15);
+  --q-create-border: rgba(11, 80, 251, 0.15);
+  --q-mutate-border: rgba(212, 168, 83, 0.15);
+  --q-stabilize-text: #059669;
+  --q-heal-text: #7c3aed;
+  --q-create-text: var(--color-flow-indigo);
+  --q-mutate-text: #d4a853;
+}
+
+/* ---- Header ---- */
+.topBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.topBar > * {
+  pointer-events: auto;
+}
+
+.wingLabel {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.3);
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+
+.closeBtn:hover {
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ---- W09-T04: Central compass rose ---- */
+.compassOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compassRose {
+  width: 180px;
+  height: 180px;
+  animation: rotateCompass 60s linear infinite;
+}
+
+@keyframes rotateCompass {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.compassArt {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+
+/* W09-T07: Ambient distortion from center */
+.ambientDistortion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+  animation: pulseDistortion 8s ease-in-out infinite;
+}
+
+@keyframes pulseDistortion {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.5;
+  }
+}
+
+/* ---- W09-T01: Four-Quadrant 2×2 Grid ---- */
+.quadGrid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  z-index: 10;
+}
+
+/* W09-T02: Minimal Satoshi typography */
+.quadrant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: "Satoshi", sans-serif;
+  transition:
+    transform 800ms cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.5s;
+  transform-origin: center;
+  background: transparent;
+  position: relative;
+}
+
+/* W09-T03: Color per quadrant */
+.stabilize {
+  background: var(--q-stabilize);
+  border-right: 1px solid var(--q-stabilize-border);
+  border-bottom: 1px solid var(--q-stabilize-border);
+}
+
+.stabilize .quadLabel {
+  color: var(--q-stabilize-text);
+}
+
+.heal {
+  background: var(--q-heal);
+  border-bottom: 1px solid var(--q-heal-border);
+}
+
+.heal .quadLabel {
+  color: var(--q-heal-text);
+}
+
+.create {
+  background: var(--q-create);
+  border-right: 1px solid var(--q-create-border);
+}
+
+.create .quadLabel {
+  color: var(--q-create-text);
+}
+
+.mutate {
+  background: var(--q-mutate);
+}
+
+.mutate .quadLabel {
+  color: var(--q-mutate-text);
+}
+
+.quadLabel {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.quadSpec {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 1px;
+}
+
+/* W09-T05: Click → expand quadrant with drill-down */
+.expanded {
+  flex: 2;
+  z-index: 20;
+}
+
+.quadDirection {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+  margin-top: 0.25rem;
+}
+
+.drillDown {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+  animation: slideDown 300ms ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+  }
+}
+
+.drillTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-parchment);
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.drillList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.drillList li {
+  font-size: 0.7rem;
+  color: var(--color-muted-silver);
+  padding-left: 0.75rem;
+  position: relative;
+}
+
+.drillList li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--color-sacred-gold);
+}
+
+.quadrant:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ---- W09-T06: Floating data boxes ---- */
+.floatingSpecs {
+  position: absolute;
+  z-index: 40;
+  pointer-events: none;
+  inset: 0;
+}
+
+.floatingBox {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 14px 18px;
+  max-width: 200px;
+}
+
+.floatingBox:first-child {
+  top: 60px;
+  right: 20px;
+}
+
+.floatingBox:last-child {
+  bottom: 120px;
+  left: 20px;
+}
+
+.floatingBox strong {
+  font-family: "Satoshi", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.floatingBox p {
+  font-family: "Satoshi", sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
+
+/* ---- Bottom thesis + CTA ---- */
+.bottomThesis {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 28px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mainTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.thesis {
+  font-family: "Satoshi", sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6); /* WCAG fix: 0.4 was 3.74:1 — 0.6 ≈ 5.0:1 */
+  margin: 0;
+  flex: 1;
+}
+
+.ctaBtn {
+  background: transparent;
+  border: 1px solid var(--q-mutate-border);
+  color: var(--q-mutate-text);
+  padding: 10px 24px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+.ctaBtn:hover {
+  background: var(--q-mutate-text);
+  color: var(--color-black);
+}
+
+/* ---- W09-T09: Responsive — 2×2 → 1×4 stack ---- */
+@media (max-width: 900px) {
+  .quadGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    overflow-y: auto;
+  }
+
+  .stabilize,
+  .heal,
+  .create {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .compassOverlay {
+    display: none;
+  }
+
+  .floatingSpecs {
+    display: none;
+  }
+
+  .bottomThesis {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 20px;
+  }
+
+  .mainTitle {
+    font-size: 16px;
+  }
+}
+
+/* ── Standardized Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .quadLabel {
+    font-size: 16px;
+    letter-spacing: 0.2em;
+  }
+
+  .bottomThesis {
+    padding: 14px 24px;
+  }
+
+  .mainTitle {
+    font-size: 16px;
+  }
+
+  .compassRose {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .closeBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .ctaBtn {
+    min-height: 44px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .quadrant {
+    min-height: 60px;
+    padding: 16px;
+  }
+
+  .thesis {
+    font-size: 11px;
+  }
+
+  .floatingBox {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .quadLabel {
+    font-size: 14px;
+    letter-spacing: 0.15em;
+  }
+
+  .quadSpec {
+    font-size: 8px;
+  }
+
+  .mainTitle {
+    font-size: 1.25rem;
+  }
+
+  .thesis {
+    font-size: 0.875rem;
+  }
+
+  .bottomThesis {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .topBar {
+    padding: 12px 16px;
+  }
+
+  .wingLabel {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .drillTitle {
+    font-size: 0.7rem;
+  }
+
+  .drillList li {
+    font-size: 0.65rem;
+  }
+}

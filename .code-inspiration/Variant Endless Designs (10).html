@@ -1,0 +1,425 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">FORMA | AI Topology Engine</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" vid="6"></script>
+    <style vid="7">
+        :root {
+            --bg-void: #050505;
+            --bg-panel: #0a0a0a;
+            --fg-primary: #ffffff;
+            --fg-secondary: #666666;
+            --fg-tertiary: #333333;
+            --border-color: rgba(255, 255, 255, 0.15);
+            --accent-active: #00ff41;
+            
+            --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            --grid-gap: 1px;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: var(--bg-void);
+            color: var(--fg-primary);
+            font-family: var(--font-display);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            height: 100%;
+        }
+        ::-webkit-scrollbar { width: 0px; }
+        .main-grid {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            min-height: 100vh;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .col-left {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            position: relative;
+        }
+        .col-right {
+            position: relative;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            overflow: hidden;
+        }
+        .header-hud {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid var(--border-color);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            height: 60px;
+            align-items: center;
+        }
+        .hud-item {
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            border-right: 1px solid var(--border-color);
+            color: var(--fg-secondary);
+        }
+        .hud-item:last-child { border-right: none; }
+        .status-dot { width: 6px; height: 6px; background: var(--accent-active); border-radius: 50%; box-shadow: 0 0 10px var(--accent-active); }
+        .hero-section {
+            padding: 8vh 4vw;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero-label {
+            font-family: var(--font-mono);
+            color: var(--fg-secondary);
+            font-size: 12px;
+            margin-bottom: 24px;
+            display: block;
+        }
+        h1.hero-title {
+            font-size: clamp(4rem, 10vw, 12rem);
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+            font-weight: 400;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            mix-blend-mode: difference;
+        }
+        .hero-description {
+            max-width: 400px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--fg-secondary);
+            border-left: 1px solid var(--fg-tertiary);
+            padding-left: 20px;
+        }
+        .specs-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--border-color);
+        }
+        .spec-box {
+            padding: 24px;
+            border-right: 1px solid var(--border-color);
+            font-family: var(--font-mono);
+        }
+        .spec-box:last-child { border-right: none; }
+        .spec-label { font-size: 10px; color: var(--fg-secondary); text-transform: uppercase; margin-bottom: 8px; display: block;}
+        .spec-value { font-size: 16px; color: var(--fg-primary); }
+        .crosshair {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .crosshair::before, .crosshair::after {
+            content: '';
+            position: absolute;
+            background: var(--fg-primary);
+        }
+        .crosshair::before { width: 1px; height: 100%; left: 50%; }
+        .crosshair::after { width: 100%; height: 1px; top: 50%; }
+        
+        .ch-tl { top: -7px; left: -7px; }
+        .ch-tr { top: -7px; right: -7px; }
+        .ch-bl { bottom: -7px; left: -7px; }
+        .ch-br { bottom: -7px; right: -7px; }
+        .cta-container {
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .cta-container:hover { background: #111; }
+        
+        .btn-text {
+            font-size: 24px;
+            letter-spacing: -0.02em;
+        }
+        .arrow-icon { font-family: var(--font-mono); }
+        #canvas-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .overlay-ui {
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .scan-lines {
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255,255,255,0.03),
+                rgba(255,255,255,0.03) 1px,
+                transparent 1px,
+                transparent 4px
+            );
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .ui-coords {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--fg-secondary);
+            text-align: right;
+        }
+        
+        .ui-badge {
+            align-self: flex-start;
+            background: var(--fg-primary);
+            color: var(--bg-void);
+            padding: 4px 8px;
+            font-size: 10px;
+            font-family: var(--font-mono);
+            font-weight: bold;
+        }
+        .feature-stack {
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .feature-row {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            border-bottom: 1px solid var(--border-color);
+            min-height: 120px;
+        }
+        
+        .f-number {
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--fg-secondary);
+        }
+        
+        .f-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .f-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .f-desc {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--fg-secondary);
+            max-width: 300px;
+        }
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .col-right {
+                height: 50vh;
+                border-left: none;
+                border-bottom: 1px solid var(--border-color);
+                order: -1;
+            }
+            h1.hero-title { font-size: 18vw; }
+            .specs-container { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body vid="8">
+    <div class="main-grid" vid="9">
+        
+        
+        <div class="col-left" vid="10">
+            <div class="crosshair ch-br" vid="11"></div>
+            
+            <header class="header-hud" vid="12">
+                <div class="hud-item" vid="13">
+                    <span vid="14">FORMA OS</span>
+                    <span class="status-dot" vid="15"></span>
+                </div>
+                <div class="hud-item" vid="16">
+                    <span vid="17">V. 2.04</span>
+                </div>
+                <div class="hud-item" style="justify-content: center;" vid="18">
+                    <span vid="19">MENU +</span>
+                </div>
+            </header>
+            
+            <section class="hero-section" vid="20">
+                <span class="hero-label" vid="21"></span>
+                <h1 class="hero-title" vid="22">Forma<br vid="23">Engine</h1>
+                <p class="hero-description" vid="24">
+                    Neural-network accelerated 3D modeling pipeline. 
+                    Procedurally generate production-ready meshes from 
+                    vector inputs in real-time.
+                </p>
+            </section>
+            
+            <div class="specs-container" vid="25">
+                <div class="spec-box" vid="26">
+                    <span class="spec-label" vid="27">Polygons/Sec</span>
+                    <span class="spec-value" vid="28">45,000,000</span>
+                </div>
+                <div class="spec-box" vid="29">
+                    <span class="spec-label" vid="30">Latency</span>
+                    <span class="spec-value" vid="31">&lt; 12ms</span>
+                </div>
+                <div class="spec-box" vid="32">
+                    <span class="spec-label" vid="33">Export</span>
+                    <span class="spec-value" vid="34">GLTF / USDZ / OBJ</span>
+                </div>
+            </div>
+            
+            <div class="feature-stack" vid="35">
+                <div class="feature-row" vid="36">
+                    <div class="f-number" vid="37">01</div>
+                    <div class="f-content" vid="38">
+                        <div class="f-title" vid="39">Adaptive Mesh Refinement</div>
+                        <div class="f-desc" vid="40">Algorithms automatically optimize geometry density based on curvature analysis.</div>
+                    </div>
+                </div>
+                <div class="feature-row" vid="41">
+                    <div class="f-number" vid="42">02</div>
+                    <div class="f-content" vid="43">
+                        <div class="f-title" vid="44">Non-Destructive Booleans</div>
+                        <div class="f-desc" vid="45">Perform complex subtractions and unions with live history states.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-container" vid="46">
+                <span class="btn-text" vid="47">Initialize Environment</span>
+                <span class="arrow-icon" vid="48">-&gt;</span>
+            </div>
+        </div>
+        
+        <div class="col-right" vid="49">
+            <div class="scan-lines" vid="50"></div>
+            
+            
+            <div id="canvas-container" vid="51"></div>
+            
+            <div class="overlay-ui" vid="52">
+                <div class="ui-badge" vid="53">RENDER: LIVE</div>
+                <div class="ui-coords" vid="54">
+                    X: <span id="coord-x" vid="55">0.00</span><br vid="56">
+                    Y: <span id="coord-y" vid="57">0.00</span><br vid="58">
+                    Z: <span id="coord-z" vid="59">14.2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script vid="60">
+        
+        const container = document.getElementById('canvas-container');
+        
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050505, 0.002);
+        
+        const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 1, 1000);
+        camera.position.z = 50;
+        
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+        
+        const geometry = new THREE.IcosahedronGeometry(15, 1);
+        
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0xffffff, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3
+        });
+        
+        const coreMaterial = new THREE.MeshBasicMaterial({
+            color: 0x000000,
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        const core = new THREE.Mesh(new THREE.IcosahedronGeometry(14.8, 1), coreMaterial);
+        
+        const group = new THREE.Group();
+        group.add(core);
+        group.add(mesh);
+        
+        const ringGeo = new THREE.TorusGeometry(22, 0.1, 16, 100);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x444444, transparent: true, opacity: 0.5 });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / 2;
+        group.add(ring);
+        scene.add(group);
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetRotationX = 0;
+        let targetRotationY = 0;
+        
+        const coordX = document.getElementById('coord-x');
+        const coordY = document.getElementById('coord-y');
+        document.addEventListener('mousemove', (event) => {
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+            mouseX = (event.clientX - windowHalfX);
+            mouseY = (event.clientY - windowHalfY);
+            
+            coordX.innerText = (mouseX / 100).toFixed(2);
+            coordY.innerText = (mouseY / 100).toFixed(2);
+        });
+        
+        window.addEventListener('resize', () => {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            targetRotationY = mouseX * 0.001;
+            targetRotationX = mouseY * 0.001;
+            group.rotation.y += 0.005 + (targetRotationY - group.rotation.y) * 0.1;
+            group.rotation.x += (targetRotationX - group.rotation.x) * 0.1;
+            
+            ring.rotation.z -= 0.002;
+            ring.rotation.x += 0.002;
+            
+            const time = Date.now() * 0.001;
+            material.opacity = 0.2 + Math.sin(time) * 0.1;
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+
+</body></html>

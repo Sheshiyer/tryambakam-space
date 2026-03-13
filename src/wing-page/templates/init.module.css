@@ -1,0 +1,410 @@
+.initContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-black);
+  color: #00ff41; /* Classic Matrix Green */
+  font-family: "JetBrains Mono", "Courier New", Courier, monospace;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.topBar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #00ff41;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.sysInfo {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.separator {
+  color: #444;
+  margin: 0 10px;
+}
+
+.closeBtn {
+  background: transparent;
+  color: #00ff41;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.closeBtn:hover {
+  background: #00ff41;
+  color: black;
+}
+
+.matrixBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.codeColumn {
+  position: absolute;
+  top: -100%;
+  width: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  word-break: break-all;
+  text-align: center;
+  animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+  to {
+    top: 100%;
+  }
+}
+
+.centerConsole {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.imageBox {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #00ff41;
+  background: rgba(0, 255, 65, 0.05);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.artworkImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: sepia(100%) hue-rotate(80deg) saturate(400%);
+  transition: opacity 0.5s ease;
+}
+
+.overlayText {
+  position: absolute;
+  font-size: 24px;
+  letter-spacing: 4px;
+  font-weight: bold;
+  mix-blend-mode: difference;
+}
+
+.statusPanel {
+  width: 100%;
+}
+
+.title {
+  font-size: 16px;
+  margin: 0 0 15px 0;
+  font-weight: normal;
+  letter-spacing: 2px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 2px;
+  background: #111;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  background: #00ff41;
+  box-shadow: 0 0 10px #00ff41;
+  transition: width 0.1s linear;
+}
+
+.progressText {
+  font-size: 10px;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.loadingLog {
+  font-size: 12px;
+  color: #aaa;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.logItem {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.specsSidebar {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 250px;
+  height: calc(100vh - 50px);
+  border-left: 1px dashed #00ff41;
+  padding: 30px 20px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 5;
+}
+
+.sideHeader {
+  font-size: 14px;
+  border-bottom: 1px solid #00ff41;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #222;
+  padding-bottom: 5px;
+}
+
+.specKey {
+  color: var(--color-mid-gray);
+}
+
+.specVal {
+  color: var(--color-white);
+}
+
+.enterBtn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 32px;
+  background: transparent;
+  border: 1px solid var(--color-sacred-gold, #c8a832);
+  color: var(--color-sacred-gold, #c8a832);
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    color 0.3s;
+  animation: fadeInBtn 0.6s ease-out both;
+}
+
+.enterBtn:hover {
+  background: var(--color-sacred-gold, #c8a832);
+  color: var(--color-black);
+}
+
+@keyframes fadeInBtn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Protocol Modal */
+.protocolModal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.spinBadge {
+  font-family: "SF Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--color-coherence-emerald);
+  padding: 0.5rem 0.75rem;
+  background: rgba(16, 181, 167, 0.08);
+  border: 1px solid rgba(16, 181, 167, 0.15);
+  border-radius: 4px;
+}
+
+.protocolPurpose {
+  font-size: 1.05rem;
+  color: var(--color-parchment);
+  line-height: 1.6;
+}
+
+.protocolElements {
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid rgba(16, 181, 167, 0.3);
+  border-radius: 2px;
+}
+
+.elementsLabel {
+  font-family: "SF Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--color-muted-silver);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.beginBtn {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(16, 181, 167, 0.1);
+  border: 1px solid rgba(16, 181, 167, 0.3);
+  border-radius: 4px;
+  color: var(--color-coherence-emerald);
+  font-family: "Panchang", sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.beginBtn:hover {
+  background: rgba(16, 181, 167, 0.2);
+  border-color: rgba(16, 181, 167, 0.5);
+}
+
+/* ── Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .centerConsole {
+    width: 500px;
+  }
+
+  .specsSidebar {
+    width: 220px;
+    padding: 24px 16px;
+  }
+
+  .imageBox {
+    height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .centerConsole {
+    width: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .specsSidebar {
+    display: none;
+  }
+
+  .closeBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .enterBtn {
+    min-height: 44px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .imageBox {
+    height: 220px;
+  }
+
+  .topBar {
+    padding: 10px 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sysInfo {
+    font-size: 10px;
+  }
+
+  .beginBtn {
+    min-height: 44px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .centerConsole {
+    width: calc(100% - 32px);
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .imageBox {
+    height: 160px;
+  }
+
+  .loadingLog {
+    font-size: 10px;
+  }
+
+  .overlayText {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .topBar {
+    padding: 8px 12px;
+  }
+
+  .sysInfo {
+    font-size: 9px;
+  }
+
+  .separator {
+    margin: 0 6px;
+  }
+
+  .progressText {
+    font-size: 9px;
+  }
+
+  .logItem {
+    font-size: 10px;
+  }
+
+  .protocolPurpose {
+    font-size: 0.9rem;
+  }
+
+  .protocolElements {
+    padding: 0.5rem;
+  }
+}

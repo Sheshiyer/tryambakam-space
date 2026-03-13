@@ -1,0 +1,260 @@
+/* ── LoadingSkeleton: Init-aesthetic branded loading state ── */
+
+/* ── Keyframes ── */
+@keyframes skeletonPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes scanDrift {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes labelBlink {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ── Root container ── */
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-void-black, #070b1d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Scanline overlay (Init-aesthetic) ── */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(240, 237, 227, 0.015),
+    rgba(240, 237, 227, 0.015) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+/* ── Vertical scan beam ── */
+.scanBeam {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.scanBeamLine {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(180deg, transparent, rgba(138, 155, 168, 0.04), transparent);
+  animation: scanDrift 4s linear infinite;
+}
+
+/* ── Content layout ── */
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: min(90vw, 560px);
+  padding: 2rem 1rem;
+}
+
+/* ── Skeleton block base ── */
+.block {
+  height: 14px;
+  border-radius: 2px;
+  background: var(--color-deep-surface, #0e1428);
+  position: relative;
+  overflow: hidden;
+  animation: skeletonPulse 2s ease-in-out infinite;
+}
+
+/* Shimmer sweep inside each block */
+.block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.04) 50%, transparent 100%);
+  animation: shimmerSweep 2.4s ease-in-out infinite;
+}
+
+/* ── Title bar placeholder ── */
+.titleBar {
+  width: 40%;
+  height: 20px;
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+  animation-delay: 0s;
+}
+
+.titleBar::after {
+  animation-delay: 0s;
+}
+
+/* ── Content block placeholders ── */
+.contentBlock1 {
+  width: 80%;
+  animation-delay: 0.15s;
+}
+
+.contentBlock1::after {
+  animation-delay: 0.15s;
+}
+
+.contentBlock2 {
+  width: 60%;
+  animation-delay: 0.3s;
+}
+
+.contentBlock2::after {
+  animation-delay: 0.3s;
+}
+
+.contentBlock3 {
+  width: 70%;
+  animation-delay: 0.45s;
+}
+
+.contentBlock3::after {
+  animation-delay: 0.45s;
+}
+
+/* ── CTA placeholder ── */
+.ctaBlock {
+  width: 200px;
+  height: 40px;
+  border-radius: 3px;
+  margin-top: 1.5rem;
+  animation-delay: 0.6s;
+}
+
+.ctaBlock::after {
+  animation-delay: 0.6s;
+}
+
+/* ── Pulsing dot triad (scanning indicator) ── */
+.dotTriad {
+  display: flex;
+  gap: 6px;
+  margin-top: 0.5rem;
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-muted-silver, #8a9ba8);
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+}
+
+.dot1 {
+  animation-delay: 0s;
+}
+
+.dot2 {
+  animation-delay: 0.2s;
+}
+
+.dot3 {
+  animation-delay: 0.4s;
+}
+
+/* ── LOADING label ── */
+.label {
+  font-family: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-muted-silver, #8a9ba8);
+  margin-top: 1rem;
+  animation: labelBlink 2.4s ease-in-out infinite;
+  user-select: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .content {
+    width: min(94vw, 400px);
+    gap: 1.25rem;
+  }
+
+  .titleBar {
+    width: 55%;
+    height: 16px;
+    margin-bottom: 1rem;
+  }
+
+  .block {
+    height: 12px;
+  }
+
+  .ctaBlock {
+    width: 160px;
+    height: 36px;
+    margin-top: 1rem;
+  }
+
+  .label {
+    font-size: 9px;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    width: calc(100vw - 48px);
+    gap: 1rem;
+    padding: 1.5rem 0.5rem;
+  }
+
+  .titleBar {
+    width: 65%;
+    height: 14px;
+  }
+
+  .block {
+    height: 10px;
+  }
+
+  .ctaBlock {
+    width: 140px;
+    height: 32px;
+  }
+}

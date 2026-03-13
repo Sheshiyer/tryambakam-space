@@ -1,0 +1,279 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">FORMA | SYSTEM ERROR</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" vid="6"></script>
+    <style vid="7">
+        :root {
+            --bg-void: #050505;
+            --bg-panel: #0a0a0a;
+            --fg-primary: #ffffff;
+            --fg-secondary: #666666;
+            --fg-tertiary: #333333;
+            --border-color: rgba(255, 255, 255, 0.15);
+            --accent-error: #ff3b3b;
+            --accent-active: #00ff41;
+            
+            --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-void);
+            color: var(--fg-primary);
+            font-family: var(--font-display);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            width: 1200px;
+            height: 800px;
+            border-radius: 8px;
+        }
+        .main-grid {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            height: 100%;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .col-left {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            position: relative;
+            background: linear-gradient(180deg, rgba(255, 59, 59, 0.03) 0%, transparent 100%);
+        }
+        .col-right {
+            position: relative;
+            background: radial-gradient(circle at center, #1a0505 0%, #000 100%);
+            overflow: hidden;
+        }
+        .header-hud {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid var(--border-color);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            height: 60px;
+            align-items: center;
+        }
+        .hud-item {
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            border-right: 1px solid var(--border-color);
+            color: var(--fg-secondary);
+        }
+        .hud-item:last-child { border-right: none; }
+        .status-dot-error { width: 6px; height: 6px; background: var(--accent-error); border-radius: 50%; box-shadow: 0 0 10px var(--accent-error); animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        .error-section {
+            padding: 60px 4vw;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .error-code {
+            font-family: var(--font-mono);
+            color: var(--accent-error);
+            font-size: 12px;
+            margin-bottom: 24px;
+            display: block;
+        }
+        h1.error-title {
+            font-size: 80px;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            font-weight: 400;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: var(--accent-error);
+        }
+        .log-container {
+            flex-grow: 1;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--fg-secondary);
+            overflow-y: auto;
+            margin-bottom: 40px;
+        }
+        .log-entry { margin-bottom: 4px; display: flex; gap: 15px; }
+        .log-ts { color: var(--fg-tertiary); min-width: 80px; }
+        .log-msg-error { color: var(--accent-error); }
+
+        .specs-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--border-color);
+        }
+        .spec-box { padding: 20px 24px; border-right: 1px solid var(--border-color); font-family: var(--font-mono); }
+        .spec-box:last-child { border-right: none; }
+        .spec-label { font-size: 10px; color: var(--fg-secondary); text-transform: uppercase; margin-bottom: 8px; display: block;}
+        .spec-value { font-size: 14px; color: var(--fg-primary); }
+
+        .action-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--border-color);
+        }
+        .cta-btn {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-right: 1px solid var(--border-color);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        .cta-btn:last-child { border-right: none; }
+        .cta-btn:hover { background: rgba(255, 255, 255, 0.05); }
+        .cta-btn.primary { background: var(--accent-error); color: white; }
+        .cta-btn.primary:hover { background: #ff5252; }
+
+        .scan-lines {
+            background: repeating-linear-gradient(0deg, rgba(255, 59, 59, 0.05), rgba(255, 59, 59, 0.05) 1px, transparent 1px, transparent 4px);
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 5;
+        }
+        .overlay-ui { position: absolute; z-index: 6; pointer-events: none; width: 100%; height: 100%; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; }
+        .ui-badge-error { align-self: flex-start; background: var(--accent-error); color: white; padding: 4px 8px; font-size: 10px; font-family: var(--font-mono); font-weight: bold; }
+        
+        #canvas-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+        .glitch-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAE0lEQVQImWNgYGD4D8SogFEWBAAz9QMBA7nByAAAAABJRU5ErkJggg==');
+            opacity: 0.1; mix-blend-mode: overlay; pointer-events: none;
+        }
+    </style>
+</head>
+<body vid="8">
+    <div class="main-grid" vid="9">
+        <div class="col-left" vid="10">
+            <header class="header-hud" vid="11">
+                <div class="hud-item" vid="12">
+                    <span vid="13">FORMA OS</span>
+                    <span class="status-dot-error" vid="14"></span>
+                </div>
+                <div class="hud-item" vid="15"><span vid="16">SYS.CRITICAL</span></div>
+                <div class="hud-item" style="justify-content: center;" vid="17"><span vid="18">DIAGNOSTICS</span></div>
+            </header>
+            
+            <section class="error-section" vid="19">
+                <span class="error-code" vid="20">EXCEPTION_CORE_DUMP: 0x000F291</span>
+                <h1 class="error-title" vid="21">Rendering<br vid="22">Failed</h1>
+                
+                <div class="log-container" vid="23">
+                    <div class="log-entry" vid="24"><span class="log-ts" vid="25">[14:02:11]</span><span vid="26">Initializing GPU Buffer...</span></div>
+                    <div class="log-entry" vid="27"><span class="log-ts" vid="28">[14:02:11]</span><span vid="29">Allocating 4.2GB VRAM...</span></div>
+                    <div class="log-entry" vid="30"><span class="log-ts" vid="31">[14:02:12]</span><span class="log-msg-error" vid="32">CRITICAL: Shader compilation failed at row 452</span></div>
+                    <div class="log-entry" vid="33"><span class="log-ts" vid="34">[14:02:12]</span><span class="log-msg-error" vid="35">ERROR: Buffer overflow in topology_engine.so</span></div>
+                    <div class="log-entry" vid="36"><span class="log-ts" vid="37">[14:02:12]</span><span vid="38">Terminating child processes [PID: 4421, 4429]</span></div>
+                    <div class="log-entry" vid="39"><span class="log-ts" vid="40">[14:02:13]</span><span vid="41">Attempting memory scrub...</span></div>
+                    <div class="log-entry" vid="42"><span class="log-ts" vid="43">[14:02:13]</span><span class="log-msg-error" vid="44">FATAL: Kernel panic. Interface suspended.</span></div>
+                    <div class="log-entry" vid="45"><span class="log-ts" vid="46">[14:02:13]</span><span vid="47">_</span></div>
+                </div>
+            </section>
+            
+            <div class="specs-container" vid="48">
+                <div class="spec-box" vid="49">
+                    <span class="spec-label" vid="50">Process ID</span>
+                    <span class="spec-value" vid="51">#8821-X</span>
+                </div>
+                <div class="spec-box" vid="52">
+                    <span class="spec-label" vid="53">Uptime</span>
+                    <span class="spec-value" vid="54">00:04:12:09</span>
+                </div>
+                <div class="spec-box" vid="55">
+                    <span class="spec-label" vid="56">Memory</span>
+                    <span class="spec-value" vid="57">Overflow</span>
+                </div>
+            </div>
+            
+            <div class="action-row" vid="58">
+                <div class="cta-btn primary" vid="59">
+                    <span vid="60">Retry Pipeline</span>
+                    <span vid="61">⟳</span>
+                </div>
+                <div class="cta-btn" vid="62">
+                    <span vid="63">Report Issue</span>
+                    <span vid="64">↗</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-right" vid="65">
+            <div class="scan-lines" vid="66"></div>
+            <div class="glitch-overlay" vid="67"></div>
+            <div id="canvas-container" vid="68"></div>
+            <div class="overlay-ui" vid="69">
+                <div class="ui-badge-error" vid="70">SIGNAL LOST</div>
+                <div class="ui-coords" style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-error); text-align: right;" vid="71">
+                    CORE_TEMP: 98°C<br vid="72">
+                    VOLTAGE: ERR<br vid="73">
+                    PARITY: FAILED
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script vid="74">
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 1, 1000);
+        camera.position.z = 50;
+        
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+        
+        
+        const geometry = new THREE.IcosahedronGeometry(15, 0);
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0xff3b3b, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.4
+        });
+        
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        
+        const pCount = 100;
+        const pGeo = new THREE.BufferGeometry();
+        const pPos = new Float32Array(pCount * 3);
+        for(let i=0; i<pCount*3; i++) pPos[i] = (Math.random() - 0.5) * 60;
+        pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+        const pMat = new THREE.PointsMaterial({ color: 0xff3b3b, size: 0.5 });
+        const points = new THREE.Points(pGeo, pMat);
+        scene.add(points);
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            mesh.rotation.y += 0.002;
+            mesh.rotation.x += 0.01; 
+            
+            
+            if(Math.random() > 0.95) {
+                mesh.scale.set(1.1, 0.9, 1.1);
+                material.opacity = 0.8;
+            } else {
+                mesh.scale.set(1, 1, 1);
+                material.opacity = 0.2 + Math.random() * 0.2;
+            }
+            
+            points.rotation.y -= 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body></html>

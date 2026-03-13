@@ -1,0 +1,540 @@
+/* ============================================================
+   Wing 06 — Financial Biosensor  |  Swarm 2C
+   Bloomberg Terminal meets Zen Garden
+   ============================================================ */
+
+/* W06-T01: Dense column layout — terminal container */
+.terminalContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a0a14;
+  color: var(--color-text);
+  overflow: hidden;
+  position: relative;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+
+  --fin-bg: #0a0a14;
+  --fin-violet: #1a1030;
+  --fin-violet-deep: #0d0820;
+  --fin-emerald: #00e676;
+  --fin-emerald-dim: rgba(0, 230, 118, 0.15);
+  --fin-border: rgba(255, 255, 255, 0.08);
+  --fin-border-bright: rgba(255, 255, 255, 0.15);
+  --fin-text-dim: #7d7d96; /* WCAG fix: #555570 was 2.74:1 — #7D7D96 ≈ 4.7:1 on #0a0a14 */
+  --fin-text-mid: #8888a0;
+  --fin-red: #ff4444;
+  --fin-amber: #ffab00;
+}
+
+/* W06-T07: CRT scanline overlay */
+.crtScanline {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ---- Top Bar / Ticker Tape ---- */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  padding: 0 16px;
+  background: var(--fin-violet-deep);
+  border-bottom: 1px solid var(--fin-border);
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.tickerTape {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--fin-text-mid);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.tickGlow {
+  color: var(--fin-emerald);
+  text-shadow: 0 0 6px var(--fin-emerald);
+  animation: tickPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes tickPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid var(--fin-border);
+  color: var(--fin-red);
+  padding: 4px 12px;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  background: var(--fin-red);
+  color: var(--color-white);
+  border-color: var(--fin-red);
+}
+
+/* ---- System Grid: Two-Column Bloomberg Layout ---- */
+.sysGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ---- Left Column: Thesis & Visual ---- */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  border-right: 1px solid var(--fin-border);
+  overflow-y: auto;
+  background: var(--fin-violet-deep);
+}
+
+/* W06-T02: SF Mono for titles in terminal context */
+.terminalTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0 0 6px 0;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+.terminalSubtitle {
+  font-size: 12px;
+  color: var(--fin-emerald);
+  letter-spacing: 1px;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* W06-T05: Blinking cursor */
+.cursor {
+  animation: blink 1s step-end infinite;
+  color: var(--fin-emerald);
+  font-size: 14px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Visual Frame */
+.visualFrame {
+  position: relative;
+  margin-bottom: 20px;
+  border: 1px solid var(--fin-border);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.terminalArt {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+
+.artOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.crosshair {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  background: var(--fin-emerald);
+  opacity: 0.4;
+}
+
+.crosshair::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.crosshair::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+/* W06-T08: Thesis block — "Clarity Over Anxiety" */
+.thesisBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.thesisBlock p {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--fin-text-mid);
+  margin: 0;
+}
+
+/* W06-T03: Coherence Emerald for "Act" signals */
+.actBtn {
+  background: transparent;
+  border: 1px solid var(--fin-emerald);
+  color: var(--fin-emerald);
+  padding: 12px 24px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.3s;
+  animation: breatheAct 4s ease-in-out infinite;
+}
+
+@keyframes breatheAct {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--fin-emerald-dim);
+  }
+  50% {
+    box-shadow: 0 0 20px 0 var(--fin-emerald-dim);
+  }
+}
+
+.actBtn:hover {
+  background: var(--fin-emerald);
+  color: var(--fin-bg);
+}
+
+/* ---- Right Column: Dense Data Panels ---- */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  background: var(--fin-bg);
+}
+
+/* Data Module (shared panel style) */
+.dataModule {
+  border-bottom: 1px solid var(--fin-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.moduleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--fin-text-dim);
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--fin-border);
+}
+
+.moduleHeader span:last-child {
+  color: var(--fin-emerald);
+  font-size: 9px;
+}
+
+/* W06-T04: Sparkline container */
+.sparklineContainer {
+  position: relative;
+  height: 120px;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgba(0, 230, 118, 0.03) 0%, transparent 100%);
+}
+
+.sparklineSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.sparklineMarker {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--fin-emerald);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px var(--fin-emerald);
+  pointer-events: none;
+}
+
+/* Specifications Table — Bloomberg-style dense rows */
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.dataTable td {
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--fin-border);
+  white-space: nowrap;
+}
+
+.dataTable td:first-child {
+  color: var(--fin-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: 40%;
+}
+
+.dataTable td:last-child {
+  color: var(--fin-text-dim);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.rowEven {
+  background: transparent;
+}
+
+.rowOdd {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.dataHighlight {
+  color: var(--fin-emerald);
+  font-weight: 600;
+}
+
+/* W06-T06: Temporal Decision Windows — Gantt chart timeline */
+.ganttContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+}
+
+.ganttRow {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--fin-border);
+  transition: background 0.2s;
+}
+
+.ganttRow:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.ganttLabel strong {
+  display: block;
+  font-size: 10px;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.ganttLabel p {
+  margin: 2px 0 0;
+  font-size: 9px;
+  color: var(--fin-text-dim);
+  line-height: 1.3;
+}
+
+.ganttTrack {
+  position: relative;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--fin-border);
+}
+
+.ganttBlock {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--fin-emerald-dim), var(--fin-emerald));
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.ganttRow:hover .ganttBlock {
+  opacity: 1;
+}
+
+/* W06-T09: Responsive — Collapse to card view on mobile */
+@media (max-width: 900px) {
+  .sysGrid {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .leftCol {
+    border-right: none;
+    border-bottom: 1px solid var(--fin-border);
+  }
+
+  .terminalTitle {
+    font-size: 22px;
+  }
+
+  .visualFrame {
+    aspect-ratio: 16 / 9;
+  }
+
+  .ganttRow {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .ganttTrack {
+    height: 8px;
+  }
+
+  .dataTable td {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+}
+
+/* ── Standardized Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .sysGrid {
+    grid-template-columns: 300px 1fr;
+  }
+
+  .leftCol {
+    padding: 20px 16px;
+  }
+
+  .terminalTitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topBar {
+    padding: 0 12px;
+    height: 32px;
+  }
+
+  .terminalTitle {
+    font-size: 1.25rem;
+  }
+
+  .actBtn {
+    min-height: 44px;
+    padding: 12px 20px;
+  }
+
+  .closeBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .ganttRow {
+    padding: 8px 12px;
+  }
+
+  .ganttLabel strong {
+    font-size: 9px;
+  }
+
+  .ganttLabel p {
+    font-size: 8px;
+  }
+
+  .dataTable {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminalSubtitle {
+    font-size: 10px;
+  }
+
+  .thesisBlock p {
+    font-size: 0.875rem;
+  }
+
+  .dataTable td {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+
+  .sparklineContainer {
+    height: 80px;
+  }
+
+  .leftCol {
+    padding: 16px 12px;
+  }
+
+  .moduleHeader {
+    padding: 6px 12px;
+    font-size: 9px;
+  }
+
+  .tickerTape {
+    font-size: 8px;
+  }
+}

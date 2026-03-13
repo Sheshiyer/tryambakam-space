@@ -1,0 +1,586 @@
+/* W05 Somatic Canticles: Book/Codex Layout */
+.codexContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-void-black);
+  color: var(--color-parchment); /* Parchment Text */
+  display: flex;
+  position: relative;
+  overflow: hidden; /* Main container fixed, left fixed, right scrolls */
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+}
+
+/* W05-T07: Cinematic Vignette Overlay */
+.vignetteOverlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.95) 100%);
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* W05-T01: Left Fixed Index */
+.fixedIndex {
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid rgba(222, 172, 85, 0.2); /* Sacred Gold faint */
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.indexHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.folioMarker {
+  font-size: 10px;
+  color: var(--color-sacred-gold);
+  letter-spacing: 2px;
+}
+
+.backBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-parchment);
+  font-size: 10px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: var(--color-sacred-gold);
+}
+
+.chapterList {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.chapterItem {
+  display: flex;
+  gap: 15px;
+  align-items: baseline;
+  opacity: 0.4;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.chapterItem:hover,
+.chapActive {
+  opacity: 1;
+}
+
+.chapNum {
+  font-family: "Panchang", sans-serif;
+  font-size: 12px;
+  color: var(--color-sacred-gold);
+}
+
+.chapName {
+  font-family: "Satoshi", sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+.bioSyncModule {
+  margin-top: auto;
+}
+
+.syncLabel {
+  font-size: 9px;
+  color: rgba(240, 237, 227, 0.6);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.syncTrack {
+  width: 100%;
+  height: 2px;
+  background: rgba(222, 172, 85, 0.2);
+}
+
+.syncFill {
+  height: 100%;
+  background: var(--color-sacred-gold);
+  transition: width 0.1s linear;
+}
+
+/* W05-T01: Right Scrolling Content */
+.scrollingContent {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 0 80px;
+  position: relative;
+  /* Clinical Serif/Sans aesthetic container */
+}
+
+/* Custom scrollbar for codex */
+.scrollingContent::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollingContent::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+.scrollingContent::-webkit-scrollbar-thumb {
+  background: var(--color-sacred-gold);
+}
+
+.marginFolio {
+  position: absolute;
+  left: 40px;
+  opacity: 0.4;
+}
+
+.contentWrapper {
+  max-width: 700px;
+  margin: 80px auto 120px auto;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.codexTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--color-sacred-gold);
+  margin: 0 0 10px 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.codexSubtitle {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  color: var(--color-parchment);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.artworkBlock {
+  margin-bottom: 60px;
+  border: 1px solid rgba(222, 172, 85, 0.2);
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.manuscriptArt {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%) contrast(1.2); /* B&W requested */
+}
+
+.prominentQuote {
+  font-family: "Times New Roman", Times, serif; /* Clinical serif */
+  font-size: 24px;
+  line-height: 1.6;
+  color: var(--color-parchment);
+  margin: 0 0 60px 0;
+  padding-left: 30px;
+  border-left: 2px solid var(--color-sacred-gold);
+  font-style: italic;
+}
+
+/* W05-T06: Library Card Catalog */
+.metadataCards {
+  margin-bottom: 60px;
+}
+
+.cardCatalog {
+  background: var(--color-parchment); /* Parchment background */
+  color: var(--color-void-black);
+  padding: 30px;
+  border: 1px solid #ccc;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+}
+
+.catalogHeader {
+  font-size: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid var(--color-black);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.catalogRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.catalogKey {
+  color: #555;
+  text-transform: uppercase;
+}
+
+.catalogVal {
+  font-weight: bold;
+}
+
+.textBody {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.narrativeParagraph p {
+  font-family: "Satoshi", sans-serif; /* Clean sans */
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(240, 237, 227, 0.8);
+  margin: 0;
+}
+
+.dropcap {
+  float: left;
+  font-family: "Panchang", sans-serif;
+  font-size: 48px;
+  line-height: 40px;
+  padding-top: 4px;
+  padding-right: 8px;
+  color: var(--color-sacred-gold);
+}
+
+.inlineTitle {
+  color: var(--color-parchment);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footerAction {
+  margin-top: 80px;
+  text-align: center;
+  border-top: 1px dashed rgba(222, 172, 85, 0.3);
+  padding-top: 40px;
+}
+
+.readBtn {
+  background: var(--color-sacred-gold);
+  color: var(--color-void-black);
+  border: none;
+  padding: 16px 40px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.readBtn:hover {
+  opacity: 0.8;
+}
+
+/* W4C-03: Chapter Detail List */
+.chapterDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.chapterPill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 3px;
+  color: var(--color-muted-silver);
+  font-family: "Satoshi", sans-serif;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-align: left;
+}
+
+.chapterPill:hover {
+  background: rgba(197, 160, 23, 0.08);
+  border-color: rgba(197, 160, 23, 0.2);
+  color: var(--color-parchment);
+}
+
+.chNum {
+  font-family: "SF Mono", monospace;
+  font-size: 0.6rem;
+  color: var(--color-sacred-gold);
+  min-width: 1.2rem;
+}
+
+.chTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Book Cover Styles */
+.bookCoverThumb {
+  width: 50px;
+  height: 75px;
+  border-radius: 3px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 200ms ease;
+}
+
+.chapterItem:hover .bookCoverThumb,
+.chapActive .bookCoverThumb {
+  transform: scale(1.05);
+}
+
+.bookThumbImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bookInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chapterItem {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Chapter Modal Cover */
+.chapterModalCover {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.modalCoverImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* W4C-03: Chapter Preview Modal */
+.chapterModal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chapterMeta {
+  font-family: "SF Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-sacred-gold);
+}
+
+.chapterTeaser {
+  font-style: italic;
+  color: var(--color-parchment);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.chapterKosha {
+  font-size: 0.85rem;
+  color: var(--color-muted-silver);
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid rgba(197, 160, 23, 0.3);
+  border-radius: 2px;
+}
+
+.readLink {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(197, 160, 23, 0.1);
+  border: 1px solid rgba(197, 160, 23, 0.3);
+  border-radius: 4px;
+  color: var(--color-sacred-gold);
+  font-family: "Panchang", sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-align: center;
+  transition: all 200ms ease;
+}
+
+.readLink:hover {
+  background: rgba(197, 160, 23, 0.2);
+  border-color: rgba(197, 160, 23, 0.5);
+}
+
+/* W05-T09 Responsive */
+@media (max-width: 900px) {
+  .codexContainer {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .fixedIndex {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(222, 172, 85, 0.2);
+    padding: 20px;
+  }
+
+  .chapterList {
+    display: none; /* Hide chapters on mobile */
+  }
+
+  .chapterDetail {
+    display: none;
+  }
+
+  .scrollingContent {
+    overflow: visible;
+    padding: 20px;
+  }
+
+  .marginFolio {
+    display: none;
+  }
+
+  .contentWrapper {
+    margin-top: 40px;
+  }
+
+  .codexTitle {
+    font-size: 32px;
+  }
+}
+
+/* ── Standardized Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .fixedIndex {
+    width: 240px;
+    padding: 30px;
+  }
+
+  .scrollingContent {
+    padding: 0 40px;
+  }
+
+  .codexTitle {
+    font-size: 40px;
+  }
+
+  .prominentQuote {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .backBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .readBtn {
+    min-height: 44px;
+    width: 100%;
+  }
+
+  .chapterItem {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .prominentQuote {
+    font-size: 20px;
+    padding-left: 20px;
+  }
+
+  .contentWrapper {
+    margin: 40px auto 80px;
+  }
+
+  .chapterPill {
+    min-height: 44px;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .readLink {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .codexTitle {
+    font-size: 1.5rem;
+  }
+
+  .codexSubtitle {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .narrativeParagraph p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .prominentQuote {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .scrollingContent {
+    padding: 0 16px;
+  }
+
+  .fixedIndex {
+    padding: 16px;
+  }
+
+  .cardCatalog {
+    padding: 16px;
+  }
+
+  .catalogRow {
+    font-size: 10px;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .artworkBlock {
+    margin-bottom: 32px;
+  }
+
+  .dropcap {
+    font-size: 36px;
+    line-height: 32px;
+  }
+}

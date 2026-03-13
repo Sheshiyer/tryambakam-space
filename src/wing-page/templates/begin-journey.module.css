@@ -1,0 +1,497 @@
+/* ============================================================
+   Wing 12 — Begin Journey  |  Swarm 3E
+   Monumental Center · The Noesis Awaits
+   ============================================================ */
+
+.journeyContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: #020202;
+  color: var(--color-text, #ffffff);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  --journey-emerald: var(--color-coherence-emerald, #059669);
+  --journey-emerald-glow: rgba(5, 150, 105, 0.15);
+  --journey-text-dim: rgba(255, 255, 255, 0.6); /* WCAG fix: 0.25 was 2.03:1 — 0.6 ≈ 5.6:1 on #020202 */
+  --journey-text-mid: rgba(255, 255, 255, 0.7); /* WCAG fix: 0.5 was 3.5:1 — 0.7 ≈ 6.7:1 */
+}
+
+/* W12-T05: Recursive parallax — rings pushing outward */
+.parallaxField {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.zoomRing {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  border-radius: 50%;
+  animation: expandOutward 6s ease-out infinite;
+}
+
+@keyframes expandOutward {
+  0% {
+    width: 100px;
+    height: 100px;
+    opacity: 0.3;
+    border-color: rgba(5, 150, 105, 0.08);
+  }
+  100% {
+    width: 200vw;
+    height: 200vw;
+    opacity: 0;
+    border-color: rgba(5, 150, 105, 0);
+  }
+}
+
+/* W12-T04: Golden ratio spiral */
+.goldenSpiral {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(70vw, 70vh);
+  height: min(70vw, 70vh);
+  pointer-events: none;
+  z-index: 1;
+  animation: slowSpin 120s linear infinite;
+}
+
+@keyframes slowSpin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* W12-T06: Edge-anchored console markings */
+.edgeMarks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.12);
+  text-transform: uppercase;
+}
+
+.edgeTL {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.edgeTR {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.edgeBL {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.edgeBR {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 80px;
+  background: transparent;
+  border: none;
+  color: var(--journey-text-dim);
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  z-index: 50;
+  padding: 8px;
+  transition: color 0.5s;
+}
+
+.closeBtn:hover {
+  color: var(--color-text, #fff);
+}
+
+/* ---- W12-T01: Monumental centered focal point ---- */
+.monumentCore {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+  padding: 40px 32px;
+}
+
+.coreArt {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.5;
+  mix-blend-mode: screen;
+  margin-bottom: 40px;
+  transition: opacity 0.8s;
+}
+
+.monumentCore:hover .coreArt {
+  opacity: 0.8;
+}
+
+.monumentTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin: 0 0 16px 0;
+  transition: color 0.8s;
+}
+
+/* W12-T03: Void Black → Coherence Emerald on hover */
+.monumentCore:hover .monumentTitle {
+  color: var(--journey-emerald);
+}
+
+/* W12-T02: Serene well-spaced Satoshi */
+.monumentSubtitle {
+  font-family: "Satoshi", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--journey-text-mid);
+  margin: 0 0 40px 0;
+}
+
+/* W12-T07: Fade-in thesis on scroll/intersection */
+.thesisText {
+  font-family: "Satoshi", sans-serif;
+  font-size: 16px;
+  line-height: 2;
+  color: var(--journey-text-dim);
+  margin: 0 0 48px 0;
+  font-weight: 300;
+  max-width: 480px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 1.2s ease-out,
+    transform 1.2s ease-out;
+}
+
+.thesisVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* W12-T08: Final CTA */
+.ctaBtn {
+  background: transparent;
+  border: 1px solid var(--journey-emerald);
+  color: var(--journey-emerald);
+  padding: 18px 48px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.8s,
+    color 0.8s,
+    box-shadow 0.8s;
+  animation: ctaPulse 4s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--journey-emerald-glow);
+  }
+  50% {
+    box-shadow: 0 0 40px 0 var(--journey-emerald-glow);
+  }
+}
+
+.ctaBtn:hover {
+  background: var(--journey-emerald);
+  color: #020202;
+  box-shadow: 0 0 60px var(--journey-emerald-glow);
+}
+
+/* ---- W12-T09: Responsive — scale spiral, maintain center ---- */
+@media (max-width: 900px) {
+  .monumentTitle {
+    font-size: 36px;
+  }
+
+  .monumentSubtitle {
+    letter-spacing: 0.2em;
+    font-size: 14px;
+  }
+
+  .coreArt {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 28px;
+  }
+
+  .goldenSpiral {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .edgeMarks {
+    font-size: 8px;
+  }
+
+  .ctaBtn {
+    padding: 14px 32px;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+}
+
+/* ---- Feature blocks for wing.features ---- */
+.featureBlock {
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.featureBlock h3 {
+  font-family: "Panchang", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-parchment);
+  margin: 0 0 0.5rem;
+}
+
+.featureBlock p {
+  font-family: "Satoshi", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-muted-silver);
+  margin: 0;
+}
+
+/* ---- W12-T10: Access panel — three external links ---- */
+.accessPanel {
+  margin-top: 2rem;
+  animation: accessReveal 400ms ease-out;
+}
+
+@keyframes accessReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.accessTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-sacred-gold);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.accessGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .accessGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.accessCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 300ms ease;
+  text-align: center;
+}
+
+.accessCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(197, 160, 23, 0.3);
+  transform: translateY(-4px);
+}
+
+.accessIcon {
+  font-size: 1.5rem;
+  display: block;
+}
+
+.accessName {
+  font-family: "Panchang", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-parchment);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.accessDesc {
+  font-size: 0.75rem;
+  color: var(--color-muted-silver);
+  line-height: 1.4;
+}
+
+.backBtn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--color-muted-silver);
+  font-family: "Panchang", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 200ms ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.backBtn:hover {
+  color: var(--color-parchment);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Standardized Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .monumentCore {
+    max-width: 520px;
+  }
+
+  .monumentSubtitle {
+    letter-spacing: 0.3em;
+  }
+
+  .accessGrid {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .monumentTitle {
+    font-size: 1.75rem;
+  }
+
+  .monumentSubtitle {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    margin-bottom: 24px;
+  }
+
+  .thesisText {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .monumentCore {
+    padding: 24px 16px;
+  }
+
+  .ctaBtn {
+    padding: 12px 28px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    min-height: 44px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .closeBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .coreArt {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 20px;
+  }
+
+  .edgeMarks {
+    font-size: 7px;
+  }
+
+  .edgeTL,
+  .edgeTR,
+  .edgeBL,
+  .edgeBR {
+    display: none;
+  }
+
+  .accessCard {
+    padding: 1rem 0.75rem;
+    min-height: 44px;
+  }
+
+  .backBtn {
+    min-height: 44px;
+    width: 100%;
+  }
+
+  .accessName {
+    font-size: 0.8rem;
+  }
+
+  .accessDesc {
+    font-size: 0.7rem;
+  }
+
+  .featureBlock h3 {
+    font-size: 0.9rem;
+  }
+
+  .featureBlock p {
+    font-size: 0.875rem;
+  }
+}

@@ -1,0 +1,462 @@
+.regenContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-void-black);
+  color: var(--color-text);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background Geometry (W02-T01, W02-T07) */
+.biofieldMap {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120vw;
+  height: 120vh;
+  background: radial-gradient(circle at center, rgba(5, 150, 105, 0.15) 0%, rgba(17, 24, 39, 1) 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.concentricRing {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(5, 150, 105, 0.08); /* Emerald hint */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.phaseIndicator {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--color-coherence-emerald);
+  letter-spacing: 2px;
+}
+
+.closeBtn {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: none;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.closeBtn:hover {
+  color: var(--color-text);
+}
+
+.coreField {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 100px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 80px;
+}
+
+.imageCore {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.imageCore::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 40%, var(--color-void-black) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.artImage {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+
+.orbitData {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldTitle {
+  font-family: "Panchang", sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 0.9;
+  margin: 0 0 10px 0;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+
+.fieldSubtitle {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--color-coherence-emerald);
+  letter-spacing: 1.5px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.thesisContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+  max-width: 440px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Coherence panel expansion (w4c-10) */
+.coherenceExpanded {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  animation: expandIn 300ms ease-out;
+}
+
+@keyframes expandIn {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 400px;
+  }
+}
+
+.coherenceHeading {
+  font-family: "Panchang", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-coherence-emerald);
+  margin-bottom: 0.75rem;
+}
+
+.triadItem {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 2px;
+  font-family: "Satoshi", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.triadKha {
+  border-left: 2px solid rgba(11, 80, 251, 0.4);
+}
+
+.triadBa {
+  border-left: 2px solid rgba(16, 181, 167, 0.4);
+}
+
+.triadLa {
+  border-left: 2px solid rgba(197, 160, 23, 0.4);
+}
+
+.triadLabel {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.triadLabelKha {
+  color: #5b8bff; /* WCAG fix: flow-indigo #0b50fb was 3.31:1 — #5B8BFF ≈ 4.7:1 */
+}
+
+.triadLabelBa {
+  color: var(--color-coherence-emerald);
+}
+
+.triadLabelLa {
+  color: var(--color-sacred-gold);
+}
+
+.collapseHint {
+  font-size: 0.6rem;
+  color: var(--color-muted-silver);
+  text-align: center;
+  margin-top: 0.5rem;
+  opacity: 0.6;
+}
+
+.thesisText {
+  font-family: "Satoshi", sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text);
+  font-weight: 400;
+  margin: 0;
+}
+
+.hrvWaveform {
+  width: 100%;
+  height: 40px;
+  opacity: 0.5;
+}
+
+.specsBlock {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.specLabel {
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 9px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.specValue {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.glassFeatureCards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.glassCard {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+.glassCard:hover {
+  transform: translateX(10px);
+  background: rgba(5, 150, 105, 0.1);
+  border-color: rgba(5, 150, 105, 0.3);
+}
+
+.cardTitle {
+  font-family: "Satoshi", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-coherence-emerald);
+  margin-bottom: 5px;
+}
+
+.cardDesc {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.breathCta {
+  position: relative;
+  background: transparent;
+  border: 1px solid var(--color-coherence-emerald);
+  color: var(--color-text);
+  padding: 18px 40px;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  align-self: flex-start;
+  overflow: hidden;
+  /* Inhale/Exhale 4-second transform scale (W02-T05) */
+  animation: breathingCta 4s ease-in-out infinite;
+}
+
+.ctaText {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes breathingCta {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 0 rgba(5, 150, 105, 0.5);
+    border-color: rgba(5, 150, 105, 1);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(5, 150, 105, 0);
+  }
+}
+
+.breathCta:hover {
+  background: rgba(5, 150, 105, 0.1);
+}
+
+/* W02-T09 Responsive Stack */
+@media (max-width: 900px) {
+  .coreField {
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 40px;
+  }
+
+  .concentricRing {
+    display: none; /* Hide rings on mobile to avoid overflow and cluttering */
+  }
+
+  .fieldTitle {
+    font-size: 42px;
+  }
+
+  .glassCard:hover {
+    transform: none;
+  }
+}
+
+/* ── Standardized Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .coreField {
+    gap: 48px;
+    padding: 80px 32px;
+  }
+
+  .fieldTitle {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 20px 24px;
+  }
+
+  .closeBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .breathCta {
+    min-height: 44px;
+    padding: 14px 32px;
+  }
+
+  .specsBlock {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .glassCard {
+    padding: 20px;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+  }
+
+  .cardDesc {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fieldTitle {
+    font-size: 2rem;
+  }
+
+  .fieldSubtitle {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .thesisText {
+    font-size: 0.875rem;
+  }
+
+  .coreField {
+    padding: 60px 16px;
+    gap: 24px;
+  }
+
+  .specsBlock {
+    gap: 16px;
+  }
+
+  .specLabel {
+    font-size: 8px;
+  }
+
+  .specValue {
+    font-size: 12px;
+  }
+
+  .header {
+    padding: 16px;
+  }
+
+  .phaseIndicator {
+    font-size: 9px;
+  }
+
+  .glassCard {
+    padding: 16px;
+  }
+
+  .breathCta {
+    font-size: 11px;
+    padding: 12px 24px;
+  }
+}
