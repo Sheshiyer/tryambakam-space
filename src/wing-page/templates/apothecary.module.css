@@ -66,9 +66,15 @@
   cursor: pointer;
   padding: 8px 0;
   transition: color 600ms var(--lux-ease);
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.closeBtn:hover {
+.closeBtn:hover,
+.closeBtn:active {
   color: var(--lux-text);
 }
 
@@ -140,7 +146,8 @@
   transition: opacity 600ms var(--lux-ease);
 }
 
-.artFrame:hover .artImage {
+.artFrame:hover .artImage,
+.artFrame:active .artImage {
   opacity: 0.9;
 }
 
@@ -238,7 +245,8 @@
     background 600ms var(--lux-ease);
 }
 
-.featureCard:hover {
+.featureCard:hover,
+.featureCard:active {
   transform: translateY(-4px);
   border-color: var(--lux-bronze-dim);
   background: rgba(176, 141, 87, 0.03);
@@ -258,7 +266,8 @@
   transition: opacity 600ms var(--lux-ease);
 }
 
-.featureCard:hover .cardGlow {
+.featureCard:hover .cardGlow,
+.featureCard:active .cardGlow {
   opacity: 1;
 }
 
@@ -286,7 +295,8 @@
   transition: color 600ms var(--lux-ease);
 }
 
-.featureCard:hover .cardDesc {
+.featureCard:hover .cardDesc,
+.featureCard:active .cardDesc {
   color: var(--lux-text-mid);
 }
 
@@ -314,7 +324,8 @@
     box-shadow 600ms var(--lux-ease);
 }
 
-.ctaBtn:hover {
+.ctaBtn:hover,
+.ctaBtn:active {
   background: var(--lux-bronze);
   color: var(--lux-bg);
   box-shadow: 0 0 40px var(--lux-bronze-glow);
@@ -405,9 +416,11 @@
   font: inherit;
   cursor: pointer;
   width: 100%;
+  min-height: 44px;
 }
 
-.productCard:hover {
+.productCard:hover,
+.productCard:active {
   border-color: rgba(176, 141, 87, 0.35);
 }
 
@@ -467,7 +480,8 @@
   transition: transform 300ms ease;
 }
 
-.productCard:hover .productImage {
+.productCard:hover .productImage,
+.productCard:active .productImage {
   transform: scale(1.05);
 }
 
@@ -527,7 +541,8 @@
   transition: all 200ms ease;
 }
 
-.reserveBtn:hover {
+.reserveBtn:hover,
+.reserveBtn:active {
   background: rgba(197, 160, 23, 0.2);
   border-color: rgba(197, 160, 23, 0.5);
 }
@@ -555,6 +570,11 @@
     min-width: 44px;
   }
 
+  .closeBtn:hover,
+  .closeBtn:active {
+    color: var(--lux-text);
+  }
+
   .ctaBtn {
     min-height: 44px;
     padding: 16px 40px;
@@ -562,13 +582,32 @@
     text-align: center;
   }
 
+  .ctaBtn:hover,
+  .ctaBtn:active {
+    background: var(--lux-bronze);
+    color: var(--lux-bg);
+    box-shadow: 0 0 40px var(--lux-bronze-glow);
+  }
+
   .featureCard {
     padding: 32px 24px;
+  }
+
+  .featureCard:hover,
+  .featureCard:active {
+    transform: translateY(-4px);
+    border-color: var(--lux-bronze-dim);
+    background: rgba(176, 141, 87, 0.03);
   }
 
   .productCard {
     padding: 1.25rem;
     min-height: 44px;
+  }
+
+  .productCard:hover,
+  .productCard:active {
+    border-color: rgba(176, 141, 87, 0.35);
   }
 
   .shelf {
@@ -579,6 +618,12 @@
     min-height: 44px;
     width: 100%;
     text-align: center;
+  }
+
+  .reserveBtn:hover,
+  .reserveBtn:active {
+    background: rgba(197, 160, 23, 0.2);
+    border-color: rgba(197, 160, 23, 0.5);
   }
 
   .featureGrid {

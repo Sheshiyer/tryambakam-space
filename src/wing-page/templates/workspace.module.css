@@ -79,14 +79,17 @@
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--accent-active);
-  padding: 4px 12px;
+  padding: 10px 16px;
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
+  min-height: 44px;
+  min-width: 44px;
   transition: all 0.2s;
 }
 
-.closeBtn:hover {
+.closeBtn:hover,
+.closeBtn:active {
   background: rgba(255, 255, 255, 0.1);
   color: white;
 }
@@ -171,25 +174,40 @@
 
 .slider::-webkit-slider-thumb {
   appearance: none;
-  width: 8px;
-  height: 8px;
+  width: 20px;
+  height: 20px;
   background: var(--fg-primary);
   cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid var(--bg-void);
+  box-shadow: 0 0 0 1px var(--fg-tertiary);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--fg-primary);
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid var(--bg-void);
+  box-shadow: 0 0 0 1px var(--fg-tertiary);
 }
 
 .booleanBtn {
   flex: 1;
   background: transparent;
   border: 1px solid var(--fg-tertiary);
-  padding: 8px;
-  font-size: 10px;
+  padding: 12px 16px;
+  font-size: 11px;
   font-family: var(--font-mono);
   color: var(--fg-secondary);
   cursor: pointer;
+  min-height: 44px;
   transition: all 0.2s;
 }
 
-.booleanBtn:hover {
+.booleanBtn:hover,
+.booleanBtn:active {
   background: white;
   color: black;
 }
@@ -217,17 +235,19 @@
 }
 
 .historyNode {
-  width: 80px;
-  height: 24px;
+  min-width: 80px;
+  min-height: 44px;
+  padding: 8px 12px;
   background: var(--fg-tertiary);
   border: 1px solid var(--border-color);
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--fg-secondary);
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .historyActive {
@@ -235,7 +255,8 @@
   color: var(--bg-void);
 }
 
-.historyNode:not(.historyActive):hover {
+.historyNode:not(.historyActive):hover,
+.historyNode:not(.historyActive):active {
   border-color: var(--fg-primary);
 }
 
@@ -271,11 +292,11 @@
 
 .statusPill {
   display: inline-block;
-  padding: 2px 6px;
+  padding: 4px 8px;
   background: var(--accent-active);
   color: black;
   font-weight: bold;
-  font-size: 9px;
+  font-size: 10px;
   margin-right: 8px;
 }
 
@@ -321,21 +342,24 @@
 }
 
 .copyBtn {
-  padding: 0.3rem 0.75rem;
+  padding: 0.5rem 1rem;
   background: rgba(16, 181, 167, 0.1);
   border: 1px solid rgba(16, 181, 167, 0.2);
   border-radius: 3px;
   color: var(--color-coherence-emerald);
   font-family: "SF Mono", monospace;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 200ms ease;
   flex-shrink: 0;
+  min-height: 44px;
+  min-width: 44px;
 }
 
-.copyBtn:hover {
+.copyBtn:hover,
+.copyBtn:active {
   background: rgba(16, 181, 167, 0.2);
   border-color: rgba(16, 181, 167, 0.4);
 }
@@ -379,7 +403,8 @@
   transition: all 200ms ease;
 }
 
-.selemeneLink:hover {
+.selemeneLink:hover,
+.selemeneLink:active {
   background: rgba(11, 80, 251, 0.2);
   border-color: rgba(11, 80, 251, 0.5);
 }
@@ -486,23 +511,29 @@
 }
 
 @media (max-width: 480px) {
-  .hudItem {
-    padding: 6px 12px;
+  .headerHud {
     font-size: 9px;
   }
 
+  .hudItem {
+    padding: 10px 12px;
+    font-size: 10px;
+    min-height: 44px;
+  }
+
   .featureItem strong {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .featureItem p {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .historyNode {
-    width: 56px;
-    font-size: 7px;
-    min-height: 24px;
+    min-width: 60px;
+    font-size: 9px;
+    min-height: 44px;
+    padding: 6px 8px;
   }
 
   .timelineLine {
@@ -523,17 +554,37 @@
   }
 
   .panelHeader {
-    padding: 6px 12px;
-    font-size: 9px;
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+
+  .labelRow {
+    font-size: 11px;
   }
 
   .timelineContainer {
-    height: 60px;
+    height: 70px;
   }
 
   .timelineTrack {
     padding: 0 12px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    gap: 4px;
+  }
+
+  .toolPalette,
+  .paramsPanel {
+    width: 100%;
+  }
+
+  .slider::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
   }
 }

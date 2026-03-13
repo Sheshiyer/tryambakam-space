@@ -52,9 +52,15 @@
   font-family: inherit;
   cursor: pointer;
   transition: color 0.2s;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.backBtn:hover {
+.backBtn:hover,
+.backBtn:active {
   color: var(--color-sacred-gold);
 }
 
@@ -71,9 +77,11 @@
   opacity: 0.4;
   transition: opacity 0.3s;
   cursor: pointer;
+  min-height: 44px;
 }
 
 .chapterItem:hover,
+.chapterItem:active,
 .chapActive {
   opacity: 1;
 }
@@ -284,7 +292,8 @@
   transition: opacity 0.3s;
 }
 
-.readBtn:hover {
+.readBtn:hover,
+.readBtn:active {
   opacity: 0.8;
 }
 
@@ -314,9 +323,11 @@
   cursor: pointer;
   transition: all 200ms ease;
   text-align: left;
+  min-height: 44px;
 }
 
-.chapterPill:hover {
+.chapterPill:hover,
+.chapterPill:active {
   background: rgba(197, 160, 23, 0.08);
   border-color: rgba(197, 160, 23, 0.2);
   color: var(--color-parchment);
@@ -347,6 +358,7 @@
 }
 
 .chapterItem:hover .bookCoverThumb,
+.chapterItem:active .bookCoverThumb,
 .chapActive .bookCoverThumb {
   transform: scale(1.05);
 }
@@ -433,7 +445,8 @@
   transition: all 200ms ease;
 }
 
-.readLink:hover {
+.readLink:hover,
+.readLink:active {
   background: rgba(197, 160, 23, 0.2);
   border-color: rgba(197, 160, 23, 0.5);
 }
@@ -508,6 +521,11 @@
   .readBtn {
     min-height: 44px;
     width: 100%;
+  }
+
+  .readBtn:hover,
+  .readBtn:active {
+    opacity: 0.8;
   }
 
   .chapterItem {

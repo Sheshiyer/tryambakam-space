@@ -81,9 +81,15 @@
   font-weight: 500;
   cursor: pointer;
   transition: color 0.2s;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.navLink:hover {
+.navLink:hover,
+.navLink:active {
   color: var(--color-text);
 }
 
@@ -96,6 +102,11 @@
   font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
   font-weight: 600;
   border-radius: 0px;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Main Layout Grid */
@@ -215,7 +226,8 @@
     box-shadow 0.2s;
 }
 
-.primaryAction:hover {
+.primaryAction:hover,
+.primaryAction:active {
   transform: translateY(-2px);
   box-shadow: 0 15px 25px rgba(217, 119, 6, 0.3);
 }
@@ -233,7 +245,8 @@
   transition: border-color 0.2s;
 }
 
-.secondaryAction:hover {
+.secondaryAction:hover,
+.secondaryAction:active {
   border-color: var(--color-text);
 }
 
@@ -521,7 +534,8 @@
   align-self: center;
 }
 
-.donationClose:hover {
+.donationClose:hover,
+.donationClose:active {
   color: var(--color-parchment);
   border-color: rgba(255, 255, 255, 0.2);
 }
@@ -559,6 +573,19 @@
 @media (max-width: 768px) {
   .navLinks {
     display: none;
+  }
+
+  /* Mobile menu - keep essential buttons */
+  .mobileNav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobileNav .navBtn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px 16px;
   }
 
   .actionGroup {

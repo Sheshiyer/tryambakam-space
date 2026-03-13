@@ -246,12 +246,15 @@
   transition: background 0.3s;
 }
 
-.ctaButton:hover {
+.ctaButton:hover,
+.ctaButton:active {
   background: var(--color-text);
   color: var(--color-void-black);
 }
 
-/* Mobile adjustments */
+/* ===== MOBILE RESPONSIVENESS ===== */
+
+/* Tablet and below (768px - 900px) */
 @media (max-width: 900px) {
   .observerGrid {
     grid-template-columns: 1fr;
@@ -271,15 +274,17 @@
   }
 
   .hudCoord {
-    font-size: 9px;
-    padding: 4px 8px;
+    font-size: 10px;
+    padding: 8px 12px;
   }
 
   .closeBtn {
     top: 15px;
     right: 15px;
-    padding: 6px 12px;
-    font-size: 9px;
+    padding: 12px 20px;
+    font-size: 11px;
+    min-height: 44px;
+    min-width: 44px;
   }
 
   .title {
@@ -288,5 +293,195 @@
 
   .psychText {
     font-size: 18px;
+  }
+}
+
+/* Mobile (480px - 768px) */
+@media (max-width: 768px) {
+  .witnessContainer {
+    padding: 60px 0;
+  }
+
+  .observerGrid {
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .hudSpecs {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    margin-bottom: 30px;
+    gap: 8px;
+  }
+
+  .hudCoord {
+    font-size: 10px;
+    padding: 8px 12px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .closeBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 12px 16px;
+    font-size: 11px;
+    min-height: 44px;
+    min-width: 44px;
+    z-index: 1000;
+  }
+
+  .egoFragment {
+    width: 80px;
+    height: 80px;
+    opacity: 0.3;
+  }
+
+  .title {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+
+  .psychText {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .features {
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .featureBlock {
+    padding-left: 16px;
+  }
+
+  .featureTitle {
+    font-size: 15px;
+  }
+
+  .featureDesc {
+    font-size: 13px;
+  }
+
+  .typewriter {
+    white-space: normal;
+    animation: none;
+    overflow: visible;
+  }
+
+  .ctaButton {
+    align-self: stretch;
+    padding: 16px 24px;
+    font-size: 13px;
+    min-height: 44px;
+  }
+}
+
+/* Small Mobile (360px - 480px) */
+@media (max-width: 480px) {
+  .witnessContainer {
+    padding: 40px 0;
+  }
+
+  .observerGrid {
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .hudSpecs {
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .hudCoord {
+    font-size: 9px;
+    padding: 6px 10px;
+    min-height: 44px;
+  }
+
+  .closeBtn {
+    padding: 10px 14px;
+    font-size: 10px;
+  }
+
+  .egoFragment {
+    width: 60px;
+    height: 60px;
+    opacity: 0.2;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+
+  .psychText {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .features {
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .featureBlock {
+    padding-left: 12px;
+  }
+
+  .featureTitle {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .featureDesc {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .ctaButton {
+    padding: 14px 20px;
+    font-size: 12px;
+  }
+}
+
+/* Extra Small Mobile (< 360px) */
+@media (max-width: 360px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 10px;
+  }
+
+  .psychText {
+    font-size: 14px;
+  }
+
+  .egoFragment {
+    display: none;
+  }
+
+  .hudCoord {
+    font-size: 8px;
+    padding: 6px 8px;
   }
 }
