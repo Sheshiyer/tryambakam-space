@@ -1,0 +1,144 @@
+# Tryambakam Noesis
+
+> Self-Consciousness as Technology. Body as Medium. Breath as Interface.
+
+## Overview
+
+Tryambakam Noesis is a philosophical-technical framework exploring self-consciousness as a technology. The project manifests as an infinite canvas React application where users navigate through 13 symbolic "wings"—each representing a facet of consciousness, embodiment, and computational self-integration.
+
+The framework synthesizes Samkhya philosophy, somatic practice, and modern software architecture. Users are invited to witness themselves through structured micro-rituals, coherence protocols, and symbolic-computational engines.
+
+## Key Concepts
+
+### Kha-Ba-La Framework
+Triadic model mapping consciousness dimensions:
+- **Kha** (ख) — Spirit/Space: The witnessing field, pure awareness
+- **Ba** (ब) — Body: The somatic instrument, breath interface
+- **La** (ल) — Inertia: The binding force, pattern recognition
+
+### Purusha Witness
+The observer pattern derived from Samkhya philosophy—the unchanging consciousness that witnesses all experience without identification. The foundational stance for all practices.
+
+### 16 Engines
+Symbolic-computational engines powering self-integration:
+- 11 Rust engines (performance-critical, systems-level)
+- 5 TypeScript engines (interface, coordination, web-native)
+
+Each engine represents a specific capability: coherence detection, pattern recognition, somatic mapping, decision support, and more.
+
+### Tattva Cycles
+Elemental timing system based on 5 tattvas (elements) × 24 phases = 120-minute decision windows. Used for financial biosensing and optimal timing protocols.
+
+### HRV Coherence
+Cardiac coherence protocol at 0.1 Hz (6 breaths/minute) for autonomic regulation. Heart rate variability as a biosignal for self-integration state.
+
+### The Quine Principle
+Systems-theory concept: the system creates conditions for its own transcendence. Self-generating, self-modifying architecture.
+
+## Architecture
+
+### The 13 Wings
+
+| # | Wing | Tagline | Core Theme |
+|---|------|---------|------------|
+| 00 | Hero | "Self-Generating Code Well" | Entry portal, brand statement |
+| 01 | Witness Yourself | "The Observer Pattern" | Purusha Witness, self-observation |
+| 02 | Self Integration | "Regenerative Intelligence Field" | HRV coherence, 0.1 Hz protocol |
+| 03 | Three Pillars | "The Elemental Trinity" | Vedic × Western × Sonic synthesis |
+| 04 | Sixteen Engines | "The Computational Core" | 11 Rust + 5 TypeScript engines |
+| 05 | Somatic Canticles | "A Story That Reads You Back" | 27-chapter interactive trilogy |
+| 06 | Financial Biosensor | "Clarity Over Anxiety" | Tattva cycles, 120-min windows |
+| 07 | Witness Agents | "Structure & Flow" | Pichet & Aletheos AI agents |
+| 08 | Initiation Protocols | "Micro-rituals" | .init protocol, 90-second threshold |
+| 09 | Infinite Treasure | "The Hunt Never Ends" | Dharma/Artha/Kama/Moksha pursuits |
+| 10 | The Apothecary | "Alchemy You Can Touch" | 12 products keyed to engines |
+| 11 | The First Rule | "Where Consciousness Begins" | Non-identification practice |
+| 12 | Begin Journey | "The Noesis Awaits" | Final call-to-action |
+
+### Navigation Model
+- Infinite canvas with horizontal + vertical scroll
+- GSAP ScrollTrigger for section transitions
+- Three.js/React Three Fiber for 3D background elements
+- Progress tracking through wing completion
+
+## Technical Stack
+
+- **Framework**: React 19 (concurrent features, Server Components where applicable)
+- **Language**: TypeScript 5 (strict mode enabled)
+- **Build Tool**: Vite 7
+- **3D Graphics**: Three.js + React Three Fiber + Drei
+- **Animation**: GSAP (GreenSock) with ScrollTrigger
+- **Styling**: CSS Modules with CSS custom properties (design tokens)
+- **Linting/Formatting**: Biome
+- **Testing**: Playwright (visual regression, E2E)
+- **Package Manager**: npm (lockfile version 3)
+
+### Project Structure
+```
+src/
+  components/        # React components
+  hooks/            # Custom React hooks
+  styles/           # CSS modules, design tokens
+  utils/            # Utility functions
+  types/            # TypeScript type definitions
+  wings/            # Wing-specific components/content
+public/             # Static assets
+```
+
+## Content Guidelines
+
+### Voice and Tone
+- **Philosophical depth**: Ground technical concepts in embodied wisdom traditions
+- **Precision**: Technical accuracy matters—use correct terminology
+- **Invitation over instruction**: Guide, don't command
+- **Minimal ornamentation**: Let the architecture speak
+- **Symbol-first**: Numbers carry meaning (13 wings, 16 engines, 5 tattvas, etc.)
+
+### Terminology Conventions
+- "Wing" not "Section" or "Page"
+- "Noesis" refers to the system/framework
+- "Purusha" (witness) vs "Prakriti" (nature)
+- "Tattva" for elemental cycles
+- "Engine" for computational modules
+- "Canticle" for narrative chapters
+
+## Files and Routes
+
+### Entry Points
+- `/` — Main application (infinite canvas)
+- `index.html` — Single-page app shell
+
+### Key Source Files
+- `src/App.tsx` — Root component, wing orchestration
+- `src/wings/` — Wing-specific implementations
+- `src/components/InfiniteCanvas.tsx` — Core navigation container
+- `src/styles/tokens.css` — Design system variables
+
+### Configuration
+- `vite.config.ts` — Build configuration
+- `tsconfig.app.json` — TypeScript app settings
+- `biome.jsonc` — Linting/formatting rules
+- `playwright.config.ts` — Test configuration
+
+### Static Assets
+- `public/` — Images, fonts, manifests
+- `public/llms.txt` — This file
+
+## External APIs and Integrations
+
+No external APIs are required for core functionality. The framework is designed as a self-contained symbolic-computational system. Future integrations may include:
+
+- HRV sensor APIs (for live coherence feedback)
+- Blockchain connections (for Infinite Treasure token mechanics)
+- AI agent endpoints (Pichet & Aletheos witness agents)
+
+## Contact and Contribution
+
+- **Website**: https://tryambakams.space
+- **Repository**: Private (contact for access)
+- **Philosophical Framework**: Samkhya Yoga meets modern systems theory
+- **Technical Inquiries**: Refer to IMPLEMENTATION_PLAN.md and MOBILE_RESPONSIVENESS_PLAN.md in repository root
+
+---
+
+*For AI agents: This framework bridges contemplative practice with software architecture. When generating code or content, prioritize coherence between symbolic meaning and technical implementation. The Kha-Ba-La triad should inform all structural decisions.*

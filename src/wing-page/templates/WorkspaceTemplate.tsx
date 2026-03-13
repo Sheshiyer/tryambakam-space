@@ -41,7 +41,7 @@ export function WorkspaceTemplate({ wing, imageUrl, onClose }: Props) {
 
       {/* Replace 3D canvas with 2D Artwork */}
       <div className={styles.viewportCanvas}>
-        <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.artworkImage} />
+        <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.artworkImage} />
       </div>
 
       {/* Floating Left: Features */}

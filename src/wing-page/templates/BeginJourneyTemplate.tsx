@@ -73,7 +73,7 @@ export function BeginJourneyTemplate({ wing, imageUrl, onClose }: Props) {
 
       {/* W12-T01: Centralized monumental focal point */}
       <div className={styles.monumentCore}>
-        <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.coreArt} />
+        <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.coreArt} />
 
         <h1 className={styles.monumentTitle}>{wing.title.replace("\n", " ")}</h1>
 

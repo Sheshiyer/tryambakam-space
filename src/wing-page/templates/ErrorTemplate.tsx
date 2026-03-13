@@ -55,7 +55,7 @@ export function ErrorTemplate({ wing, imageUrl, onClose }: Props) {
       <div className={styles.viewportContent}>
         <div className={styles.imageWrapper}>
           <div className={styles.crosshair}>+</div>
-          <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.artworkImage} />
+          <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.artworkImage} />
           <div className={styles.crosshair}>+</div>
         </div>
       </div>

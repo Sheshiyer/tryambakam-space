@@ -66,7 +66,7 @@ export function FinancialBiosensorTemplate({ wing, imageUrl, onClose }: Props) {
           </h2>
 
           <div className={styles.visualFrame}>
-            <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.terminalArt} />
+            <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.terminalArt} />
             <div className={styles.artOverlay}>
               <div className={styles.crosshair} />
             </div>

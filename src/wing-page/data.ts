@@ -36,6 +36,7 @@ export type WingData = {
   features: WingFeature[];
   cta: string;
   ctaAction: CTAAction;
+  alt: string;
 };
 
 // ============================================================================
@@ -79,6 +80,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Begin Journey",
     ctaAction: { type: "scroll", target: "witness-yourself" },
+    alt: "Tryambakam Noesis - Self-Generating Code Well",
   },
 
   // ==========================================================================
@@ -116,6 +118,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Enter Witness State",
     ctaAction: { type: "modal", target: "witness-experience" },
+    alt: "Witness Yourself - The Observer Pattern",
   },
 
   // ==========================================================================
@@ -154,6 +157,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Initiate Field",
     ctaAction: { type: "modal", target: "field-initiation" },
+    alt: "Self Integration - Regenerative Intelligence Field",
   },
 
   // ==========================================================================
@@ -193,6 +197,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Explore Pillars",
     ctaAction: { type: "modal", target: "pillars-detail" },
+    alt: "Three Pillars - The Elemental Trinity",
   },
 
   // ==========================================================================
@@ -238,6 +243,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "View Engine Map",
     ctaAction: { type: "external", target: "https://selemene.tryambakam.space" },
+    alt: "Sixteen Engines - The Computational Core",
   },
 
   // ==========================================================================
@@ -276,6 +282,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Preview Chapter",
     ctaAction: { type: "external", target: "https://1319.tryambakam.space" },
+    alt: "Somatic Canticles - A Story That Reads You Back",
   },
 
   // ==========================================================================
@@ -313,6 +320,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Access Dashboard",
     ctaAction: { type: "modal", target: "biosensor-dashboard" },
+    alt: "Financial Biosensor - Clarity Over Anxiety",
   },
 
   // ==========================================================================
@@ -352,6 +360,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Meet the Agents",
     ctaAction: { type: "modal", target: "agents-detail" },
+    alt: "Witness Agents - Structure & Flow",
   },
 
   // ==========================================================================
@@ -388,6 +397,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Begin Protocol",
     ctaAction: { type: "modal", target: "protocol-launcher" },
+    alt: "Initiation Protocols - Micro-rituals",
   },
 
   // ==========================================================================
@@ -425,6 +435,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Start the Hunt",
     ctaAction: { type: "modal", target: "treasure-map" },
+    alt: "Infinite Treasure - The Hunt Never Ends",
   },
 
   // ==========================================================================
@@ -461,6 +472,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Browse Collection",
     ctaAction: { type: "modal", target: "product-grid" },
+    alt: "The Apothecary - Alchemy You Can Touch",
   },
 
   // ==========================================================================
@@ -497,6 +509,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Understand the Rule",
     ctaAction: { type: "modal", target: "first-rule-reveal" },
+    alt: "The First Rule - Where Consciousness Begins",
   },
 
   // ==========================================================================
@@ -534,6 +547,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "Enter the Noesis",
     ctaAction: { type: "modal", target: "access-points" },
+    alt: "Begin Journey - The Noesis Awaits",
   },
 ];
 

@@ -139,7 +139,7 @@ export function ThreePillarsTemplate({ wing, imageUrl, onClose }: Props) {
           <h2 className={styles.pillarTitle}>{pillars[1]}</h2>
 
           <div className={styles.centerArt}>
-            <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.triptychImage} />
+            <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.triptychImage} />
           </div>
 
           <div className={styles.starkThesis}>{wing.description}</div>

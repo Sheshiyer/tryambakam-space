@@ -30,7 +30,7 @@ export function RegenerativeFieldTemplate({ wing, imageUrl, onClose }: Props) {
       <main className={styles.coreField}>
         {/* Central visual core */}
         <div className={styles.imageCore}>
-          <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.artImage} />
+          <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.artImage} />
         </div>
 
         {/* Orbiting content structures based on nested divs */}

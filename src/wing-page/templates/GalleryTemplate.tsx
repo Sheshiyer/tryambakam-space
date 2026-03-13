@@ -63,7 +63,7 @@ export function GalleryTemplate({ wing, imageUrl, onClose }: Props) {
               <span className={styles.br} />
             </div>
 
-            <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.mainImage} />
+            <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.mainImage} />
 
             <div className={styles.artifactLabels}>
               <span>ID: {wing.slug.substring(0, 8).toUpperCase()}</span>

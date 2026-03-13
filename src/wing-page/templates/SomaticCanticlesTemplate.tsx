@@ -106,7 +106,7 @@ export function SomaticCanticlesTemplate({ wing, imageUrl, onClose }: Props) {
           </div>
 
           <div className={styles.artworkBlock}>
-            <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.manuscriptArt} />
+            <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.manuscriptArt} />
           </div>
 
           {/* W05-T08: Prominent Quoted Blockquotes (Aletheia/Lethe narrative) */}

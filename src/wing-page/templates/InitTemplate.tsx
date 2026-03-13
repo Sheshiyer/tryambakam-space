@@ -73,7 +73,7 @@ export function InitTemplate({ wing, imageUrl, onClose }: Props) {
 
       <div className={styles.centerConsole}>
         <div className={styles.imageBox}>
-          <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.artworkImage} style={{ opacity: progress / 100 }} />
+          <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.artworkImage} style={{ opacity: progress / 100 }} />
           <div className={styles.overlayText}>{progress < 100 ? "DECRYPTING KARMA..." : "PRANA MERGED"}</div>
         </div>
 

@@ -23,7 +23,7 @@ export function EngineMatrixTemplate({ wing, imageUrl, onClose }: Props) {
     <div className={styles.matrixContainer}>
       {/* Background artwork with heavy contrast */}
       <div className={styles.bgWrapper}>
-        <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.bgImage} />
+        <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.bgImage} />
         <div className={styles.bgOverlay} />
       </div>
 

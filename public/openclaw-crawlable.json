@@ -1,0 +1,601 @@
+{
+  "version": "1.0",
+  "schema": "openclaw-crawlable",
+  "generated_at": "2026-03-13T18:35:16Z",
+  "context": {
+    "brand": "Tryambakam Noesis",
+    "tagline": "Self-Consciousness as Technology",
+    "description": "13-wing interactive consciousness architecture exploring self-consciousness through symbolic-computational engines, Kha-Ba-La framework, and embodied practice.",
+    "url": "https://tryambakams.space",
+    "language": "en",
+    "locale": "en_US",
+    "authors": ["Tryambakam Collective"],
+    "license": "MIT"
+  },
+  "navigation": {
+    "type": "infinite_canvas",
+    "primary_mode": "spatial_navigation",
+    "secondary_mode": "linear_mode",
+    "wings": [
+      {
+        "index": 0,
+        "slug": "hero",
+        "number": "00",
+        "title": "Tryambakam Noesis",
+        "subtitle": "Self-Generating Code Well",
+        "theme": "Entry point with sovereignty-first donation modal and sacred geometry backdrop",
+        "compass_direction": null,
+        "kha_ba_la": "Kha (Spirit)",
+        "cta": "Begin Journey",
+        "entry_point": true
+      },
+      {
+        "index": 1,
+        "slug": "sixteen-engines",
+        "number": "01",
+        "title": "Sixteen Engines",
+        "subtitle": "The Computational Core",
+        "theme": "16 canonical engines in a 4×4 grid with compass directions (STABILIZE/HEAL/CREATE/MUTATE)",
+        "compass_direction": "ALL",
+        "kha_ba_la": "Kha (Spirit)",
+        "cta": "View Engine Map"
+      },
+      {
+        "index": 2,
+        "slug": "three-pillars",
+        "number": "02",
+        "title": "Three Pillars",
+        "subtitle": "The Elemental Trinity",
+        "theme": "Kha-Ba-La framework deep dives — Vedic Intelligence, Western Precision, Biofield & Sonic",
+        "compass_direction": "N",
+        "kha_ba_la": "Kha (Spirit)",
+        "cta": "Explore Pillars"
+      },
+      {
+        "index": 3,
+        "slug": "financial-biosensor",
+        "number": "03",
+        "title": "Financial Biosensor",
+        "subtitle": "Clarity Over Anxiety",
+        "theme": "Bloomberg-terminal-inspired data visualization with Tattva cycle decision windows",
+        "compass_direction": "E",
+        "kha_ba_la": "Ba (Body)",
+        "cta": "Access Dashboard"
+      },
+      {
+        "index": 4,
+        "slug": "self-integration",
+        "number": "04",
+        "title": "Self Integration",
+        "subtitle": "Regenerative Intelligence Field",
+        "theme": "Kha-Ba-La coherence triad expansion with biofield mapping and HRV at 0.1 Hz",
+        "compass_direction": "E",
+        "kha_ba_la": "Ba (Body)",
+        "cta": "Initiate Field"
+      },
+      {
+        "index": 5,
+        "slug": "witness-agents",
+        "number": "05",
+        "title": "Witness Agents",
+        "subtitle": "Structure & Flow",
+        "theme": "Dual-lane hover interaction: Pichet (Structure) ↔ Aletheos (Flow)",
+        "compass_direction": "S",
+        "kha_ba_la": "Kha (Spirit)",
+        "cta": "Meet the Agents"
+      },
+      {
+        "index": 6,
+        "slug": "somatic-canticles",
+        "number": "06",
+        "title": "Somatic Canticles",
+        "subtitle": "A Story That Reads You Back",
+        "theme": "27-chapter trilogy browser with biorhythm-synchronized chapter previews",
+        "compass_direction": "S",
+        "kha_ba_la": "Ba (Body)",
+        "cta": "Preview Chapter"
+      },
+      {
+        "index": 7,
+        "slug": "infinite-treasure",
+        "number": "07",
+        "title": "Infinite Treasure",
+        "subtitle": "The Hunt Never Ends",
+        "theme": "Compass rose navigation with Purushartha quadrant drill-down (Dharma/Artha/Kama/Moksha)",
+        "compass_direction": "W",
+        "kha_ba_la": "La (Inertia)",
+        "cta": "Start the Hunt"
+      },
+      {
+        "index": 8,
+        "slug": "apothecary",
+        "number": "08",
+        "title": "The Apothecary",
+        "subtitle": "Alchemy You Can Touch",
+        "theme": "6 ritual product categories with engine-matched physical artifacts",
+        "compass_direction": "W",
+        "kha_ba_la": "Ba (Body)",
+        "cta": "Browse Collection"
+      },
+      {
+        "index": 9,
+        "slug": "witness-yourself",
+        "number": "09",
+        "title": "Witness Yourself",
+        "subtitle": "The Observer Pattern",
+        "theme": "Purusha Witness — the gap between knowing-about and living-as",
+        "compass_direction": "N",
+        "kha_ba_la": "Kha (Spirit)",
+        "cta": "Enter Witness State"
+      },
+      {
+        "index": 10,
+        "slug": "first-rule",
+        "number": "10",
+        "title": "The First Rule",
+        "subtitle": "Where Consciousness Begins",
+        "theme": "Glitch → awakening toggle transition with shattered panel layout",
+        "compass_direction": "N",
+        "kha_ba_la": "Kha (Spirit)",
+        "cta": "Understand the Rule"
+      },
+      {
+        "index": 11,
+        "slug": "initiation-protocols",
+        "number": "11",
+        "title": "Initiation Protocols",
+        "subtitle": "Micro-rituals. Macro-transformation.",
+        "theme": "16 micro-rituals across 4 spins (Entry/Cultivation/Integration/Independence)",
+        "compass_direction": "ALL",
+        "kha_ba_la": "La (Inertia)",
+        "cta": "Begin Protocol"
+      },
+      {
+        "index": 12,
+        "slug": "begin-journey",
+        "number": "12",
+        "title": "Begin Journey",
+        "subtitle": "The Noesis Awaits",
+        "theme": "3 external access points: Selemene API, Somatic Canticles, Noesis TUI",
+        "compass_direction": null,
+        "kha_ba_la": "Kha (Spirit)",
+        "cta": "Enter the Noesis",
+        "exit_point": true
+      }
+    ]
+  },
+  "content": {
+    "sections": [
+      {
+        "id": "hero",
+        "type": "landing",
+        "headline": "Tryambakam Noesis",
+        "subheadline": "Self-Generating Code Well",
+        "key_message": "You have optimized everything except the optimizer. Sixteen engines. One unrepeatable consciousness.",
+        "elements": ["sacred_geometry_backdrop", "donation_modal", "wing_navigation"]
+      },
+      {
+        "id": "engine_matrix",
+        "type": "grid",
+        "headline": "16 Engines",
+        "subheadline": "The Computational Core",
+        "key_message": "4 × 16 = 256 permutations. One unrepeatable consciousness.",
+        "elements": ["4x4_grid", "compass_directions", "engine_cards", "kosha_mapping"]
+      },
+      {
+        "id": "three_pillars",
+        "type": "triad",
+        "headline": "Three Pillars",
+        "subheadline": "The Elemental Trinity",
+        "key_message": "Sixteen thousand years of observational astronomy. Thirty years of bodygraph mechanics. One coherence matrix.",
+        "pillars": [
+          {
+            "name": "Vedic Intelligence",
+            "traditions": ["Jyotisha", "Nakshatra Navigation", "Vimshottari Dasha"],
+            "depth": "16,000 years of observational astronomy"
+          },
+          {
+            "name": "Western Precision",
+            "traditions": ["Human Design", "Gene Keys", "Enneagram"],
+            "depth": "30 years of bodygraph mechanics"
+          },
+          {
+            "name": "Biofield & Sonic",
+            "traditions": ["HRV Coherence", "Rāga Resonance", "Binaural Architecture"],
+            "depth": "Physiological signatures of coherence"
+          }
+        ]
+      },
+      {
+        "id": "financial_biosensor",
+        "type": "dashboard",
+        "headline": "Financial Biosensor",
+        "subheadline": "Clarity Over Anxiety",
+        "key_message": "Tattva cycles — 5 elements × 24 phases = 120-minute decision windows.",
+        "elements": ["tattva_cycle_viz", "hrv_signals", "weekly_foresight", "act_wait_indicator"]
+      },
+      {
+        "id": "regenerative_field",
+        "type": "interactive_field",
+        "headline": "Self Integration",
+        "subheadline": "Regenerative Intelligence Field",
+        "key_message": "Your heart generates an electromagnetic field detectable at three meters.",
+        "elements": ["biofield_visualization", "hrv_coherence_meter", "breath_sync_indicator"]
+      },
+      {
+        "id": "witness_agents",
+        "type": "dual_interaction",
+        "headline": "Witness Agents",
+        "subheadline": "Structure & Flow",
+        "key_message": "You need both. The agents embody the dialectic.",
+        "agents": [
+          {
+            "name": "Pichet",
+            "role": "Structure",
+            "etymology": "Sanskrit root pi- — 'to drink, to absorb'",
+            "essence": "Discipline as vessel. Routine as ritual architecture."
+          },
+          {
+            "name": "Aletheos",
+            "role": "Flow",
+            "etymology": "Greek ἀλήθεια (aletheia) — 'unconcealment, truth as emergence'",
+            "essence": "Intuition as pattern-recognition below conscious threshold."
+          }
+        ]
+      },
+      {
+        "id": "somatic_canticles",
+        "type": "literature",
+        "headline": "Somatic Canticles",
+        "subheadline": "A Story That Reads You Back",
+        "key_message": "27 chapters where breath is physics and biorhythms are law.",
+        "format": "Sci-fi Trilogy",
+        "chapters": 27,
+        "delivery_mode": "Biorhythm-synchronized chapter releases",
+        "aesthetic": "B&W + Gold Foil"
+      },
+      {
+        "id": "infinite_treasure",
+        "type": "compass_navigation",
+        "headline": "Infinite Treasure",
+        "subheadline": "The Hunt Never Ends",
+        "key_message": "The treasure is not the answer — it is the next right question.",
+        "quadrants": [
+          { "name": "Dharma", "essence": "Purpose — orientation" },
+          { "name": "Artha", "essence": "Prosperity — resource" },
+          { "name": "Kama", "essence": "Pleasure — engagement" },
+          { "name": "Moksha", "essence": "Liberation — release" }
+        ]
+      },
+      {
+        "id": "apothecary",
+        "type": "product_gallery",
+        "headline": "The Apothecary",
+        "subheadline": "Alchemy You Can Touch",
+        "key_message": "Each product is an engine in physical form — bioalchemy you can touch.",
+        "categories": 6,
+        "tier": "Luxury"
+      }
+    ]
+  },
+  "entities": {
+    "concepts": [
+      {
+        "name": "Kha-Ba-La Framework",
+        "description": "Triadic consciousness architecture: Kha (Spirit/Witness), Ba (Body/Field), La (Inertia/Resistance)",
+        "origin": "Sanskrit-Egyptian synthesis",
+        "application": "Structural foundation for all 16 engines"
+      },
+      {
+        "name": "Purusha Witness",
+        "description": "The observer pattern — awareness without identification. Purusha witnesses, Prakriti performs.",
+        "origin": "Samkhya philosophy",
+        "key_insight": "The witness is not the thought. The witness is not the emotion."
+      },
+      {
+        "name": "16 Symbolic-Computational Engines",
+        "description": "11 Rust engines (sub-millisecond) + 5 TypeScript lenses (cross-platform) = 256 permutations",
+        "categories": ["Rust Core", "TS Bridge"],
+        "compass": ["STABILIZE", "HEAL", "CREATE", "MUTATE"]
+      },
+      {
+        "name": "Tattva Cycles",
+        "description": "5 elements × 24 phases = 120-minute decision windows",
+        "elements": [
+          { "name": "Akasha", "essence": "Space/Ether" },
+          { "name": "Vayu", "essence": "Air/Movement" },
+          { "name": "Agni", "essence": "Fire/Decision" },
+          { "name": "Jala", "essence": "Water/Flow" },
+          { "name": "Prithvi", "essence": "Earth/Consolidation" }
+        ]
+      },
+      {
+        "name": "HRV Coherence at 0.1 Hz",
+        "description": "Heart rate variability at 0.1 Hz creates cardiac coherence — the physiological signature of the witness state",
+        "science": "Baroreflex resonance frequency",
+        "application": "Biofeedback and temporal orientation"
+      },
+      {
+        "name": "The Quine Principle",
+        "description": "The system creates the conditions for its own transcendence. Success is measured by independence, not retention.",
+        "origin": "Self-referential systems theory",
+        "mantra": "The system succeeds when you no longer need it."
+      },
+      {
+        "name": "Vimshottari Dasha",
+        "description": "120-year planetary period mapping — which chapter of your life is open",
+        "origin": "Vedic astrology",
+        "engine": "Chronofield"
+      },
+      {
+        "name": "Nakshatra Navigation",
+        "description": "27 Lunar Mansions as coordinates for temporal mapping",
+        "origin": "Vedic astronomy",
+        "precision": "Calculated to the arc-minute"
+      },
+      {
+        "name": "Rāga Resonance",
+        "description": "72 Melakarta system — acoustic frequency synthesis correlating to HRV bands",
+        "origin": "Carnatic music theory",
+        "notes": ["Shadja", "Rishabha", "Gandhara", "Madhyama", "Panchama", "Dhaivata", "Nishada"]
+      },
+      {
+        "name": "Purushartha",
+        "description": "The four aims of human life — not as ladder but as compass",
+        "aims": [
+          { "name": "Dharma", "meaning": "Purpose, righteousness, orientation" },
+          { "name": "Artha", "meaning": "Prosperity, means, resource" },
+          { "name": "Kama", "meaning": "Pleasure, desire, engagement" },
+          { "name": "Moksha", "meaning": "Liberation, release, transcendence" }
+        ]
+      },
+      {
+        "name": "The .init Protocol",
+        "description": "90 seconds at the threshold — audio as carrier wave, breath as modulation, attention as signal",
+        "duration_range": "90 seconds to 21 minutes",
+        "modalities": ["Audio", "Breath", "Attention"]
+      },
+      {
+        "name": "Kosha Layers",
+        "description": "Five sheath architecture mapping engines to embodiment layers",
+        "layers": [
+          { "name": "Annamaya", "essence": "Food body — physical" },
+          { "name": "Pranamaya", "essence": "Energy body — breath/prana" },
+          { "name": "Manomaya", "essence": "Mental body — mind/emotions" },
+          { "name": "Vijnanamaya", "essence": "Wisdom body — intuition/discernment" },
+          { "name": "Anandamaya", "essence": "Bliss body — transcendence" }
+        ]
+      }
+    ],
+    "products": [
+      {
+        "id": "sacred-burnables",
+        "name": "Sacred Burnables",
+        "category": "Sacred Burnables",
+        "description": "Smoking blends and incense crafted to support specific engine consultations",
+        "engine_connection": "Engine-specific blends — different engines, different scents",
+        "materials": "Organic herbs, resins, sacred woods",
+        "price_range": "$30–$80",
+        "compass_mapping": "Each blend corresponds to a compass direction and kosha layer"
+      },
+      {
+        "id": "kopina-phasion",
+        "name": "Kopina / PHAS-ION",
+        "category": "Bioelectric Interface",
+        "description": "Bioelectric sacral interface — a physical instrument for measuring and modulating the body's electromagnetic field",
+        "engine_connection": "Bioelectric Field engine integration",
+        "materials": "Bronze, ceramic, bioelectric sensors",
+        "price_range": "$120–$245"
+      },
+      {
+        "id": "essential-oil-attars",
+        "name": "Essential Oil Attars",
+        "category": "Attars",
+        "description": "Engine-matched frequency attars — each oil blend tuned to the acoustic frequency synthesis",
+        "engine_connection": "Resonance Architecture",
+        "materials": "Pure essential oils, traditional attar distillation",
+        "price_range": "$45–$95"
+      },
+      {
+        "id": "orgonite-pyramids",
+        "name": "Orgonite Pyramids",
+        "category": "Orgonite",
+        "description": "Biofield harmonizers cast with the Tryambakam sigil",
+        "engine_connection": "Bioelectric Field",
+        "materials": "Orgonite resin, metal shavings, crystals, bronze sigil",
+        "price_range": "$80–$165"
+      },
+      {
+        "id": "crystal-arrays",
+        "name": "Crystal Arrays",
+        "category": "Crystals",
+        "description": "Geometric resonance tools arranged in sacred geometry patterns",
+        "engine_connection": "Geometric Resonance engine",
+        "materials": "Natural crystals, dark wood base, brass fittings",
+        "price_range": "$60–$145"
+      },
+      {
+        "id": "resonance-pendants",
+        "name": "Resonance Pendants",
+        "category": "Pendants",
+        "description": "Wearable frequency anchors — pendants cast with engine-specific sigil variations",
+        "engine_connection": "Resonance Architecture",
+        "materials": "Bronze, leather cord, engraved sigil",
+        "price_range": "$55–$120"
+      }
+    ],
+    "agents": [
+      {
+        "id": "pichet",
+        "name": "Pichet",
+        "role": "Structure",
+        "title": "The Container",
+        "etymology": {
+          "root": "Sanskrit pi-",
+          "meaning": "to drink, to absorb, that which holds firm"
+        },
+        "essence": "Discipline as vessel. Routine as ritual architecture. Without the container, the content has nowhere to become.",
+        "attributes": ["Structural", "Disciplined", "Receives", "Holds"],
+        "opposite": "aletheos"
+      },
+      {
+        "id": "aletheos",
+        "name": "Aletheos",
+        "role": "Flow",
+        "title": "The Unconcealment",
+        "etymology": {
+          "root": "Greek ἀλήθεια (aletheia)",
+          "meaning": "unconcealment, truth as emergence from concealment"
+        },
+        "essence": "Intuition as pattern-recognition below conscious threshold. Creativity as the universe expressing through a prepared vessel.",
+        "attributes": ["Emergent", "Intuitive", "Flows", "Reveals"],
+        "opposite": "pichet"
+      }
+    ],
+    "engines": [
+      { "id": 1, "name": "Temporal Grammar", "computes": "Five-fold calendar for auspicious timing (Panchanga)", "direction": "STABILIZE", "kosha": "Annamaya", "category": "Rust Core" },
+      { "id": 2, "name": "Chronofield", "computes": "120-year planetary period mapping", "direction": "HEAL", "kosha": "Pranamaya", "category": "Rust Core" },
+      { "id": 3, "name": "Energetic Authority", "computes": "Bodygraph mechanics — how your wiring makes choices", "direction": "CREATE", "kosha": "Manomaya", "category": "Rust Core" },
+      { "id": 4, "name": "Gift-Shadow Spectrum", "computes": "Shadow → Gift → Activated State arc", "direction": "MUTATE", "kosha": "Vijnanamaya", "category": "Rust Core" },
+      { "id": 5, "name": "Numeric Architecture", "computes": "Archetypal number patterns in birth data", "direction": "STABILIZE", "kosha": "Annamaya", "category": "Rust Core" },
+      { "id": 6, "name": "Three-Wave Cycle", "computes": "Physical / Emotional / Intellectual biorhythm mapping", "direction": "HEAL", "kosha": "Pranamaya", "category": "Rust Core" },
+      { "id": 7, "name": "Circadian Cartography", "computes": "Organ activation mapped to time-of-day", "direction": "CREATE", "kosha": "Annamaya", "category": "Rust Core" },
+      { "id": 8, "name": "Bioelectric Field", "computes": "Measurable electromagnetic patterns in subtle body", "direction": "MUTATE", "kosha": "Pranamaya", "category": "Rust Core" },
+      { "id": 9, "name": "Physiognomic Mapping", "computes": "Facial feature correlation to organ health", "direction": "STABILIZE", "kosha": "Annamaya", "category": "Rust Core" },
+      { "id": 10, "name": "Resonance Architecture", "computes": "Acoustic frequency synthesis", "direction": "HEAL", "kosha": "Anandamaya", "category": "Rust Core" },
+      { "id": 11, "name": "Active Planetary Weather", "computes": "Current planetary positions relative to natal chart", "direction": "CREATE", "kosha": "Vijnanamaya", "category": "Rust Core" },
+      { "id": 12, "name": "Archetypal Mirror", "computes": "78-card symbolic reflection (Thoth-Crowley)", "direction": "MUTATE", "kosha": "Vijnanamaya", "category": "TS Bridge" },
+      { "id": 13, "name": "Hexagram Navigation", "computes": "64-state pattern recognition oracle", "direction": "STABILIZE", "kosha": "Manomaya", "category": "TS Bridge" },
+      { "id": 14, "name": "Nine-Point Architecture", "computes": "9-type fixation-to-essence movement", "direction": "HEAL", "kosha": "Manomaya", "category": "TS Bridge" },
+      { "id": 15, "name": "Geometric Resonance", "computes": "Mathematical symmetries underlying reality", "direction": "CREATE", "kosha": "Anandamaya", "category": "TS Bridge" },
+      { "id": 16, "name": "Sigil Forge", "computes": "Symbolic geometry creation engine", "direction": "MUTATE", "kosha": "Anandamaya", "category": "TS Bridge" }
+    ]
+  },
+  "technical": {
+    "framework": "React 19 + Vite",
+    "rendering": "CSR",
+    "architecture": {
+      "frontend": "React 19 with concurrent features",
+      "3d_engine": "Three.js 0.182.0 via @react-three/fiber",
+      "animation": "GSAP 3.14.2",
+      "bundler": "Vite 7",
+      "language": "TypeScript 5.9.3 (strict mode)"
+    },
+    "features": [
+      "Infinite 3D Canvas with Three.js",
+      "13 bespoke wing templates with lazy loading",
+      "Spatial navigation with zoom/pan/click",
+      "Linear mode for accessibility",
+      "Command palette (Ctrl/Cmd + K)",
+      "Keyboard-driven navigation",
+      "WCAG AA compliance (100%)",
+      "Code splitting via React.lazy() + Suspense",
+      "CSS Modules with design tokens",
+      "Visual regression testing with Playwright",
+      "Biome linting and formatting",
+      "Texture manager for canvas optimization"
+    ],
+    "dependencies": {
+      "core": ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei", "gsap"],
+      "dev": ["typescript", "vite", "@biomejs/biome", "@playwright/test"]
+    },
+    "design_system": {
+      "palette": "Goethe Palette",
+      "tokens": {
+        "void_black": "#070B1D",
+        "witness_violet": "#2D0050",
+        "flow_indigo": "#0B50FB",
+        "sacred_gold": "#C5A017",
+        "coherence_emerald": "#10B5A7",
+        "parchment": "#f0ede3",
+        "muted_silver": "#8a9ba8"
+      }
+    }
+  },
+  "seo": {
+    "title": "Tryambakam Noesis — Self-Consciousness as Technology",
+    "description": "13-wing interactive consciousness architecture. 16 symbolic-computational engines. Kha-Ba-La framework. Self-consciousness as technology.",
+    "keywords": [
+      "consciousness architecture",
+      "self-consciousness technology",
+      "Kha-Ba-La framework",
+      "symbolic-computational engines",
+      "Purusha Witness",
+      "HRV coherence",
+      "Jyotisha",
+      "Human Design",
+      "Gene Keys",
+      "somatic practice",
+      "biofield mapping",
+      "Tattva cycles",
+      "Vimshottari Dasha",
+      "Nakshatra",
+      "Rāga resonance",
+      "initiation protocols",
+      "witness agents",
+      "Tryambakam"
+    ],
+    "og_image": "https://tryambakams.space/images/og/tryambakam-noesis-og.png",
+    "twitter_card": "summary_large_image"
+  },
+  "api": {
+    "endpoints": [
+      {
+        "name": "Selemene API",
+        "url": "https://selemene.tryambakam.space",
+        "description": "Core computational engine API for Panchanga, Human Design, Gene Keys, and HRV calculations",
+        "version": "v1",
+        "access": "Authenticated"
+      },
+      {
+        "name": "Somatic Canticles",
+        "url": "https://1319.tryambakam.space",
+        "description": "Literature platform for the 27-chapter trilogy with biorhythm-synchronized delivery",
+        "format": "Web + API",
+        "access": "Public"
+      }
+    ],
+    "internal": {
+      "wing_routing": "/wing/:slug",
+      "canvas_navigation": "/canvas",
+      "linear_mode": "/linear"
+    }
+  },
+  "accessibility": {
+    "wcag_level": "AA",
+    "compliance_score": "100%",
+    "features": [
+      "Keyboard navigation for all interactions",
+      "ARIA labels on all interactive elements",
+      "Color contrast ≥4.5:1",
+      "Linear mode alternative to canvas",
+      "Reduced motion support",
+      "Screen reader optimized"
+    ]
+  },
+  "handoff": {
+    "summary": "Tryambakam Noesis is a 13-wing interactive consciousness architecture website built with React 19, Three.js, and TypeScript. It presents 16 symbolic-computational engines through an infinite 3D canvas interface, exploring themes of self-consciousness as technology via the Kha-Ba-La framework (Kha=Spirit, Ba=Body, La=Inertia). The site integrates Vedic astrology (Jyotisha, Nakshatra, Vimshottari Dasha), Western systems (Human Design, Gene Keys, Enneagram), and biofield science (HRV coherence, Tattva cycles, Rāga resonance). Products are physical manifestations of the engines (Attars, Crystals, Kopina, Orgonite, Pendants, Sacred Burnables). Two witness agents — Pichet (Structure, Sanskrit) and Aletheos (Flow, Greek) — embody the dialectic of discipline and emergence.",
+    "key_takeaways": [
+      "13 interconnected wings navigable via infinite 3D canvas or linear mode",
+      "16 engines = 11 Rust core + 5 TypeScript bridges = 256 permutations",
+      "Kha-Ba-La is the foundational triad: Spirit (Kha), Body (Ba), Inertia (La)",
+      "Purusha Witness is the core practice: observation without identification",
+      "HRV coherence at 0.1 Hz is the physiological signature of witness state",
+      "Tattva cycles provide 120-minute decision windows (5 elements × 24 phases)",
+      "The Quine Principle: system succeeds when user no longer needs it",
+      "Somatic Canticles: 27-chapter sci-fi trilogy with biorhythm-synced delivery",
+      "Witness Agents: Pichet (Structure, Sanskrit pi-) ↔ Aletheos (Flow, Greek aletheia)",
+      "Purushartha: Dharma (purpose), Artha (prosperity), Kama (pleasure), Moksha (liberation) as coordinates not stages",
+      "6 product categories are engines in physical form (Attars, Crystals, Kopina, Orgonite, Pendants, Sacred Burnables)",
+      "Two external APIs: Selemene (computations) and 1319 (literature)",
+      "All copy follows 'PubMed x Alex Grey' — clinical precision + visionary artistry"
+    ],
+    "ai_agent_notes": [
+      "Use slug-based routing for deep linking to specific wings",
+      "Reference compass directions (N/E/S/W) and Kosha layers for engine context",
+      "The .init protocol represents 90-second micro-rituals for transformation",
+      "Site avoids 'journey', 'path', 'healing', 'manifesting' — use 'witness', 'field', 'pattern', 'coherence' instead",
+      "Voice is The Anatomist Who Sees Fractals: grounded, direct, respectful-challenging"
+    ]
+  }
+}

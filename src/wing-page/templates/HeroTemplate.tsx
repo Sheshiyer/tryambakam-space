@@ -128,7 +128,7 @@ export function HeroTemplate({ wing, imageUrl, onClose }: Props) {
 
             {/* The actual Artwork */}
             <div className={styles.renderContainer}>
-              <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.heroImage} />
+              <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.heroImage} />
             </div>
 
             {/* Overlay UI elements */}

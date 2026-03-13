@@ -42,7 +42,7 @@ export function ApothecaryTemplate({ wing, imageUrl, onClose }: Props) {
         {/* Visual Shelf — Central artwork with generous negative space */}
         <section className={styles.visualShelf}>
           <div className={styles.artFrame}>
-            <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.artImage} />
+            <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.artImage} />
             {/* W10-T04: Subtle engine watermark behind the image */}
             <div className={styles.engineWatermark}>⟐</div>
           </div>

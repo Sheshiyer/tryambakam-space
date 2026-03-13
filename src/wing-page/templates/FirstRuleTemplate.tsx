@@ -66,7 +66,7 @@ export function FirstRuleTemplate({ wing, imageUrl, onClose }: Props) {
 
         {/* Overlapping visual panel */}
         <div className={styles.panelVisual}>
-          <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.artImage} />
+          <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.artImage} />
           <div className={styles.artGlitch} />
         </div>
 

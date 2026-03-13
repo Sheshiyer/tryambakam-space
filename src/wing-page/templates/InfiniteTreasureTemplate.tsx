@@ -93,7 +93,7 @@ export function InfiniteTreasureTemplate({ wing, imageUrl, onClose }: Props) {
         </svg>
 
         {/* Artwork at compass center */}
-        <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.compassArt} />
+        <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.compassArt} />
       </div>
 
       {/* W09-T07: Ambient distortion from center */}

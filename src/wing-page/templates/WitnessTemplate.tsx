@@ -65,7 +65,7 @@ export function WitnessTemplate({ wing, imageUrl, onClose }: Props) {
       {/* Central Observer Pattern grid */}
       <div className={styles.observerGrid}>
         <div className={styles.visualFrame}>
-          <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.artworkImage} />
+          <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.artworkImage} />
         </div>
 
         <div className={styles.contentFrame}>

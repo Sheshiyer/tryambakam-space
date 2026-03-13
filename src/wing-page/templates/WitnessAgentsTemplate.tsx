@@ -169,7 +169,7 @@ export function WitnessAgentsTemplate({ wing, imageUrl, onClose }: Props) {
 
       {/* Bottom: Shared thesis + artwork + CTA */}
       <footer className={styles.bottomBar}>
-        <ProgressiveImage src={imageUrl} alt={wing.title} className={styles.footerArt} />
+        <ProgressiveImage src={imageUrl} alt={wing.alt} className={styles.footerArt} />
         <div className={styles.footerContent}>
           <h2 className={styles.mainTitle}>{wing.title.replace("\n", " ")}</h2>
           <p className={styles.thesis}>{wing.description}</p>

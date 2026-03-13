@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /llms.txt
+Allow: /openclaw-crawlable.json
+Disallow: /artifacts/
+
+Sitemap: https://tryambakams.space/sitemap.xml
