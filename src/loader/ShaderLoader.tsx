@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import styles from "./shader-loader.module.css";
 
-// The shader from user - expanded and adapted
+// Abstract void shader — adapted from twigl compact notation
 const VoidShaderMaterial = {
   uniforms: {
     uTime: { value: 0 },
@@ -20,96 +20,55 @@ const VoidShaderMaterial = {
     uniform float uTime;
     uniform vec2 uResolution;
     varying vec2 vUv;
-    
-    // Rotation matrix
-    mat2 rotate2D(float angle) {
-      float s = sin(angle);
-      float c = cos(angle);
-      return mat2(c, -s, s, c);
-    }
-    
-    // HSV to RGB conversion
-    vec3 hsv(float h, float s, float v) {
-      vec3 p = abs(fract(h + vec3(0.0, 0.333, 0.667)) * 6.0 - 3.0);
-      return v * mix(vec3(1.0), clamp(p - 1.0, 0.0, 1.0), s);
-    }
-    
+
     void main() {
       vec2 r = uResolution;
       float t = uTime * 0.3;
-      
-      // Original shader variables
-      float i = 0.0;
-      float e = 0.0;
-      float R = 0.0;
-      float s = 1.0;
-      
-      vec3 q = vec3(0.0);
-      vec3 p = vec3(0.0);
-      vec3 o = vec3(0.0);
-      
-      // Ray direction (FC = gl_FragCoord equivalent)
-      vec3 d = vec3((vUv.xy - 0.5) * r / min(r.x, r.y), 0.7);
-      
-      // q.z-- from original
-      q.z -= 1.0;
-      
-      // Original raymarching loop (99 iterations)
-      for (int idx = 0; idx < 99; idx++) {
-        i = float(idx);
-        
-        // Original HSV coloring - preserves the purple/cyan/gold colors
-        o += hsv(0.6, e * 0.4 + p.y, e / 12.0);
-        
-        // Advance ray
-        p = q += d * max(e, 0.01) * R * 0.14;
-        
-        // Rotate
-        p.xy *= rotate2D(0.8);
-        
-        // Polar transform
-        R = length(p);
-        float logR = log2(R) - t;
-        float height = -p.z / R - 0.8;
-        float angle = atan(p.x * 0.08, p.y) - t * 0.2;
-        
-        p = vec3(logR, height, angle);
-        
-        // Fractal noise
-        e = 0.0;
-        for (s = 1.0; s < 1000.0; s += s) {
-          e += abs(dot(sin(p.yzx * s), cos(p.yyz * s))) / s;
-        }
+      vec4 o = vec4(0.0);
+
+      // Centered aspect-corrected coordinates
+      vec2 p = (gl_FragCoord.xy * 2.0 - r) / r.y / 0.7;
+      vec2 d = vec2(-1.0, 1.0);
+
+      // Warped coordinate system
+      vec2 c = p * mat2(1.0, 1.0, d / (0.1 + 5.0 / dot(5.0 * p - d, 5.0 * p - d)));
+      vec2 v = c;
+
+      // Log-polar rotation with time
+      float logLen = log(max(length(v), 1e-6));
+      v *= mat2(cos(logLen + t * 0.2 + vec4(0.0, 33.0, 11.0, 0.0))) * 5.0;
+
+      // Fractal accumulation — 9 iterations
+      for (float i = 1.0; i <= 9.0; i += 1.0) {
+        v += 0.7 * sin(v.yx * i + t) / i + 0.5;
+        o += sin(v.xyyx) + 1.0;
       }
-      
-      // Normalize
-      o = o / 45.0;
-      
-      // Void Black background from brand (#070B1D)
-      vec3 voidBlack = vec3(0.027, 0.043, 0.114);
-      
-      // Soft vignette
-      float vignette = 1.0 - length(vUv - 0.5) * 0.6;
-      o *= vignette;
-      
-      // Blend with void black background
-      float intensity = length(o);
-      o = mix(voidBlack, o, smoothstep(0.0, 0.06, intensity));
-      
-      gl_FragColor = vec4(o, 1.0);
+
+      // Complex exponential color mapping
+      o = 1.0 - exp(
+        -exp(c.x * vec4(0.6, -0.4, -1.0, 0.0))
+        / o
+        / (0.1 + 0.1 * pow(length(sin(v / 0.3) * 0.2 + c * vec2(1.0, 2.0)) - 1.0, 2.0))
+        / (1.0 + 7.0 * exp(0.3 * c.y - dot(c, c)))
+        / (0.03 + abs(length(p) - 0.7))
+        * 0.2
+      );
+
+      gl_FragColor = vec4(o.rgb, 1.0);
     }
   `,
 };
 
 function VoidScene() {
   const meshRef = React.useRef<THREE.Mesh>(null);
-  const { viewport } = useThree();
-  
+  const { viewport, gl } = useThree();
+
   useFrame((state) => {
     if (meshRef.current) {
       const material = meshRef.current.material as THREE.ShaderMaterial;
       material.uniforms.uTime.value = state.clock.elapsedTime;
-      material.uniforms.uResolution.value.set(viewport.width, viewport.height);
+      // Pass pixel resolution for gl_FragCoord-based shader
+      material.uniforms.uResolution.value.set(gl.domElement.width, gl.domElement.height);
     }
   });
   
