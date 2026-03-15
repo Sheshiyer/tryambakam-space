@@ -1,4 +1,5 @@
 import * as React from "react";
+import { dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./witness.module.css";
@@ -10,6 +11,9 @@ type Props = {
 };
 
 export function WitnessTemplate({ wing, imageUrl, onClose }: Props) {
+  const handleCTA = React.useCallback(() => {
+    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+  }, [wing.ctaAction, onClose]);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = React.useState(0);
   const [isHovered, setIsHovered] = React.useState(false);
@@ -92,7 +96,7 @@ export function WitnessTemplate({ wing, imageUrl, onClose }: Props) {
             ))}
           </ul>
 
-          <button type="button" className={styles.ctaButton} onClick={onClose}>
+          <button type="button" className={styles.ctaButton} onClick={handleCTA}>
             {wing.cta}
           </button>
         </div>

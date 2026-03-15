@@ -1,4 +1,5 @@
 import * as React from "react";
+import { dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./witness-agents.module.css";
@@ -32,6 +33,9 @@ const ALETHEOS_DETAILS = {
 } as const;
 
 export function WitnessAgentsTemplate({ wing, imageUrl, onClose }: Props) {
+  const handleCTA = React.useCallback(() => {
+    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+  }, [wing.ctaAction, onClose]);
   const [activePane, setActivePane] = React.useState<"none" | "pichet" | "aletheos">("none");
 
   const pichet = wing.features[0];
@@ -173,7 +177,7 @@ export function WitnessAgentsTemplate({ wing, imageUrl, onClose }: Props) {
         <div className={styles.footerContent}>
           <h2 className={styles.mainTitle}>{wing.title.replace("\n", " ")}</h2>
           <p className={styles.thesis}>{wing.description}</p>
-          <button type="button" className={styles.ctaBtn} onClick={onClose}>
+          <button type="button" className={styles.ctaBtn} onClick={handleCTA}>
             {wing.cta}
           </button>
         </div>

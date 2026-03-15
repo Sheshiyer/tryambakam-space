@@ -915,12 +915,20 @@ export function InfiniteCanvasScene({
   const [dpr, setDpr] = React.useState(() => Math.min(window.devicePixelRatio || 1, isTouchDevice ? 1.25 : 1.5));
   const [isMidnight, setIsMidnight] = React.useState(false);
   const [showHints, setShowHints] = React.useState(false);
+  const [showCompass, setShowCompass] = React.useState(false);
 
   React.useEffect(() => {
     const d = new Date();
     if (d.getHours() === 0 && d.getMinutes() <= 5) {
       setIsMidnight(true);
     }
+  }, []);
+
+  // Reveal compass + controls when .init easter egg triggers
+  React.useEffect(() => {
+    const revealCompass = () => setShowCompass(true);
+    window.addEventListener("trigger-init", revealCompass);
+    return () => window.removeEventListener("trigger-init", revealCompass);
   }, []);
 
   if (!media.length) {
@@ -949,9 +957,9 @@ export function InfiniteCanvasScene({
           {showFps && <Stats className={styles.stats} />}
         </Canvas>
 
-        <CompassOverlay />
+        {showCompass && <CompassOverlay />}
 
-        {showControls && (
+        {showControls && showCompass && (
           // biome-ignore lint/a11y/useKeyWithClickEvents: Click reveals visual hints only
           // biome-ignore lint/a11y/noStaticElementInteractions: UI overlay without focus necessity
           <div className={styles.controlsPanel} onClick={() => setShowHints((h) => !h)}>

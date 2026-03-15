@@ -99,12 +99,12 @@ export function BeginJourneyTemplate({ wing, imageUrl, onClose }: Props) {
 
         {showLinks && (
           <div className={styles.accessPanel}>
-            <h3 className={styles.accessTitle}>THREE ACCESS POINTS</h3>
+            <h3 className={styles.accessTitle}>FOUR ACCESS POINTS</h3>
             <div className={styles.accessGrid}>
-              <a href="https://selemene.tryambakam.space" target="_blank" rel="noopener noreferrer" className={styles.accessCard}>
+              <a href="/#sixteen-engines" className={styles.accessCard}>
                 <span className={styles.accessIcon}>⌘</span>
-                <span className={styles.accessName}>Selemene API</span>
-                <span className={styles.accessDesc}>16 engines via programmatic interface</span>
+                <span className={styles.accessName}>Sixteen Engines</span>
+                <span className={styles.accessDesc}>16 symbolic-computational lenses</span>
               </a>
               <a href="https://1319.tryambakam.space" target="_blank" rel="noopener noreferrer" className={styles.accessCard}>
                 <span className={styles.accessIcon}>📖</span>
@@ -115,6 +115,11 @@ export function BeginJourneyTemplate({ wing, imageUrl, onClose }: Props) {
                 <span className={styles.accessIcon}>&gt;_</span>
                 <span className={styles.accessName}>Noesis TUI</span>
                 <span className={styles.accessDesc}>Terminal consciousness architecture</span>
+              </a>
+              <a href="https://18765.tryambakam.space" target="_blank" rel="noopener noreferrer" className={styles.accessCard}>
+                <span className={styles.accessIcon}>✦</span>
+                <span className={styles.accessName}>The Writing</span>
+                <span className={styles.accessDesc}>Essays, reflections, and the witness in words</span>
               </a>
             </div>
             <button type="button" className={styles.backBtn} onClick={onClose}>

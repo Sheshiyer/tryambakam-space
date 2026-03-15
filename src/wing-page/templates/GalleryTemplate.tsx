@@ -1,3 +1,4 @@
+import { dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./gallery.module.css";
@@ -9,6 +10,9 @@ type Props = {
 };
 
 export function GalleryTemplate({ wing, imageUrl, onClose }: Props) {
+  const handleCTA = () => {
+    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+  };
   return (
     <div className={styles.galleryContainer}>
       <header className={styles.topNav}>
@@ -47,7 +51,7 @@ export function GalleryTemplate({ wing, imageUrl, onClose }: Props) {
           </div>
 
           <div className={styles.btnWrapper}>
-            <button type="button" className={styles.primaryBtn}>
+            <button type="button" className={styles.primaryBtn} onClick={handleCTA}>
               {wing.cta}
             </button>
           </div>

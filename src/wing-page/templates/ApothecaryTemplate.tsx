@@ -2,6 +2,7 @@ import * as React from "react";
 import { Modal } from "../../components/Modal";
 import type { Product } from "../../data/products";
 import { PRODUCTS } from "../../data/products";
+import { dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./apothecary.module.css";
@@ -13,6 +14,9 @@ type Props = {
 };
 
 export function ApothecaryTemplate({ wing, imageUrl, onClose }: Props) {
+  const handleCTA = React.useCallback(() => {
+    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+  }, [wing.ctaAction, onClose]);
   const [titleLines] = React.useState(() => wing.title.split("\n"));
   const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(null);
 
@@ -98,7 +102,7 @@ export function ApothecaryTemplate({ wing, imageUrl, onClose }: Props) {
 
         {/* CTA */}
         <section className={styles.ctaSection}>
-          <button type="button" className={styles.ctaBtn} onClick={onClose}>
+          <button type="button" className={styles.ctaBtn} onClick={handleCTA}>
             {wing.cta}
           </button>
         </section>

@@ -59,7 +59,7 @@ const VoidShaderMaterial = {
         i = float(idx);
         
         // Original HSV coloring - preserves the purple/cyan/gold colors
-        o += hsv(0.6, e * 0.4 + p.y, e / 30.0);
+        o += hsv(0.6, e * 0.4 + p.y, e / 12.0);
         
         // Advance ray
         p = q += d * max(e, 0.01) * R * 0.14;
@@ -83,7 +83,7 @@ const VoidShaderMaterial = {
       }
       
       // Normalize
-      o = o / 99.0;
+      o = o / 45.0;
       
       // Void Black background from brand (#070B1D)
       vec3 voidBlack = vec3(0.027, 0.043, 0.114);
@@ -94,7 +94,7 @@ const VoidShaderMaterial = {
       
       // Blend with void black background
       float intensity = length(o);
-      o = mix(voidBlack, o, smoothstep(0.0, 0.15, intensity));
+      o = mix(voidBlack, o, smoothstep(0.0, 0.06, intensity));
       
       gl_FragColor = vec4(o, 1.0);
     }

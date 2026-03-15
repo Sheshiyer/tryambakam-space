@@ -127,8 +127,8 @@ export function EngineMatrixTemplate({ wing, imageUrl, onClose }: Props) {
             <p>{selectedEngine.whatItComputes}</p>
             <h3>Kosha Layer</h3>
             <p>{selectedEngine.koshaLayer}</p>
-            <a href="https://selemene.tryambakam.space" target="_blank" rel="noopener noreferrer" className={styles.selemeneLink}>
-              Consult via Selemene API →
+            <a href="/#sixteen-engines" className={styles.selemeneLink}>
+              View all 16 engines →
             </a>
           </div>
         )}

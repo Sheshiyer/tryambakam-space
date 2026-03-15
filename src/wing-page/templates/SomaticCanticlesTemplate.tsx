@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Modal } from "../../components/Modal";
 import { BOOKS, getChaptersByBook } from "../../data/canticles";
+import { dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./somatic.module.css";
@@ -16,6 +17,10 @@ const ROMAN = ["I", "II", "III"] as const;
 export function SomaticCanticlesTemplate({ wing, imageUrl, onClose }: Props) {
   const [scrollY, setScrollY] = React.useState(0);
   const [activeBook, setActiveBook] = React.useState(0);
+
+  const handleCTA = React.useCallback(() => {
+    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+  }, [wing.ctaAction, onClose]);
   const [selectedChapter, setSelectedChapter] = React.useState<{
     bookIndex: number;
     chapterNumber: number;
@@ -138,7 +143,7 @@ export function SomaticCanticlesTemplate({ wing, imageUrl, onClose }: Props) {
           </div>
 
           <div className={styles.footerAction}>
-            <button type="button" className={styles.readBtn} onClick={onClose}>
+            <button type="button" className={styles.readBtn} onClick={handleCTA}>
               {wing.cta}
             </button>
           </div>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./financial.module.css";
@@ -22,6 +23,9 @@ const GANTT_TRACKS = [
 ];
 
 export function FinancialBiosensorTemplate({ wing, imageUrl, onClose }: Props) {
+  const handleCTA = React.useCallback(() => {
+    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+  }, [wing.ctaAction, onClose]);
   const [tick, setTick] = React.useState(0);
   const [coherence, setCoherence] = React.useState<number[]>(COHERENCE_WAVE);
   const tickRef = React.useRef(0);
@@ -74,7 +78,7 @@ export function FinancialBiosensorTemplate({ wing, imageUrl, onClose }: Props) {
 
           <div className={styles.thesisBlock}>
             <p>{wing.description}</p>
-            <button type="button" className={styles.actBtn} onClick={onClose}>
+            <button type="button" className={styles.actBtn} onClick={handleCTA}>
               {wing.cta}
             </button>
           </div>

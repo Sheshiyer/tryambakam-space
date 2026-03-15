@@ -155,7 +155,7 @@ export function InitTemplate({ wing, imageUrl, onClose }: Props) {
               <span className={styles.elementsLabel}>ELEMENTS</span>
               <p>{protocol.elements}</p>
             </div>
-            <button type="button" className={styles.beginBtn} onClick={onClose}>
+            <button type="button" className={styles.beginBtn} onClick={() => { onClose(); window.dispatchEvent(new CustomEvent("trigger-init")); }}>
               BEGIN PROTOCOL →
             </button>
           </div>

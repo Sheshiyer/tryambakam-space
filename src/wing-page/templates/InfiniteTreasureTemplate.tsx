@@ -1,4 +1,5 @@
 import * as React from "react";
+import { dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./infinite-treasure.module.css";
@@ -56,6 +57,9 @@ const QUADRANT_DETAILS: {
 ];
 
 export function InfiniteTreasureTemplate({ wing, imageUrl, onClose }: Props) {
+  const handleCTA = React.useCallback(() => {
+    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+  }, [wing.ctaAction, onClose]);
   const [zoomedQuadrant, setZoomedQuadrant] = React.useState<number | null>(null);
 
   const handleQuadrantClick = (index: number) => {
@@ -154,7 +158,7 @@ export function InfiniteTreasureTemplate({ wing, imageUrl, onClose }: Props) {
       <footer className={styles.bottomThesis}>
         <h1 className={styles.mainTitle}>{wing.title.replace("\n", " ")}</h1>
         <p className={styles.thesis}>{wing.description}</p>
-        <button type="button" className={styles.ctaBtn} onClick={onClose}>
+        <button type="button" className={styles.ctaBtn} onClick={handleCTA}>
           {wing.cta}
         </button>
       </footer>

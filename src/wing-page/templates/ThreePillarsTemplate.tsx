@@ -1,4 +1,5 @@
 import * as React from "react";
+import { dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./three-pillars.module.css";
@@ -40,6 +41,9 @@ type Props = {
 };
 
 export function ThreePillarsTemplate({ wing, imageUrl, onClose }: Props) {
+  const handleCTA = React.useCallback(() => {
+    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+  }, [wing.ctaAction, onClose]);
   const [expandedPillar, setExpandedPillar] = React.useState<number | null>(null);
 
   const togglePillar = (index: number) => {
@@ -160,7 +164,7 @@ export function ThreePillarsTemplate({ wing, imageUrl, onClose }: Props) {
             </div>
           )}
 
-          <button type="button" className={styles.exploreBtn} onClick={onClose}>
+          <button type="button" className={styles.exploreBtn} onClick={handleCTA}>
             {wing.cta}
           </button>
         </div>

@@ -117,7 +117,7 @@ export const WINGS: WingData[] = [
       },
     ],
     cta: "Enter Witness State",
-    ctaAction: { type: "modal", target: "witness-experience" },
+    ctaAction: { type: "external", target: "https://18765.tryambakam.space" },
     alt: "Witness Yourself - The Observer Pattern",
   },
 
@@ -196,7 +196,7 @@ export const WINGS: WingData[] = [
       },
     ],
     cta: "Explore Pillars",
-    ctaAction: { type: "modal", target: "pillars-detail" },
+    ctaAction: { type: "external", target: "https://18765.tryambakam.space" },
     alt: "Three Pillars - The Elemental Trinity",
   },
 
@@ -242,7 +242,7 @@ export const WINGS: WingData[] = [
       },
     ],
     cta: "View Engine Map",
-    ctaAction: { type: "external", target: "https://selemene.tryambakam.space" },
+    ctaAction: { type: "scroll", target: "sixteen-engines" },
     alt: "Sixteen Engines - The Computational Core",
   },
 
@@ -434,7 +434,7 @@ export const WINGS: WingData[] = [
       },
     ],
     cta: "Start the Hunt",
-    ctaAction: { type: "modal", target: "treasure-map" },
+    ctaAction: { type: "external", target: "https://18765.tryambakam.space" },
     alt: "Infinite Treasure - The Hunt Never Ends",
   },
 
@@ -508,7 +508,7 @@ export const WINGS: WingData[] = [
       },
     ],
     cta: "Understand the Rule",
-    ctaAction: { type: "modal", target: "first-rule-reveal" },
+    ctaAction: { type: "external", target: "https://18765.tryambakam.space" },
     alt: "The First Rule - Where Consciousness Begins",
   },
 

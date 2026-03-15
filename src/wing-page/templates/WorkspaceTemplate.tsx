@@ -192,8 +192,8 @@ export function WorkspaceTemplate({ wing, imageUrl, onClose }: Props) {
             </ul>
           </div>
 
-          <a href="https://selemene.tryambakam.space" target="_blank" rel="noopener noreferrer" className={styles.selemeneLink}>
-            Or access via Selemene API →
+          <a href="/#sixteen-engines" className={styles.selemeneLink}>
+            View all 16 engines →
           </a>
         </div>
       </Modal>

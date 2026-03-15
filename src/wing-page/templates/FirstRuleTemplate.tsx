@@ -1,4 +1,5 @@
 import * as React from "react";
+import { dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./first-rule.module.css";
@@ -10,6 +11,9 @@ type Props = {
 };
 
 export function FirstRuleTemplate({ wing, imageUrl, onClose }: Props) {
+  const handleCTA = React.useCallback(() => {
+    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+  }, [wing.ctaAction, onClose]);
   const [awakened, setAwakened] = React.useState(false);
 
   const toggleAwakened = React.useCallback(() => {
@@ -95,7 +99,7 @@ export function FirstRuleTemplate({ wing, imageUrl, onClose }: Props) {
 
       {/* CTA */}
       <footer className={styles.bottomBar}>
-        <button type="button" className={styles.ctaBtn} onClick={onClose}>
+        <button type="button" className={styles.ctaBtn} onClick={handleCTA}>
           {wing.cta}
         </button>
       </footer>
