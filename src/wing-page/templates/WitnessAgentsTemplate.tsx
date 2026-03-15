@@ -73,7 +73,7 @@ export function WitnessAgentsTemplate({ wing, imageUrl, onClose }: Props) {
 
           <div className={styles.paneContent}>
             <div className={styles.agentPortrait}>
-              <ProgressiveImage src="/images/agents/agent-pichet.png" alt="Pichet - The Structuralist" className={styles.portraitImage} />
+              <ProgressiveImage src="/artworks/agents/agent-pichet.png" alt="Pichet - The Structuralist" className={styles.portraitImage} />
             </div>
             <h2 className={styles.pichetTitle}>{pichet?.title}</h2>
             <p className={styles.pichetDesc}>{pichet?.desc}</p>
@@ -143,7 +143,7 @@ export function WitnessAgentsTemplate({ wing, imageUrl, onClose }: Props) {
 
           <div className={styles.paneContent}>
             <div className={styles.agentPortrait}>
-              <ProgressiveImage src="/images/agents/agent-aletheos.png" alt="Aletheos - The Emergent" className={styles.portraitImage} />
+              <ProgressiveImage src="/artworks/agents/agent-aletheos.png" alt="Aletheos - The Emergent" className={styles.portraitImage} />
             </div>
             <h2 className={styles.aletheosTitle}>{aletheos?.title}</h2>
             <p className={styles.aletheosDesc}>{aletheos?.desc}</p>

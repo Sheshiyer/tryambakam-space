@@ -557,10 +557,20 @@ export const WINGS: WingData[] = [
 
 /** Map media URL → wing index. Returns -1 for supplementary images. */
 export function getWingIndex(mediaUrl: string): number {
-  const match = mediaUrl.match(/WG-(\d+)-/);
-  if (!match) return -1;
-  const num = Number.parseInt(match[1], 10);
-  if (num >= 0 && num < WINGS.length) return num;
+  // Handle new webp naming: B-00-hero-well-v1.webp (batch format)
+  const batchMatch = mediaUrl.match(/B-(\d+)-/);
+  if (batchMatch) {
+    const num = Number.parseInt(batchMatch[1], 10);
+    if (num >= 0 && num < WINGS.length) return num;
+    return -1;
+  }
+  // Handle old PNG naming: WG-00-hero-v1.png
+  const wgMatch = mediaUrl.match(/WG-(\d+)-/);
+  if (wgMatch) {
+    const num = Number.parseInt(wgMatch[1], 10);
+    if (num >= 0 && num < WINGS.length) return num;
+    return -1;
+  }
   return -1;
 }
 

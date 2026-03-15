@@ -3,7 +3,7 @@ import manifest from "~/src/artworks/manifest.json";
 import { Frame } from "~/src/frame";
 import { InfiniteCanvas } from "~/src/infinite-canvas";
 import type { MediaItem } from "~/src/infinite-canvas/types";
-import { PageLoader } from "~/src/loader";
+import { ShaderLoader } from "~/src/loader/ShaderLoader";
 import { playAudioCue } from "~/src/utils";
 import { WingPage } from "~/src/wing-page";
 import { getWingIndex, WINGS } from "~/src/wing-page/data";
@@ -13,7 +13,7 @@ import { TerminalEgg } from "./TerminalEgg";
 
 export function App() {
   const [media] = React.useState<MediaItem[]>(manifest);
-  const [textureProgress, setTextureProgress] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [activeWing, setActiveWing] = React.useState<string | null>(() => {
     return window.location.hash.slice(1) || null;
   });
@@ -109,12 +109,17 @@ export function App() {
   const wing = currentWingIndex !== -1 ? WINGS[currentWingIndex] : null;
   const wingImage = currentWingIndex !== -1 ? media[currentWingIndex]?.url : "";
 
+  // Handle loading completion
+  const handleLoadingComplete = React.useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
   if (isLinearMode) {
     return <LinearMode />;
   }
 
   if (!media.length) {
-    return <PageLoader progress={0} />;
+    return <ShaderLoader isLoading={true} minLoadTime={3000} />;
   }
 
   return (
@@ -131,8 +136,8 @@ export function App() {
       </nav>
       <CommandPalette />
       <Frame hidden={activeWing !== null} />
-      <PageLoader progress={textureProgress} />
-      <InfiniteCanvas media={media} onTextureProgress={setTextureProgress} onMediaClick={handleMediaClick} />
+      <ShaderLoader isLoading={isLoading} minLoadTime={3000} />
+      <InfiniteCanvas media={media} onLoadingComplete={handleLoadingComplete} onMediaClick={handleMediaClick} />
       {wing && <WingPage wing={wing} imageUrl={wingImage ?? ""} open={activeWing !== null} onClose={handleClose} />}
     </>
   );

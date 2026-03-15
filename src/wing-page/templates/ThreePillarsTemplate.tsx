@@ -100,7 +100,7 @@ export function ThreePillarsTemplate({ wing, imageUrl, onClose }: Props) {
           <h2 className={styles.pillarTitle}>{pillars[0]}</h2>
 
           <div className={styles.pillarArt}>
-            <ProgressiveImage src="/images/pillars/pillar-vedic-v1.png" alt="Vedic Intelligence - Sri Yantra and Jyotisha" className={styles.pillarImage} />
+            <ProgressiveImage src="/artworks/pillars/pillar-vedic-v1.png" alt="Vedic Intelligence - Sri Yantra and Jyotisha" className={styles.pillarImage} />
           </div>
 
           <div className={styles.verticalText}>
@@ -180,7 +180,7 @@ export function ThreePillarsTemplate({ wing, imageUrl, onClose }: Props) {
           <h2 className={styles.pillarTitle}>{pillars[2]}</h2>
 
           <div className={styles.pillarArt}>
-            <ProgressiveImage src="/images/pillars/pillar-sonic-v1.png" alt="Biofield and Sonic - Raga frequencies" className={styles.pillarImage} />
+            <ProgressiveImage src="/artworks/pillars/pillar-sonic-v1.png" alt="Biofield and Sonic - Raga frequencies" className={styles.pillarImage} />
           </div>
 
           <div className={styles.verticalText}>

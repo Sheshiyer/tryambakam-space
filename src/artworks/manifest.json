@@ -1,46 +1,46 @@
 [
   {
-    "url": "images/wings/WG-00-hero-v1.png",
+    "url": "artworks/wings-new/B-00-hero-well-v1.webp",
     "width": 1024,
     "height": 1024
   },
   {
-    "url": "images/wings/WG-01-witness-v1.png",
+    "url": "artworks/wings-new/B-01-wing-v1.webp",
     "width": 1024,
     "height": 1024
   },
   {
-    "url": "images/wings/WG-02-integration-v1.png",
+    "url": "artworks/wings-new/B-02-wing-v1.webp",
     "width": 1024,
     "height": 1024
   },
   {
-    "url": "images/wings/WG-03-pillars-v1.png",
+    "url": "artworks/wings-new/B-03-wing-v1.webp",
     "width": 1024,
     "height": 1024
   },
   {
-    "url": "images/wings/WG-04-engines-v1.png",
+    "url": "artworks/wings-new/B-04-wing-v1.webp",
     "width": 1024,
     "height": 1024
   },
   {
-    "url": "images/wings/WG-05-somatic-v1.png",
+    "url": "artworks/wings-new/B-05-wing-v1.webp",
     "width": 1024,
     "height": 1024
   },
   {
-    "url": "images/wings/WG-06-biosensor-v1.png",
+    "url": "artworks/wings-new/B-06-wing-v1.webp",
     "width": 1024,
     "height": 1024
   },
   {
-    "url": "images/wings/WG-07-agents-v1.png",
+    "url": "artworks/wings-new/B-07-wing-v1.webp",
     "width": 1024,
     "height": 1024
   },
   {
-    "url": "images/wings/WG-08-initiation-v1.png",
+    "url": "artworks/wings-new/B-08-wing-v1.webp",
     "width": 1024,
     "height": 1024
   },
@@ -50,9 +50,9 @@
     "height": 1024
   },
   {
-    "url": "images/wings/WG-10-apothecary-v1.png",
-    "width": 1024,
-    "height": 1024
+    "url": "artworks/inspiration/apothecary/ritual-flat-lay-v2.png",
+    "width": 2048,
+    "height": 2048
   },
   {
     "url": "images/wings/WG-11-founder-v1.png",
@@ -61,6 +61,86 @@
   },
   {
     "url": "images/wings/WG-12-begin-v1.png",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "url": "artworks/easter-eggs/posters/9A-01-vimshottari-dasha-poster-v1.png",
+    "width": 1792,
+    "height": 2400
+  },
+  {
+    "url": "artworks/easter-eggs/posters/9A-02-nakshatra-engine-poster-v1.png",
+    "width": 1792,
+    "height": 2400
+  },
+  {
+    "url": "artworks/easter-eggs/posters/9A-03-chakra-kosha-mapping-poster-v1.png",
+    "width": 1792,
+    "height": 2400
+  },
+  {
+    "url": "artworks/easter-eggs/posters/9A-04-human-design-poster-v1.png",
+    "width": 1792,
+    "height": 2400
+  },
+  {
+    "url": "artworks/easter-eggs/posters/9A-05-gene-keys-poster-v1.png",
+    "width": 1792,
+    "height": 2400
+  },
+  {
+    "url": "artworks/easter-eggs/posters/9A-06-astrocartography-poster-v1.png",
+    "width": 1792,
+    "height": 2400
+  },
+  {
+    "url": "artworks/easter-eggs/posters/9A-12-hrv-engine-poster-v1.png",
+    "width": 1792,
+    "height": 2400
+  },
+  {
+    "url": "artworks/books/trilogy-boxset--front.png",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "url": "artworks/books/trilogy-boxset--angled.png",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "url": "artworks/books/trilogy-boxset--spines.png",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "url": "artworks/inspiration/ritual-kits/ritual-kit-v2.png",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "url": "artworks/inspiration/somatic/somatic-book-v2.png",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "url": "artworks/modals/C-01-modal-bg-v1.webp",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "url": "artworks/modals/C-04-modal-bg-v1.webp",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "url": "artworks/pillars/pillar-vedic-v1.png",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "url": "artworks/pillars/pillar-sonic-v1.png",
     "width": 1024,
     "height": 1024
   }

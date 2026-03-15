@@ -500,10 +500,12 @@ const createInitialState = (camZ: number): ControllerState => ({
 function SceneController({
   media,
   onTextureProgress,
+  onLoadingComplete,
   onMediaClick,
 }: {
   media: MediaItem[];
   onTextureProgress?: (progress: number) => void;
+  onLoadingComplete?: () => void;
   onMediaClick?: (mediaIndex: number) => void;
 }) {
   const { camera, gl } = useThree();
@@ -530,7 +532,15 @@ function SceneController({
       maxProgress.current = rounded;
       onTextureProgress?.(rounded);
     }
-  }, [progress, onTextureProgress]);
+    
+    // Trigger loading complete when we hit 100%
+    if (rounded >= 100 && onLoadingComplete) {
+      const timer = setTimeout(() => {
+        onLoadingComplete();
+      }, 500); // Small delay to ensure smooth transition
+      return () => clearTimeout(timer);
+    }
+  }, [progress, onTextureProgress, onLoadingComplete]);
 
   React.useEffect(() => {
     const canvas = gl.domElement;
@@ -890,6 +900,7 @@ function CompassOverlay() {
 export function InfiniteCanvasScene({
   media,
   onTextureProgress,
+  onLoadingComplete,
   onMediaClick,
   showFps = false,
   showControls = true,
@@ -933,7 +944,7 @@ export function InfiniteCanvasScene({
           />
           <BioluminescentEnvironment isMidnight={isMidnight} fogNear={fogNear} fogFar={fogFar} />
           <LaBackground />
-          <SceneController media={media} onTextureProgress={onTextureProgress} onMediaClick={onMediaClick} />
+          <SceneController media={media} onTextureProgress={onTextureProgress} onLoadingComplete={onLoadingComplete} onMediaClick={onMediaClick} />
           <TheQuineMirror />
           {showFps && <Stats className={styles.stats} />}
         </Canvas>

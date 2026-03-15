@@ -9,6 +9,7 @@ export type MediaItem = {
 export type InfiniteCanvasProps = {
   media: MediaItem[];
   onTextureProgress?: (progress: number) => void;
+  onLoadingComplete?: () => void;
   onMediaClick?: (mediaIndex: number) => void;
   showFps?: boolean;
   showControls?: boolean;

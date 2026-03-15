@@ -20,7 +20,7 @@ export const BOOKS: Book[] = [
     chapterCount: 8,
     theme: "Remembering what was never learned",
     koshaMapping: "Kha-dominant — Spirit, observation, pattern recognition",
-    coverUrl: "/images/books/book-anamnesis.png",
+    coverUrl: "/artworks/books/book1-anamnesis--cover-v2.png",
   },
   {
     index: 1,
@@ -28,7 +28,7 @@ export const BOOKS: Book[] = [
     chapterCount: 7,
     theme: "The heart as computational organ",
     koshaMapping: "Ba integration — the body as reading instrument",
-    coverUrl: "/images/books/book-myocardial.png",
+    coverUrl: "/artworks/books/book2-myocardial--cover-v2.png",
   },
   {
     index: 2,
@@ -36,7 +36,7 @@ export const BOOKS: Book[] = [
     chapterCount: 12,
     theme: "Integration that doesn't conclude",
     koshaMapping: "La friction — biorhythmic timing resists impulse to consume faster than you integrate",
-    coverUrl: "/images/books/book-ripening.png",
+    coverUrl: "/artworks/books/book3-ripening--cover-v2.png",
   },
 ];
 
@@ -76,3 +76,10 @@ export const CHAPTERS: Chapter[] = [
 export function getChaptersByBook(bookIndex: number): Chapter[] {
   return CHAPTERS.filter((ch) => ch.bookIndex === bookIndex);
 }
+
+// Box set images for the trilogy
+export const BOX_SET = {
+  front: "/artworks/books/trilogy-boxset--front.png",
+  angled: "/artworks/books/trilogy-boxset--angled.png",
+  spines: "/artworks/books/trilogy-boxset--spines.png",
+};
