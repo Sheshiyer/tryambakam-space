@@ -95,6 +95,44 @@
   }
 }
 
+.apiKeySection {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid rgba(196, 135, 59, 0.3);
+  border-radius: 4px;
+  background: rgba(196, 135, 59, 0.05);
+  animation: typeIn 0.3s ease-out forwards;
+}
+
+.copyBtn {
+  background: rgba(196, 135, 59, 0.15);
+  border: 1px solid #c4873b;
+  color: #c4873b;
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 8px 20px;
+  cursor: pointer;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.copyBtn:hover {
+  background: rgba(196, 135, 59, 0.3);
+  box-shadow: 0 0 12px rgba(196, 135, 59, 0.4);
+}
+
+.apiHint {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: rgba(196, 135, 59, 0.6);
+}
+
+.apiUrl {
+  color: #c4873b;
+  text-decoration: underline;
+}
+
 @keyframes typeIn {
   from {
     opacity: 0;

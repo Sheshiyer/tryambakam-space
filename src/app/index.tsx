@@ -70,6 +70,14 @@ export function App() {
     (mediaIndex: number) => {
       const item = media[mediaIndex];
       if (!item) return;
+
+      // Easter egg images trigger the terminal
+      if (item.url.includes("easter-eggs/")) {
+        playAudioCue("open");
+        window.dispatchEvent(new CustomEvent("trigger-init"));
+        return;
+      }
+
       const wingIndex = getWingIndex(item.url);
       if (wingIndex !== -1 && WINGS[wingIndex]) {
         playAudioCue("open");
