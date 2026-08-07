@@ -1,5 +1,5 @@
 import * as React from "react";
-import { dispatchCTA } from "../../utils/cta-actions";
+import { createCTACallbacks, dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./infinite-treasure.module.css";
@@ -43,6 +43,7 @@ const QUADRANT_DETAILS: {
       "Sigil Forge — symbolic geometry creation",
       "Resonance Architecture — sound as computational substrate",
       "Geometric Resonance — mathematical symmetry tools",
+      "Raga Resonance — 72 Melakarta melodic maps",
     ],
   },
   {
@@ -58,7 +59,7 @@ const QUADRANT_DETAILS: {
 
 export function InfiniteTreasureTemplate({ wing, imageUrl, onClose }: Props) {
   const handleCTA = React.useCallback(() => {
-    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+    dispatchCTA(wing.ctaAction, createCTACallbacks(onClose));
   }, [wing.ctaAction, onClose]);
   const [zoomedQuadrant, setZoomedQuadrant] = React.useState<number | null>(null);
 

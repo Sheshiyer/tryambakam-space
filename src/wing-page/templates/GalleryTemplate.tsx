@@ -1,4 +1,4 @@
-import { dispatchCTA } from "../../utils/cta-actions";
+import { createCTACallbacks, dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./gallery.module.css";
@@ -11,7 +11,7 @@ type Props = {
 
 export function GalleryTemplate({ wing, imageUrl, onClose }: Props) {
   const handleCTA = () => {
-    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+    dispatchCTA(wing.ctaAction, createCTACallbacks(onClose));
   };
   return (
     <div className={styles.galleryContainer}>

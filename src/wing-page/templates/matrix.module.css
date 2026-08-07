@@ -86,7 +86,8 @@
   position: relative;
   width: 100%;
   max-width: 600px;
-  aspect-ratio: 1; /* Force square for the 4x4 matrix */
+  display: flex;
+  flex-direction: column;
 }
 
 .interferenceLayer {
@@ -110,7 +111,7 @@
   grid-template-rows: repeat(4, 1fr);
   gap: 2px;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
   position: relative;
   z-index: 1;
 }
@@ -133,6 +134,49 @@
   background: rgba(11, 80, 251, 0.2);
   border-color: var(--color-white);
   cursor: crosshair;
+}
+
+.bridgeCell {
+  position: relative;
+  margin-top: 2px;
+  border: 1px solid var(--color-flow-indigo);
+  background: rgba(17, 24, 39, 0.9);
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: center;
+  transition:
+    background 0.3s,
+    border-color 0.3s;
+  overflow: hidden;
+}
+
+.bridgeCell:hover {
+  background: rgba(11, 80, 251, 0.2);
+  border-color: var(--color-white);
+  cursor: crosshair;
+}
+
+.bridgeMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.bridgeMain {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bridgeDesc {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  text-align: right;
+  max-width: 220px;
+  line-height: 1.4;
 }
 
 .dirLabel {
@@ -343,7 +387,19 @@
 
   .gridWrapper {
     aspect-ratio: auto;
-    height: 600px;
+    height: auto;
+  }
+
+  .bridgeCell {
+    grid-template-columns: auto 1fr;
+    gap: 10px 14px;
+    padding: 12px;
+  }
+
+  .bridgeDesc {
+    grid-column: 1 / -1;
+    max-width: none;
+    text-align: left;
   }
 }
 
@@ -400,7 +456,7 @@
   }
 
   .gridWrapper {
-    height: 400px;
+    height: auto;
   }
 
   .engineId {
@@ -409,6 +465,28 @@
 
   .engineName {
     font-size: 9px;
+  }
+
+  .bridgeCell {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px 10px;
+  }
+
+  .bridgeMeta {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .bridgeMain {
+    gap: 2px;
+  }
+
+  .bridgeDesc {
+    font-size: 9px;
+    line-height: 1.35;
   }
 
   .dataSection {

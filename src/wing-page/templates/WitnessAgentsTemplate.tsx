@@ -1,5 +1,5 @@
 import * as React from "react";
-import { dispatchCTA } from "../../utils/cta-actions";
+import { createCTACallbacks, dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./witness-agents.module.css";
@@ -14,11 +14,11 @@ type Props = {
 
 const PICHET_DETAILS = {
   archetype: "KHA (Spirit) — The Structuralist",
-  capabilities: [
-    "Pattern Recognition — identifies symbolic-computational lenses across 16 engines",
-    "Symbolic Architecture — constructs meaning from birth data, planetary positions, and archetypal numbers",
-    "Consciousness Level Tracking — witnesses the observer observing",
-  ],
+    capabilities: [
+      "Pattern Recognition — identifies symbolic-computational lenses across 17 engines",
+      "Symbolic Architecture — constructs meaning from birth data, planetary positions, and archetypal numbers",
+      "Consciousness Level Tracking — witnesses the observer observing",
+    ],
   stance: "Sees the pattern. Measures it. Maps it. Never distorts it.",
 } as const;
 
@@ -34,7 +34,7 @@ const ALETHEOS_DETAILS = {
 
 export function WitnessAgentsTemplate({ wing, imageUrl, onClose }: Props) {
   const handleCTA = React.useCallback(() => {
-    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+    dispatchCTA(wing.ctaAction, createCTACallbacks(onClose));
   }, [wing.ctaAction, onClose]);
   const [activePane, setActivePane] = React.useState<"none" | "pichet" | "aletheos">("none");
 

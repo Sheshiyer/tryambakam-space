@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Modal } from "../../components/Modal";
-import { dispatchCTA } from "../../utils/cta-actions";
+import { createCTACallbacks, dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./hero.module.css";
@@ -16,7 +16,7 @@ export function HeroTemplate({ wing, imageUrl, onClose }: Props) {
   const [showDonation, setShowDonation] = React.useState(false);
 
   const handleCTA = React.useCallback(() => {
-    dispatchCTA(wing.ctaAction, { openModal: (id) => console.log("modal:", id), onClose });
+    dispatchCTA(wing.ctaAction, createCTACallbacks(onClose));
   }, [wing.ctaAction, onClose]);
 
   const handleMouseMove = React.useCallback((e: React.MouseEvent) => {

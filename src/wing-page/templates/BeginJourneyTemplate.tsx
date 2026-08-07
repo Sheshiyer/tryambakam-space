@@ -103,8 +103,8 @@ export function BeginJourneyTemplate({ wing, imageUrl, onClose }: Props) {
             <div className={styles.accessGrid}>
               <a href="/#sixteen-engines" className={styles.accessCard}>
                 <span className={styles.accessIcon}>⌘</span>
-                <span className={styles.accessName}>Sixteen Engines</span>
-                <span className={styles.accessDesc}>16 symbolic-computational lenses</span>
+                <span className={styles.accessName}>Seventeen Engines</span>
+                <span className={styles.accessDesc}>17 symbolic-computational lenses</span>
               </a>
               <a href="https://1319.tryambakam.space" target="_blank" rel="noopener noreferrer" className={styles.accessCard}>
                 <span className={styles.accessIcon}>📖</span>

@@ -15,6 +15,10 @@ export function EngineMatrixTemplate({ wing, imageUrl, onClose }: Props) {
   const [hoveredCell, setHoveredCell] = React.useState<number | null>(null);
   const [selectedEngine, setSelectedEngine] = React.useState<Engine | null>(null);
 
+  // Split engines: 16 in the 4×4 matrix, 17th (raaga) as a featured bridge panel.
+  const matrixEngines = ENGINES.slice(0, 16);
+  const bridgeEngine = ENGINES.find((e) => e.selemeneEngineId === "raaga");
+
   // Row and Col calc for intersection lines
   const hoverRow = hoveredCell ? Math.floor((hoveredCell - 1) / 4) : null;
   const hoverCol = hoveredCell ? (hoveredCell - 1) % 4 : null;
@@ -40,7 +44,7 @@ export function EngineMatrixTemplate({ wing, imageUrl, onClose }: Props) {
           <div className={styles.gridWrapper}>
             <div className={styles.interferenceLayer} />
             <div className={styles.matrix4x4}>
-              {ENGINES.map((engine, idx) => {
+              {matrixEngines.map((engine, idx) => {
                 const row = Math.floor(idx / 4);
                 const col = idx % 4;
                 const isIntersectX = hoverRow === row;
@@ -76,6 +80,33 @@ export function EngineMatrixTemplate({ wing, imageUrl, onClose }: Props) {
                 );
               })}
             </div>
+            {bridgeEngine && (
+              // biome-ignore lint/a11y/useSemanticElements: Wide bridge cell with complex flex layout
+              <div
+                className={`${styles.bridgeCell} ${hoveredCell === bridgeEngine.id ? styles.activeCell : ""}`}
+                onMouseEnter={() => setHoveredCell(bridgeEngine.id)}
+                onMouseLeave={() => setHoveredCell(null)}
+                onClick={() => setSelectedEngine(bridgeEngine)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedEngine(bridgeEngine);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+              >
+                <div className={styles.bridgeMeta}>
+                  <span className={styles.categoryBadge}>{bridgeEngine.category === "Rust Core" ? "RS" : "TS"}</span>
+                  <div className={styles.dirLabel}>{bridgeEngine.compassLabel}</div>
+                </div>
+                <div className={styles.bridgeMain}>
+                  <div className={styles.engineId}>E-{bridgeEngine.id.toString().padStart(2, "0")}</div>
+                  <div className={styles.engineName}>{bridgeEngine.name}</div>
+                </div>
+                <div className={styles.bridgeDesc}>{bridgeEngine.whatItComputes}</div>
+              </div>
+            )}
           </div>
         </section>
 
@@ -85,8 +116,8 @@ export function EngineMatrixTemplate({ wing, imageUrl, onClose }: Props) {
           <h2 className={styles.pageSubtitle}>:: {wing.subtitle}</h2>
 
           <div className={styles.cliReadout}>
-            <div className={styles.cliLine}>&gt; initializing 16 symbolic-computational lenses...</div>
-            <div className={styles.cliLine}>&gt; mapping 256 permutations — 16 engines × 4 compass directions</div>
+            <div className={styles.cliLine}>&gt; initializing 17 symbolic-computational lenses...</div>
+            <div className={styles.cliLine}>&gt; mapping 68 directional views — 17 engines × 4 compass directions</div>
             <div className={styles.cliLine}>&gt; {wing.description}</div>
           </div>
 
@@ -128,7 +159,7 @@ export function EngineMatrixTemplate({ wing, imageUrl, onClose }: Props) {
             <h3>Kosha Layer</h3>
             <p>{selectedEngine.koshaLayer}</p>
             <a href="/#sixteen-engines" className={styles.selemeneLink}>
-              View all 16 engines →
+              View all 17 engines →
             </a>
           </div>
         )}

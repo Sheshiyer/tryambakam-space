@@ -20,6 +20,8 @@ export function ProgressiveImage({ src, alt, className, ...rest }: Props) {
         {...rest}
         src={src}
         alt={alt}
+        loading={rest.loading ?? "lazy"}
+        decoding={rest.decoding ?? "async"}
         className={`${styles.image} ${loaded ? styles.loaded : ""}`}
         onLoad={() => setLoaded(true)}
       />

@@ -19,4 +19,31 @@ export default defineConfig({
       "~": path.resolve(__dirname, "."),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) {
+            return undefined;
+          }
+
+          const normalizedId = id.split(path.sep).join("/");
+
+          if (normalizedId.includes("/@react-three/") || normalizedId.includes("/three/")) {
+            return "three-vendor";
+          }
+
+          if (normalizedId.includes("/gsap/")) {
+            return "animation-vendor";
+          }
+
+          if (normalizedId.includes("/react/") || normalizedId.includes("/react-dom/")) {
+            return "react-vendor";
+          }
+
+          return undefined;
+        },
+      },
+    },
+  },
 });

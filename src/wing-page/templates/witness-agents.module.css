@@ -264,12 +264,21 @@
 
 .gutterSpec {
   font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
-  font-size: 8px;
-  letter-spacing: 1px;
-  color: var(--agent-text-dim);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.78);
   text-transform: uppercase;
-  writing-mode: vertical-rl;
+  writing-mode: horizontal-tb;
+  width: max-content;
+  max-width: min(220px, 42vw);
   margin-top: 16px;
+  padding: 6px 10px;
+  border: 1px solid rgba(197, 160, 23, 0.18);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.42);
+  line-height: 1.35;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* W07-T07: Interference shader at centerline */
@@ -478,6 +487,7 @@
 
   .gutterSpec {
     writing-mode: horizontal-tb;
+    max-width: none;
     margin-top: 0;
     margin-left: 12px;
   }

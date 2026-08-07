@@ -77,7 +77,7 @@ export function TerminalEgg() {
       "== ACCESS GRANTED ==",
       "",
       "Generating Selemene Engine API key...",
-      "Tier: FREE — 16 engines × 4 compass directions",
+      "Tier: FREE — 17 engines × 4 compass directions",
     ];
     let i = 0;
     const interval = setInterval(() => {
@@ -126,7 +126,7 @@ export function TerminalEgg() {
               {copied ? "COPIED ✓" : "COPY API KEY"}
             </button>
             <div className={styles.apiHint}>
-              Use this key at <span className={styles.apiUrl}>/#sixteen-engines</span> to consult all 16 engines.
+              Use this key at <span className={styles.apiUrl}>/#sixteen-engines</span> to consult all 17 engines.
             </div>
             <div className={styles.apiHint}>Press ESC to close.</div>
           </div>

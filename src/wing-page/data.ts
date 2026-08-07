@@ -54,14 +54,14 @@ export const WINGS: WingData[] = [
     subtitle: "Self-Generating Code Well",
     // ENHANCED: Added The Quine principle, "optimized everything except the optimizer" hook
     description:
-      "You have optimized everything except the optimizer. Sixteen engines. One unrepeatable consciousness. \
+      "You have optimized everything except the optimizer. Seventeen engines. One unrepeatable consciousness. \
       Tryambakam Noesis trains you to author your own meaning — through symbolic-computational engines \
       governed by Kha-Ba-La, grounded in the body, designed for your independence. \
       The system succeeds when you no longer need it.",
     specs: [
       { label: "Framework", value: "Kha-Ba-La" },
-      { label: "Engines", value: "16 Active" },
-      { label: "Permutations", value: "256" },
+      { label: "Engines", value: "17 Active" },
+      { label: "Compass Views", value: "4 × 17 = 68" },
     ],
     features: [
       {
@@ -97,14 +97,14 @@ export const WINGS: WingData[] = [
       The gap between knowing-about and living-as remains. Purusha witnesses. Prakriti performs. \
       Most systems address the performance. This addresses the witness.",
     specs: [
-      { label: "Mode", value: "Purusha Witness" },
+      { label: "Mode", value: "Witness" },
       { label: "Layer", value: "Kha (Spirit)" },
       { label: "Direction", value: "STABILIZE" },
     ],
     features: [
       // ENHANCED: Added Purusha reference
       {
-        title: "Purusha Witness — Awareness Without Identification",
+        title: "Witness Awareness — Observation Without Identification",
         desc: "The witness is not the thought. The witness is not the emotion. The witness is the field in which both arise. \
           Pure observation collapses the recursive anxiety loop. The first step isn't changing — it's seeing.",
       },
@@ -189,7 +189,7 @@ export const WINGS: WingData[] = [
       },
       // ENHANCED: Added Shadja/Rishabha/Gandhara specificity
       {
-        title: "Sonic Entrainment — Rāga × HRV Coherence",
+        title: "NadaBrahman Resonance — Rāga × Breath Coherence",
         desc: "Shadja, Rishabha, Gandhara — the solfege of somatic attunement. \
           Each rāga correlates to specific HRV frequency bands. Sound as biofeedback. \
           Melody not as aesthetic but as mechanical resonance. The right frequency entrains the right coherence.",
@@ -201,37 +201,37 @@ export const WINGS: WingData[] = [
   },
 
   // ==========================================================================
-  // WING 04 — SIXTEEN ENGINES: "The Computational Core"
+  // WING 04 — SEVENTEEN ENGINES: "The Computational Core"
   // ==========================================================================
   {
     slug: "sixteen-engines",
     number: "04",
-    title: "Sixteen\nEngines",
+    title: "Seventeen\nEngines",
     subtitle: "The Computational Core",
-    // ENHANCED: Listed ALL 16 engines by name with technical specs
+    // ENHANCED: Listed ALL 17 engines by name with technical specs
     description:
-      "16 mirrors. 11 Rust engines. 5 TypeScript lenses. Sub-millisecond calculations. \
-      Temporal Mapping × Panchanga. Kosha Integration × Five Sheath Architecture. \
-      HD Gate Synthesis × 64 Gates. Gene Keys Activation × 64 Shadows/Gifts/Siddhis. \
-      Enneagram Dynamics × 27 Subtypes. Rāga Resonance × 72 Melakarta. \
-      HRV Coherence × 0.1 Hz Entrainment. Tattva Cycles × 5 Elements × 24 Phases. \
-      Nakshatra Navigation × 27 Lunar Mansions. Sonic Entrainment × Binaural Architecture. \
-      Biofield Mapping × HRV/EDA/GSR. Purusha Witness × Observer Pattern. \
-      Biorhythm Engine × Physical/Emotional/Intellectual/Spiritual. \
-      Meridian Clock × 14 Channels. Vimshottari Dasha × 120-Year Cycles. \
+      "17 mirrors. 11 Rust engines. 6 TypeScript lenses. Sub-millisecond calculations. \
+      Panchanga timing × five-fold calendar. Vedic Clock × time-of-day activation. \
+      Human Design × bodygraph mechanics. Gene Keys × Shadow/Gift/Siddhi arc. \
+      Enneagram × nine-point movement. Raaga × 72 Melakarta melodic maps. \
+      Biofield × HRV/EDA/GSR signals. Biorhythm × physical/emotional/intellectual cycles. \
+      Face Reading × physiognomic mapping. Numerology × birth-data number patterns. \
+      Planetary Transits × current sky weather. Vimshottari Dasha × 120-year cycles. \
+      I-Ching × 64-state navigation. Sacred Geometry × mathematical symmetries. \
+      NadaBrahman × acoustic synthesis. Sigil Forge × symbolic geometry, represented twice in the current registry. \
       Compass Direction × STABILIZE/HEAL/CREATE/MUTATE. \
-      4 × 16 = 256 permutations. One unrepeatable consciousness.",
+      4 × 17 = 68 directional views. One unrepeatable consciousness.",
     // ENHANCED: Added sub-millisecond spec
     specs: [
       { label: "Rust Engines", value: "11 — Sub-millisecond" },
-      { label: "TypeScript Lenses", value: "5 — Cross-platform" },
-      { label: "Compass Directions", value: "4 × 16 = 256" },
+      { label: "TypeScript Lenses", value: "6 — Cross-platform" },
+      { label: "Compass Directions", value: "4 × 17 = 68" },
       { label: "Calculation Speed", value: "<1ms per synthesis" },
     ],
     features: [
       // ENHANCED: Deepened compass direction explanation
       {
-        title: "The Compass — 4 Directions × 16 Engines",
+        title: "The Compass — 4 Directions Across 17 Engines",
         desc: "STABILIZE for when coherence is the priority. HEAL for when integration is required. \
           CREATE for when expression wants channels. MUTATE for when the pattern demands reconfiguration. \
           The system does not prescribe — it orients. You choose the direction.",
@@ -243,7 +243,7 @@ export const WINGS: WingData[] = [
     ],
     cta: "View Engine Map",
     ctaAction: { type: "scroll", target: "sixteen-engines" },
-    alt: "Sixteen Engines - The Computational Core",
+    alt: "Seventeen Engines - The Computational Core",
   },
 
   // ==========================================================================
@@ -448,10 +448,10 @@ export const WINGS: WingData[] = [
     subtitle: "Alchemy You Can Touch",
     // ENHANCED: Added Nakshatra-informed, specific engine-product mappings
     description:
-      "Nakshatra-informed tinctures. Biorhythm-timed dosing. \
-      Lion's Mane for Temporal Mapping. Reishi for Purusha Witness. \
-      Frankincense for Kosha Integration. Each product is an engine in physical form — \
-      bioalchemy you can touch, ritual you can inhabit.",
+       "Engine-informed tinctures. Biorhythm-timed dosing. \
+       Lion's Mane for Panchanga timing. Reishi for Biofield mapping. \
+       Frankincense for Sacred Geometry. Each product is an engine in physical form — \
+       bioalchemy you can touch, ritual you can inhabit.",
     specs: [
       { label: "Category", value: "Wellness" },
       { label: "Range", value: "12 Products" },
@@ -460,9 +460,9 @@ export const WINGS: WingData[] = [
     features: [
       // ENHANCED: Deepened engine-product mapping with bioelectric rationale
       {
-        title: "16 Engines × Physical Form",
-        desc: "Lion's Mane — neuroplasticity for Temporal Mapping. Reishi — adaptogenic calm for Purusha Witness. \
-          Frankincense — pineal activation for Kosha Integration. Each product is keyed to a specific engine \
+        title: "17 Engines × Physical Form",
+        desc: "Lion's Mane — neuroplasticity for Panchanga timing practice. Reishi — adaptogenic calm for Biofield mapping. \
+          Frankincense — contemplative focus for Sacred Geometry. Each product is keyed to a registry-backed engine \
           and its bioelectric signature. The protocol specifies the pairing. Your body confirms it.",
       },
       {

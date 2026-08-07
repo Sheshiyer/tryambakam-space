@@ -48,7 +48,7 @@
 Entry point with sovereignty-first donation modal and sacred geometry backdrop.
 
 ### 🧠 Engine Matrix (01) 
-16 canonical engines in a 4×4 grid with compass directions (STABILIZE/HEAL/CREATE/MUTATE).
+17 canonical engines in a 4×4 grid plus bridge cell with compass directions (STABILIZE/HEAL/CREATE/MUTATE).
 
 ### 🏛️ Three Pillars (02)
 Kha-Ba-La framework deep dives — Vedic Intelligence, Western Precision, Biofield & Sonic.
@@ -159,7 +159,7 @@ graph TD
 │   ├── 📂 app/                    # Shell: command palette, linear mode, terminal egg
 │   ├── 📂 components/             # Shared: Modal, LoadingSkeleton
 │   ├── 📂 data/                   # Canonical data
-│   │   ├── 📄 engines.ts          # 16 symbolic-computational engines
+│   │   ├── 📄 engines.ts          # 17 symbolic-computational engines
 │   │   ├── 📄 products.ts         # 6 apothecary products
 │   │   ├── 📄 canticles.ts        # 27-chapter trilogy
 │   │   └── 📄 protocols.ts        # 16 initiation protocols

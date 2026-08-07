@@ -1,5 +1,5 @@
 import * as React from "react";
-import { dispatchCTA } from "../../utils/cta-actions";
+import { createCTACallbacks, dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./regenerative.module.css";
@@ -12,7 +12,7 @@ type Props = {
 
 export function RegenerativeFieldTemplate({ wing, imageUrl, onClose }: Props) {
   const handleCTA = React.useCallback(() => {
-    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+    dispatchCTA(wing.ctaAction, createCTACallbacks(onClose));
   }, [wing.ctaAction, onClose]);
   const [expanded, setExpanded] = React.useState(false);
 

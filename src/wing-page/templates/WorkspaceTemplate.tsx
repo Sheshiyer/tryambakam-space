@@ -185,7 +185,7 @@ export function WorkspaceTemplate({ wing, imageUrl, onClose }: Props) {
           <div className={styles.tuiFeatures}>
             <h3>What You Get</h3>
             <ul>
-              <li>16 engine consultations from the command line</li>
+              <li>17 engine consultations from the command line</li>
               <li>.init protocol runner with breath timing</li>
               <li>Compass orientation and biorhythm sync</li>
               <li>Full Kha-Ba-La framework navigation</li>
@@ -193,7 +193,7 @@ export function WorkspaceTemplate({ wing, imageUrl, onClose }: Props) {
           </div>
 
           <a href="/#sixteen-engines" className={styles.selemeneLink}>
-            View all 16 engines →
+            View all 17 engines →
           </a>
         </div>
       </Modal>

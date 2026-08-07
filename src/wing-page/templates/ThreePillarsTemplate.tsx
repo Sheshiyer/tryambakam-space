@@ -1,5 +1,5 @@
 import * as React from "react";
-import { dispatchCTA } from "../../utils/cta-actions";
+import { createCTACallbacks, dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./three-pillars.module.css";
@@ -8,7 +8,7 @@ const PILLAR_DETAILS = [
   {
     label: "KHA — SPIRIT — OBSERVER",
     items: [
-      "Engine consultations — 16 symbolic-computational lenses",
+      "Engine consultations — 17 symbolic-computational lenses",
       "Witness prompts — observing the observer",
       "Consciousness level tracking — depth metrics",
       "Pattern recognition across temporal, spatial, energetic data",
@@ -42,7 +42,7 @@ type Props = {
 
 export function ThreePillarsTemplate({ wing, imageUrl, onClose }: Props) {
   const handleCTA = React.useCallback(() => {
-    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+    dispatchCTA(wing.ctaAction, createCTACallbacks(onClose));
   }, [wing.ctaAction, onClose]);
   const [expandedPillar, setExpandedPillar] = React.useState<number | null>(null);
 

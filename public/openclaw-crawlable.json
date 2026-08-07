@@ -33,9 +33,9 @@
         "index": 1,
         "slug": "sixteen-engines",
         "number": "01",
-        "title": "Sixteen Engines",
+        "title": "Seventeen Engines",
         "subtitle": "The Computational Core",
-        "theme": "16 canonical engines in a 4×4 grid with compass directions (STABILIZE/HEAL/CREATE/MUTATE)",
+        "theme": "17 canonical engines in a 4×4 grid plus bridge cell with compass directions (STABILIZE/HEAL/CREATE/MUTATE)",
         "compass_direction": "ALL",
         "kha_ba_la": "Kha (Spirit)",
         "cta": "View Engine Map"
@@ -171,15 +171,15 @@
         "type": "landing",
         "headline": "Tryambakam Noesis",
         "subheadline": "Self-Generating Code Well",
-        "key_message": "You have optimized everything except the optimizer. Sixteen engines. One unrepeatable consciousness.",
+        "key_message": "You have optimized everything except the optimizer. Seventeen engines. One unrepeatable consciousness.",
         "elements": ["sacred_geometry_backdrop", "donation_modal", "wing_navigation"]
       },
       {
         "id": "engine_matrix",
         "type": "grid",
-        "headline": "16 Engines",
+        "headline": "17 Engines",
         "subheadline": "The Computational Core",
-        "key_message": "4 × 16 = 256 permutations. One unrepeatable consciousness.",
+        "key_message": "4 × 17 = 68 directional views. One unrepeatable consciousness.",
         "elements": ["4x4_grid", "compass_directions", "engine_cards", "kosha_mapping"]
       },
       {
@@ -284,7 +284,7 @@
         "name": "Kha-Ba-La Framework",
         "description": "Triadic consciousness architecture: Kha (Spirit/Witness), Ba (Body/Field), La (Inertia/Resistance)",
         "origin": "Sanskrit-Egyptian synthesis",
-        "application": "Structural foundation for all 16 engines"
+        "application": "Structural foundation for all 17 engines"
       },
       {
         "name": "Purusha Witness",
@@ -293,8 +293,8 @@
         "key_insight": "The witness is not the thought. The witness is not the emotion."
       },
       {
-        "name": "16 Symbolic-Computational Engines",
-        "description": "11 Rust engines (sub-millisecond) + 5 TypeScript lenses (cross-platform) = 256 permutations",
+        "name": "17 Symbolic-Computational Engines",
+        "description": "11 Rust engines (sub-millisecond) + 6 TypeScript lenses (cross-platform) = 68 directional views",
         "categories": ["Rust Core", "TS Bridge"],
         "compass": ["STABILIZE", "HEAL", "CREATE", "MUTATE"]
       },
@@ -464,11 +464,12 @@
       { "id": 9, "name": "Physiognomic Mapping", "computes": "Facial feature correlation to organ health", "direction": "STABILIZE", "kosha": "Annamaya", "category": "Rust Core" },
       { "id": 10, "name": "Resonance Architecture", "computes": "Acoustic frequency synthesis", "direction": "HEAL", "kosha": "Anandamaya", "category": "Rust Core" },
       { "id": 11, "name": "Active Planetary Weather", "computes": "Current planetary positions relative to natal chart", "direction": "CREATE", "kosha": "Vijnanamaya", "category": "Rust Core" },
-      { "id": 12, "name": "Archetypal Mirror", "computes": "78-card symbolic reflection (Thoth-Crowley)", "direction": "MUTATE", "kosha": "Vijnanamaya", "category": "TS Bridge" },
+      { "id": 12, "name": "Sigil Forge", "computes": "Symbolic geometry creation engine", "direction": "MUTATE", "kosha": "Vijnanamaya", "category": "TS Bridge" },
       { "id": 13, "name": "Hexagram Navigation", "computes": "64-state pattern recognition oracle", "direction": "STABILIZE", "kosha": "Manomaya", "category": "TS Bridge" },
       { "id": 14, "name": "Nine-Point Architecture", "computes": "9-type fixation-to-essence movement", "direction": "HEAL", "kosha": "Manomaya", "category": "TS Bridge" },
       { "id": 15, "name": "Geometric Resonance", "computes": "Mathematical symmetries underlying reality", "direction": "CREATE", "kosha": "Anandamaya", "category": "TS Bridge" },
-      { "id": 16, "name": "Sigil Forge", "computes": "Symbolic geometry creation engine", "direction": "MUTATE", "kosha": "Anandamaya", "category": "TS Bridge" }
+      { "id": 16, "name": "Sigil Forge Bridge", "computes": "Duplicate Selemene registry bridge entry for symbolic geometry creation", "direction": "MUTATE", "kosha": "Anandamaya", "category": "TS Bridge" },
+      { "id": 17, "name": "Raga Resonance", "computes": "Generative rāga composition — 72 Melakarta melodic maps for state-specific practice", "direction": "MUTATE", "kosha": "Anandamaya", "category": "TS Bridge" }
     ]
   },
   "technical": {
@@ -514,7 +515,7 @@
   },
   "seo": {
     "title": "Tryambakam Noesis — Self-Consciousness as Technology",
-    "description": "13-wing interactive consciousness architecture. 16 symbolic-computational engines. Kha-Ba-La framework. Self-consciousness as technology.",
+    "description": "13-wing interactive consciousness architecture. 17 symbolic-computational engines. Kha-Ba-La framework. Self-consciousness as technology.",
     "keywords": [
       "consciousness architecture",
       "self-consciousness technology",
@@ -574,10 +575,10 @@
     ]
   },
   "handoff": {
-    "summary": "Tryambakam Noesis is a 13-wing interactive consciousness architecture website built with React 19, Three.js, and TypeScript. It presents 16 symbolic-computational engines through an infinite 3D canvas interface, exploring themes of self-consciousness as technology via the Kha-Ba-La framework (Kha=Spirit, Ba=Body, La=Inertia). The site integrates Vedic astrology (Jyotisha, Nakshatra, Vimshottari Dasha), Western systems (Human Design, Gene Keys, Enneagram), and biofield science (HRV coherence, Tattva cycles, Rāga resonance). Products are physical manifestations of the engines (Attars, Crystals, Kopina, Orgonite, Pendants, Sacred Burnables). Two witness agents — Pichet (Structure, Sanskrit) and Aletheos (Flow, Greek) — embody the dialectic of discipline and emergence.",
+    "summary": "Tryambakam Noesis is a 13-wing interactive consciousness architecture website built with React 19, Three.js, and TypeScript. It presents 17 symbolic-computational engines through an infinite 3D canvas interface, exploring themes of self-consciousness as technology via the Kha-Ba-La framework (Kha=Spirit, Ba=Body, La=Inertia). The site integrates Vedic astrology (Jyotisha, Nakshatra, Vimshottari Dasha), Western systems (Human Design, Gene Keys, Enneagram), and biofield science (HRV coherence, Tattva cycles, Rāga resonance). Products are physical manifestations of the engines (Attars, Crystals, Kopina, Orgonite, Pendants, Sacred Burnables). Two witness agents — Pichet (Structure, Sanskrit) and Aletheos (Flow, Greek) — embody the dialectic of discipline and emergence.",
     "key_takeaways": [
       "13 interconnected wings navigable via infinite 3D canvas or linear mode",
-      "16 engines = 11 Rust core + 5 TypeScript bridges = 256 permutations",
+      "17 engines = 11 Rust core + 6 TypeScript bridges = 68 directional views",
       "Kha-Ba-La is the foundational triad: Spirit (Kha), Body (Ba), Inertia (La)",
       "Purusha Witness is the core practice: observation without identification",
       "HRV coherence at 0.1 Hz is the physiological signature of witness state",

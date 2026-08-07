@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Modal } from "../../components/Modal";
 import { BOOKS, getChaptersByBook } from "../../data/canticles";
-import { dispatchCTA } from "../../utils/cta-actions";
+import { createCTACallbacks, dispatchCTA } from "../../utils/cta-actions";
 import { ProgressiveImage } from "../components/ProgressiveImage";
 import type { WingData } from "../data";
 import styles from "./somatic.module.css";
@@ -19,7 +19,7 @@ export function SomaticCanticlesTemplate({ wing, imageUrl, onClose }: Props) {
   const [activeBook, setActiveBook] = React.useState(0);
 
   const handleCTA = React.useCallback(() => {
-    dispatchCTA(wing.ctaAction, { openModal: () => onClose(), onClose });
+    dispatchCTA(wing.ctaAction, createCTACallbacks(onClose));
   }, [wing.ctaAction, onClose]);
   const [selectedChapter, setSelectedChapter] = React.useState<{
     bookIndex: number;

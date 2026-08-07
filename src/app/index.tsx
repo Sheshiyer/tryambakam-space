@@ -1,9 +1,11 @@
 import * as React from "react";
 import manifest from "~/src/artworks/manifest.json";
+import { CTAModalHost } from "~/src/components/CTAModalHost";
 import { Frame } from "~/src/frame";
 import { InfiniteCanvas } from "~/src/infinite-canvas";
 import type { MediaItem } from "~/src/infinite-canvas/types";
 import { ShaderLoader } from "~/src/loader/ShaderLoader";
+import { isWebGLAvailable } from "~/src/utils/webgl";
 import { playAudioCue } from "~/src/utils";
 import { WingPage } from "~/src/wing-page";
 import { getWingIndex, WINGS } from "~/src/wing-page/data";
@@ -20,6 +22,32 @@ export function App() {
   const [isLinearMode] = React.useState(() => {
     return new URLSearchParams(window.location.search).has("linear");
   });
+  const [webglFailed, setWebglFailed] = React.useState(false);
+  const [loadTimedOut, setLoadTimedOut] = React.useState(false);
+
+  React.useEffect(() => {
+    // Graceful fallback: if WebGL is unavailable or the canvas fails to initialize,
+    // switch to the linear fallback instead of leaving the user on a frozen loader.
+    if (!isWebGLAvailable()) {
+      setWebglFailed(true);
+      return;
+    }
+
+    // Safety net: if the canvas does not report completion within 12s, allow bypass.
+    const timeout = window.setTimeout(() => {
+      setLoadTimedOut(true);
+    }, 12000);
+
+    const onWebglError = () => setWebglFailed(true);
+    window.addEventListener("webgl-context-lost", onWebglError);
+    window.addEventListener("webgl-context-creation-error", onWebglError);
+
+    return () => {
+      window.clearTimeout(timeout);
+      window.removeEventListener("webgl-context-lost", onWebglError);
+      window.removeEventListener("webgl-context-creation-error", onWebglError);
+    };
+  }, []);
 
   React.useEffect(() => {
     const handleHashChange = () => {
@@ -122,8 +150,8 @@ export function App() {
     setIsLoading(false);
   }, []);
 
-  if (isLinearMode) {
-    return <LinearMode />;
+  if (isLinearMode || webglFailed || loadTimedOut) {
+    return <LinearMode forcedFallback={webglFailed || loadTimedOut} />;
   }
 
   if (!media.length) {
@@ -133,6 +161,7 @@ export function App() {
   return (
     <>
       <TerminalEgg />
+      <CTAModalHost />
       <nav className="sr-only" aria-label="Wings Navigation">
         <ul>
           {WINGS.map((w) => (
@@ -143,9 +172,11 @@ export function App() {
         </ul>
       </nav>
       <CommandPalette />
-      <Frame hidden={activeWing !== null} />
-      <ShaderLoader isLoading={isLoading} minLoadTime={3000} />
-      <InfiniteCanvas media={media} onLoadingComplete={handleLoadingComplete} onMediaClick={handleMediaClick} />
+      <main aria-label="Tryambakam Noesis infinite canvas">
+        <Frame hidden={activeWing !== null} />
+        <ShaderLoader isLoading={isLoading} minLoadTime={3000} />
+        <InfiniteCanvas media={media} onLoadingComplete={handleLoadingComplete} onMediaClick={handleMediaClick} />
+      </main>
       {wing && <WingPage wing={wing} imageUrl={wingImage ?? ""} open={activeWing !== null} onClose={handleClose} />}
     </>
   );
