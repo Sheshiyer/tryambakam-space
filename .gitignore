@@ -235,3 +235,4 @@ Kundali_*.json
 !.vscode/settings.json
 !.vscode/launch.json
 !**/fixtures/**/*.zip
+.vercel

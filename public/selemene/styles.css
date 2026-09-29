@@ -413,3 +413,297 @@ code, kbd {
   color: var(--muted-silver);
   max-width: 44ch;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MotionSkin — landing motion layer & shared shell enhancements
+   Added for the MotionSites Particle Field reskin. Scoped by class;
+   policy/support pages inherit only the shared shell + hero bits.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Screen-reader-only helper */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ── Mobile nav toggle (hidden without JS by default) ────────── */
+.nav-toggle {
+  display: none;
+  appearance: none;
+  background: transparent;
+  color: var(--parchment);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--sacred-gold);
+  outline-offset: 3px;
+}
+.nav-toggle .bars {
+  display: inline-block;
+  width: 14px; height: 2px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: 0.55em;
+  position: relative;
+}
+.nav-toggle .bars::before,
+.nav-toggle .bars::after {
+  content: "";
+  position: absolute; left: 0;
+  width: 14px; height: 2px;
+  background: currentColor;
+}
+.nav-toggle .bars::before { top: -5px; }
+.nav-toggle .bars::after  { top:  5px; }
+
+@media (max-width: 719px) {
+  .nav-toggle { display: inline-flex; align-items: center; }
+  .primary-nav {
+    display: none;
+    width: 100%;
+    order: 3;
+    margin-top: 0.75rem;
+  }
+  .primary-nav.is-open {
+    display: block;
+  }
+  .primary-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0 0.25rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .site-header .shell { align-items: center; }
+}
+
+/* When JS marks itself active on <html>, hide the checkbox-less fallback
+   until the toggle is opened. Progressive: no-JS keeps the list visible. */
+html.no-js .nav-toggle { display: none !important; }
+html.no-js .primary-nav { display: block !important; }
+
+/* Prevent background scroll while mobile menu is open. */
+body.nav-open { overflow: hidden; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Landing motion scene
+   ═══════════════════════════════════════════════════════════════ */
+
+.motion-page {
+  background: var(--void-black);
+}
+.motion-page main.motion-main { padding: 0; }
+
+/* Field host — fixed, behind content, pointer transparent */
+#field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  contain: strict;
+}
+#field canvas { display: block; }
+
+/* Static fallback (SVG when WebGL is unavailable or motion paused) */
+#field .pf-fallback {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(60vw, 60vh);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+#field .pf-fallback svg { width: 100%; height: 100%; display: block; }
+
+/* Baseline no-JS / pre-render fallback — same sigil, plain img */
+#field .pf-baseline {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(60vw, 60vh);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+#field .pf-baseline img { width: 100%; height: auto; display: block; }
+#field .pf-baseline[hidden] { display: none; }
+
+/* Smooth-scroll wrapper (Lenis-friendly) */
+#smooth-wrapper { position: relative; z-index: 1; }
+#smooth-content { position: relative; }
+
+/* Five scroll panels */
+.motion-page .panel {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1rem;
+  max-width: 46rem;
+  padding: 8vh clamp(1.5rem, 6vw, 7rem);
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+.motion-page .panel > * { pointer-events: auto; }
+.motion-page .panel.last { min-height: 130vh; }
+.motion-page .panel:nth-of-type(even) {
+  margin-left: auto;
+  text-align: right;
+}
+.motion-page .panel:nth-of-type(even) p,
+.motion-page .panel:nth-of-type(even) ul,
+.motion-page .panel:nth-of-type(even) ol { margin-left: auto; }
+.motion-page .panel:nth-of-type(even) li { list-style-position: inside; }
+
+.motion-page .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-silver);
+  margin: 0;
+}
+.motion-page h1#title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0.25rem 0 0.5rem;
+  color: var(--parchment);
+}
+.motion-page h2.chapter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 4vw, 2.9rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  margin: 0.25rem 0 0.75rem;
+  color: var(--parchment);
+}
+.motion-page .lede {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--parchment);
+  max-width: 34rem;
+  margin: 0 0 0.75rem;
+}
+.motion-page .panel p {
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.7;
+  color: var(--muted-silver);
+  max-width: 34rem;
+  margin: 0 0 0.6rem;
+}
+.motion-page .panel strong { color: var(--parchment); }
+.motion-page .panel ul,
+.motion-page .panel ol {
+  max-width: 34rem;
+  color: var(--muted-silver);
+  font-size: clamp(0.95rem, 1.3vw, 1.02rem);
+  line-height: 1.65;
+}
+.motion-page .hint {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted-silver);
+  margin-top: 2rem;
+}
+.motion-page .panel .cta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--sacred-gold);
+  color: var(--sacred-gold);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius);
+  background: rgba(197, 160, 23, 0.05);
+  transition: background 200ms ease, color 200ms ease;
+}
+.motion-page .panel .cta:hover,
+.motion-page .panel .cta:focus-visible {
+  background: rgba(197, 160, 23, 0.14);
+  color: var(--sacred-gold-hover);
+}
+
+/* Header/footer on the motion page: transparent so field bleeds through */
+.motion-page .site-header {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(7, 11, 29, 0.85), rgba(7, 11, 29, 0.55));
+  backdrop-filter: blur(4px);
+  border-bottom-color: rgba(240, 237, 227, 0.08);
+}
+.motion-page .site-footer {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(0deg, rgba(7, 11, 29, 0.92), rgba(7, 11, 29, 0.6));
+  border-top-color: rgba(240, 237, 227, 0.08);
+}
+
+/* Pause-motion toggle (replaces lil-gui / stats overlay) */
+.motion-controls {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 5;
+  display: flex;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+.motion-controls .pause-toggle {
+  appearance: none;
+  background: rgba(7, 11, 29, 0.72);
+  color: var(--parchment);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.motion-controls .pause-toggle:hover {
+  background: rgba(7, 11, 29, 0.9);
+  color: var(--sacred-gold);
+}
+.motion-controls .pause-toggle:focus-visible {
+  outline: 2px solid var(--sacred-gold);
+  outline-offset: 3px;
+}
+.motion-controls .pause-toggle[aria-pressed="true"] {
+  border-color: var(--sacred-gold);
+  color: var(--sacred-gold);
+}
+
+/* Reduced motion — hide the "Scroll" hint, static fallback rules apply */
+@media (prefers-reduced-motion: reduce) {
+  .motion-page .hint { display: none; }
+}
+
+/* Lenis stylesheet snippet (official) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+
+/* Controls become available only after the motion module initializes. */
+.motion-controls[hidden] { display: none; }
+.pf-baseline[hidden] { display: none; }

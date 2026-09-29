@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,6 +10,7 @@
   <meta name="description" content="Review draft of the Selemene Engine terms of use. Not a published policy." />
   <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
   <link rel="stylesheet" href="/selemene/styles.css" />
+
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -27,9 +28,14 @@
           <span class="umbrella">Tryambakam Noesis</span>
         </span>
       </a>
-      <nav class="primary-nav" aria-label="Primary">
-        <ul>
-          <li><a href="/selemene/">Overview</a></li>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav-list">
+        <span class="bars" aria-hidden="true"></span>
+        <span>Menu</span>
+      </button>
+      <nav class="primary-nav" aria-label="Primary" id="primary-nav">
+        <ul id="primary-nav-list">
+          <li><a href="/selemene/">Home</a></li>
+          <li><a href="/selemene/readings/">Readings</a></li>
           <li><a href="/selemene/privacy/">Privacy</a></li>
           <li><a href="/selemene/terms/" aria-current="page">Terms</a></li>
           <li><a href="/selemene/support/">Support</a></li>
@@ -134,5 +140,6 @@
       </nav>
     </div>
   </footer>
+  <script src="/selemene/js/shell.js" defer></script>
 </body>
 </html>
