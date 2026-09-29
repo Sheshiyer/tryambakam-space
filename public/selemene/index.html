@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#070b1d" />
+  <title>Selemene Engine — Review Draft · Tryambakam Noesis</title>
+  <meta name="description" content="Review draft for Selemene Engine, a companion for symbolic reflection within the Tryambakam Noesis umbrella. Not a published policy." />
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="stylesheet" href="/selemene/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="draft-banner" role="note" aria-label="Review status">
+    <strong>REVIEW DRAFT · NOT PUBLISHED POLICY</strong>
+  </div>
+
+  <header class="site-header" role="banner">
+    <div class="shell">
+      <a class="brand-lockup" href="/selemene/">
+        <img class="brand-mark" src="/android-chrome-512x512.png" alt="" width="34" height="34" />
+        <span class="brand-wordmark">
+          <span class="name">Selemene Engine</span>
+          <span class="umbrella">Tryambakam Noesis</span>
+        </span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/selemene/" aria-current="page">Overview</a></li>
+          <li><a href="/selemene/privacy/">Privacy</a></li>
+          <li><a href="/selemene/terms/">Terms</a></li>
+          <li><a href="/selemene/support/">Support</a></li>
+          <li><a href="/">Tryambakam</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="hero-eyebrow">Selemene Engine</p>
+        <h1 id="hero-title">A companion for symbolic reflection.</h1>
+        <p class="hero-lede">Explore symbolic traditions through personal questions, clear inputs, and space for your own interpretation.</p>
+        <p class="hero-sub">Selemene lives inside the Tryambakam Noesis umbrella. Its readings are intended for personal reflection, with calculated results clearly separated from interpretation.</p>
+      </div>
+      <figure class="hero-figure" aria-hidden="true">
+        <div class="sigil-frame">
+          <img src="/android-chrome-512x512.png" alt="" />
+        </div>
+      </figure>
+    </section>
+
+    <section aria-labelledby="what-title">
+      <p class="section-kicker">What Selemene is</p>
+      <h2 id="what-title">Purpose &amp; posture</h2>
+      <p>Selemene Engine is a symbolic-reflection companion. Its planned ChatGPT integration helps you discover supported engines, understand their inputs, and request a reading using information you choose to provide.</p>
+      <p>Two things happen inside a reading, and they are kept distinct:</p>
+      <ul>
+        <li><strong>Calculation</strong> — the values or symbolic selections actually returned by the selected engine.</li>
+        <li><strong>Interpretation</strong> — symbolic language written on top of those values, offered as reflection rather than instruction.</li>
+      </ul>
+      <p>Selemene will not fabricate missing details (for example, an unknown birth time). Preparation identifies missing required fields before any calculation. You can supply them or choose a supported reading that does not need them.</p>
+    </section>
+
+    <section aria-labelledby="chatgpt-title">
+      <p class="section-kicker">ChatGPT integration</p>
+      <h2 id="chatgpt-title">In preparation</h2>
+      <p>The ChatGPT integration is in preparation. It is not currently available or live, and there is no install action on this page. This draft describes the intended shape of the initial release so that policy, terms, and support text can be reviewed against a concrete surface.</p>
+      <p>The initial release is being prepared around seven capabilities. Account connection and the available engines still need verification in ChatGPT.</p>
+      <ol class="tool-list" aria-label="Planned capabilities">
+        <li><span class="num">01</span><span class="name">Discover engines</span></li>
+        <li><span class="num">02</span><span class="name">Understand an engine</span></li>
+        <li><span class="num">03</span><span class="name">Prepare your inputs</span></li>
+        <li><span class="num">04</span><span class="name">Request one reading</span></li>
+        <li><span class="num">05</span><span class="name">Discover combined readings</span></li>
+        <li><span class="num">06</span><span class="name">Understand a combined reading</span></li>
+        <li><span class="num">07</span><span class="name">Request a combined reading</span></li>
+      </ol>
+      <p class="meta">No admin, billing, media, Suno, or full witness‑report tools are part of the initial release. A live count of engines exposed through the plugin is not fixed at this stage.</p>
+    </section>
+
+    <section aria-labelledby="posture-title">
+      <p class="section-kicker">How it behaves</p>
+      <h2 id="posture-title">Preparation vs. calculation</h2>
+      <p>When you talk to Selemene about a reading, it will first prepare — restating what you asked for and what inputs it needs. A reading runs only when you explicitly request it. Calculations can save supplied inputs and results and may update your account profile, history, usage, XP or phase.</p>
+      <p>Calculated values are shown as values. Interpretation, when offered, is framed as symbolic reflection. Selemene does not provide medical, psychological, financial, or legal advice, and does not guarantee outcomes.</p>
+    </section>
+
+    <section aria-labelledby="where-title">
+      <p class="section-kicker">Where things live</p>
+      <h2 id="where-title">Boundary at a glance</h2>
+      <ul>
+        <li>A Cloudflare Worker is the intended MCP / OAuth boundary between ChatGPT and Selemene.</li>
+        <li>Selemene itself is hosted on Railway and handles calculation and account state.</li>
+        <li>ChatGPT applies its own provider policies to anything you type there; we do not restate or replace them here.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="review-title">
+      <p class="section-kicker">Status of this folio</p>
+      <h2 id="review-title">Review draft</h2>
+      <p>This site is a bounded review draft. The Privacy, Terms, and Support pages describe intent, not a promulgated policy. Items still awaiting publisher decisions are listed openly on each page under <em>Before publication</em>. Nothing here should be treated as an effective legal notice.</p>
+      <p><a href="/selemene/privacy/">Read the privacy draft →</a> · <a href="/selemene/terms/">Read the terms draft →</a> · <a href="/selemene/support/">Read the support draft →</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="shell">
+      <div>
+        <p class="footer-note">Selemene Engine is part of the Tryambakam Noesis umbrella. This folio is a review draft; no install, deployment, or effective policy is implied.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/selemene/">Overview</a></li>
+          <li><a href="/selemene/privacy/">Privacy</a></li>
+          <li><a href="/selemene/terms/">Terms</a></li>
+          <li><a href="/selemene/support/">Support</a></li>
+          <li><a href="/">Tryambakam</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
