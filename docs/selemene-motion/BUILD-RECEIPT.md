@@ -40,3 +40,7 @@ These are attributed browser observations; they are not outcomes of the interrup
 ## Remaining boundaries
 
 This receipt confirms the local candidate and attributed rendered checks. Deployment, public URL verification, final business/legal facts, ChatGPT connection, recorded demo, directory submission and publication are separate states owned by the parent workflow.
+
+## Final routed-call evidence
+
+Parent read-only gateway receipt for selemene-motionskin-build:claude/claude-opus-4-7 returned200 for54calls; cheaperinference/claude-sonnet-5 returned402 once. For selemene-motionskin-repair:command-code/xiaomi/mimo-v2.5-pro returned200 for25calls and499 once; cheaperinference/claude-sonnet-5 returned200 once and504 once; cheaperinference/kimi-k3 returned402 once. These are actual call routes, not configured-priority claims. Repair process cancellation remains recorded above.

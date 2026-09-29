@@ -1,0 +1,67 @@
+{
+  "deployment": "dpl_9YMGkwHxcV3C8ZTjtP5jABfyeBuS",
+  "source_commit": "6feceab",
+  "origin": "https://www.tryambakam.space",
+  "checks": [
+    {
+      "path": "/selemene/",
+      "status": 200,
+      "mime": "text/html; charset=utf-8",
+      "matches_source": true
+    },
+    {
+      "path": "/selemene/readings/",
+      "status": 200,
+      "mime": "text/html; charset=utf-8",
+      "matches_source": true
+    },
+    {
+      "path": "/selemene/privacy/",
+      "status": 200,
+      "mime": "text/html; charset=utf-8",
+      "matches_source": true
+    },
+    {
+      "path": "/selemene/terms/",
+      "status": 200,
+      "mime": "text/html; charset=utf-8",
+      "matches_source": true
+    },
+    {
+      "path": "/selemene/support/",
+      "status": 200,
+      "mime": "text/html; charset=utf-8",
+      "matches_source": true
+    },
+    {
+      "path": "/selemene/js/motion.js",
+      "status": 200,
+      "mime": "application/javascript; charset=utf-8",
+      "matches_source": true
+    },
+    {
+      "path": "/selemene/lib/lenis/lenis.mjs",
+      "status": 200,
+      "mime": "application/javascript; charset=utf-8",
+      "matches_source": true
+    },
+    {
+      "path": "/selemene/lib/three/three.module.min.js",
+      "status": 200,
+      "mime": "application/javascript; charset=utf-8",
+      "matches_source": true
+    },
+    {
+      "path": "/selemene/lib/three/three.core.min.js",
+      "status": 200,
+      "mime": "application/javascript; charset=utf-8",
+      "matches_source": true
+    },
+    {
+      "path": "/selemene/assets/tryambakam-sigil.svg",
+      "status": 200,
+      "mime": "image/svg+xml",
+      "matches_source": true
+    }
+  ]
+}
