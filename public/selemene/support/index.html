@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#070b1d" />
+  <title>Support — Review Draft · Selemene Engine</title>
+  <meta name="description" content="Review draft of the Selemene Engine support page. Not a published policy." />
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+  <link rel="stylesheet" href="/selemene/styles.css" />
+
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="draft-banner" role="note" aria-label="Review status">
+    <strong>REVIEW DRAFT · NOT PUBLISHED POLICY</strong>
+  </div>
+
+  <header class="site-header" role="banner">
+    <div class="shell">
+      <a class="brand-lockup" href="/selemene/">
+        <img class="brand-mark" src="/android-chrome-512x512.png" alt="" width="34" height="34" />
+        <span class="brand-wordmark">
+          <span class="name">Selemene Engine</span>
+          <span class="umbrella">Tryambakam Noesis</span>
+        </span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav-list">
+        <span class="bars" aria-hidden="true"></span>
+        <span>Menu</span>
+      </button>
+      <nav class="primary-nav" aria-label="Primary" id="primary-nav">
+        <ul id="primary-nav-list">
+          <li><a href="/selemene/">Home</a></li>
+          <li><a href="/selemene/readings/">Readings</a></li>
+          <li><a href="/selemene/privacy/">Privacy</a></li>
+          <li><a href="/selemene/terms/">Terms</a></li>
+          <li><a href="/selemene/support/" aria-current="page">Support</a></li>
+          <li><a href="/">Tryambakam</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <article>
+      <header class="page-head">
+        <p class="kicker">Selemene Engine · Support</p>
+        <h1>Support — review draft</h1>
+        <p>How to raise a technical issue, what to keep out of a public thread, and how to reason about the most common connection questions. This page describes intent while the ChatGPT integration is in preparation; it is not the final support surface.</p>
+      </header>
+
+      <section aria-labelledby="channel-h">
+        <p class="section-kicker">Where to file a technical issue</p>
+        <h2 id="channel-h">Public issue tracker</h2>
+        <p>For reproducible technical problems in the Selemene engine, the public issue tracker is:</p>
+        <p><a href="https://github.com/Sheshiyer/Selemene-engine/issues" rel="noopener noreferrer">github.com/Sheshiyer/Selemene-engine/issues</a></p>
+        <p>Issues on GitHub are <strong>publicly visible</strong>. Please do not include:</p>
+        <ul>
+          <li>Personal birth information (date, exact time, place, coordinates).</li>
+          <li>Full reading outputs or personal interpretive content.</li>
+          <li>Passwords, API keys, OAuth tokens, or session cookies.</li>
+          <li>Private logs that identify you or other users.</li>
+        </ul>
+        <p>Start with the action you attempted, the error message and timestamp, using synthetic data and redacted screenshots. Maintainers may request additional non-sensitive details.</p>
+      </section>
+
+      <section aria-labelledby="account-h">
+        <p class="section-kicker">Account, privacy, deletion</p>
+        <h2 id="account-h">Account &amp; data requests</h2>
+        <p>A dedicated support channel for account, privacy, and deletion requests is pending publisher decisions. That private channel and the request-handling process must be established before this support page is ready for publication.</p>
+        <p>Until that channel is announced, please do not post account‑level or deletion requests to the public issue tracker. Wait for the published channel rather than share personal detail in public.</p>
+      </section>
+
+      <section aria-labelledby="troubleshoot-h">
+        <p class="section-kicker">Troubleshooting</p>
+        <h2 id="troubleshoot-h">Common connection questions</h2>
+
+        <h3>Which credential connects my account?</h3>
+        <p>The planned connection uses your own existing Selemene API key, entered in the secure browser authorization form. Never paste it into chat or a public issue. A shared operator key and the website’s <code>tn_free_</code> demo string cannot substitute for your account credential. This draft does not offer a self-service account or key-creation flow.</p>
+
+        <h3>Backend authorization vs. engine availability</h3>
+        <p>Two distinct things can look like the same error:</p>
+        <ul>
+          <li><strong>Backend authorization</strong> — your connected credentials or permissions were not accepted. Re‑link from the secure browser form; do not paste tokens into chat.</li>
+          <li><strong>Engine availability</strong> — the specific engine you asked for is not currently exposed by Selemene. Ask Selemene which engines it currently exposes. A catalog entry alone does not guarantee the calculation service is operational.</li>
+        </ul>
+
+        <h3>Ambiguous calculation timeouts</h3>
+        <p>If a <code>calculate</code> or <code>run_workflow</code> call appears to hang or returns an ambiguous result, <strong>do not click retry repeatedly</strong>. Selemene does not automatically re‑execute an ambiguous run, and repeated retries can create duplicate history entries. Treat the outcome as uncertain and check available account history before deciding whether to request another reading.</p>
+
+        <h3>The <code>tn_free_…</code> demo key</h3>
+        <p>The website terminal on the main Tryambakam page may present a browser‑generated string beginning with <code>tn_free_</code>. That string is a <strong>demo</strong>: it is not a valid credential for Selemene and cannot authorize access to the ChatGPT integration. If you encountered a workflow asking you to paste it as an API key, that is out of scope for this draft.</p>
+      </section>
+
+      <div class="pending" role="region" aria-labelledby="pending-h">
+        <p class="label">Before publication</p>
+        <h2 id="pending-h" class="sr-only">Support items pending decisions</h2>
+        <ul>
+          <li>Named support channel for account, privacy, and deletion requests.</li>
+          <li>Expected response time and hours, if any.</li>
+          <li>Escalation path for suspected security issues.</li>
+          <li>Language(s) supported.</li>
+          <li>Scope of "supported versions" for the plugin and engine.</li>
+        </ul>
+      </div>
+
+      <p class="meta">Draft revision: unpublished. No effective date.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="shell">
+      <div>
+        <p class="footer-note">Selemene Engine is part of the Tryambakam Noesis umbrella. This folio is a review draft; no install, deployment, or effective policy is implied.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/selemene/">Overview</a></li>
+          <li><a href="/selemene/privacy/">Privacy</a></li>
+          <li><a href="/selemene/terms/">Terms</a></li>
+          <li><a href="/selemene/support/">Support</a></li>
+          <li><a href="/">Tryambakam</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  <script src="/selemene/js/shell.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,709 @@
+/* Selemene Engine — Review Draft folio
+   Palette sourced from src/index.css (void-black, parchment, sacred-gold,
+   muted-silver, deep-surface). No third-party font calls, no JS.           */
+
+:root {
+  --void-black: #070b1d;
+  --deep-surface: #0e1428;
+  --parchment: #f0ede3;
+  --muted-silver: #8a9ba8;
+  --sacred-gold: #c5a017;
+  --sacred-gold-hover: #e5c04f;
+  --witness-violet: #2d0050;
+  --hairline: rgba(240, 237, 227, 0.14);
+  --hairline-strong: rgba(240, 237, 227, 0.28);
+  --draft-amber: #d9a441;
+
+  --font-sans: "Satoshi", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+    Palatino, Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas,
+    monospace;
+
+  --content-max: 1100px;
+  --measure: 68ch;
+  --radius: 4px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--parchment);
+  background:
+    radial-gradient(ellipse at top, rgba(45, 0, 80, 0.18), transparent 55%),
+    var(--void-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ── Skip link ─────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.6rem 0.9rem;
+  background: var(--parchment);
+  color: var(--void-black);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  z-index: 1000;
+}
+.skip-link:focus { left: 1rem; top: 1rem; outline: 2px solid var(--sacred-gold); }
+
+/* ── Draft banner ──────────────────────────────────────────── */
+.draft-banner {
+  background: rgba(217, 164, 65, 0.14);
+  border-bottom: 1px solid rgba(217, 164, 65, 0.45);
+  color: var(--draft-amber);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.55rem 1rem;
+}
+.draft-banner strong { color: var(--draft-amber); font-weight: 600; }
+
+/* ── Shell ─────────────────────────────────────────────────── */
+.shell {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+@media (max-width: 640px) { .shell { padding: 0 1.25rem; } }
+
+/* ── Site header / nav ─────────────────────────────────────── */
+.site-header {
+  padding: 2rem 0 1.25rem;
+  border-bottom: 1px solid var(--hairline);
+}
+.site-header .shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--parchment);
+  text-decoration: none;
+}
+.brand-lockup:hover { text-decoration: none; color: var(--parchment); }
+.brand-mark {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-strong);
+  background: var(--deep-surface);
+  display: block;
+}
+.brand-wordmark {
+  display: flex; flex-direction: column; line-height: 1.1;
+}
+.brand-wordmark .name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+.brand-wordmark .umbrella {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-silver);
+  margin-top: 2px;
+}
+
+.primary-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0; padding: 0;
+}
+.primary-nav a {
+  color: var(--muted-silver);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid transparent;
+}
+.primary-nav a:hover,
+.primary-nav a[aria-current="page"] {
+  color: var(--parchment);
+  border-bottom-color: var(--sacred-gold);
+}
+.primary-nav a:focus-visible {
+  outline: 2px solid var(--sacred-gold);
+  outline-offset: 3px;
+}
+
+/* ── Main ──────────────────────────────────────────────────── */
+main { padding: 3.5rem 0 4.5rem; }
+
+/* Landing hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--hairline);
+}
+@media (max-width: 820px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; }
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--sacred-gold);
+  margin: 0 0 1rem;
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  margin: 0 0 1rem;
+  color: var(--parchment);
+}
+.hero-lede {
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: var(--parchment);
+  max-width: 34ch;
+  margin: 0 0 1.25rem;
+}
+.hero-sub {
+  color: var(--muted-silver);
+  max-width: 48ch;
+  margin: 0;
+}
+.hero-figure {
+  display: flex; justify-content: center;
+}
+.hero-figure .sigil-frame {
+  width: min(320px, 80%);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-strong);
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(197, 160, 23, 0.12), transparent 60%),
+    var(--deep-surface);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-figure img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 24px rgba(197, 160, 23, 0.15));
+}
+
+/* Section rhythm */
+section { margin-top: 3rem; }
+section > h2,
+article > h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  letter-spacing: -0.005em;
+  margin: 0 0 0.5rem;
+  color: var(--parchment);
+}
+section > h2 { scroll-margin-top: 1rem; }
+h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.005em;
+  margin: 1.75rem 0 0.5rem;
+  color: var(--parchment);
+}
+.section-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-silver);
+  margin: 0 0 0.75rem;
+}
+
+p, li { max-width: var(--measure); }
+p { margin: 0 0 1rem; }
+ul, ol { padding-left: 1.25rem; margin: 0 0 1rem; }
+li { margin-bottom: 0.4rem; }
+
+a { color: var(--sacred-gold); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--sacred-gold-hover); }
+a:focus-visible { outline: 2px solid var(--sacred-gold); outline-offset: 3px; border-radius: 2px; }
+
+strong { color: var(--parchment); font-weight: 600; }
+em { color: var(--parchment); }
+code, kbd {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: rgba(240, 237, 227, 0.06);
+  padding: 0.05em 0.35em;
+  border-radius: 3px;
+  color: var(--parchment);
+}
+
+/* Tool list on landing */
+.tool-list {
+  list-style: none; padding: 0; margin: 1rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.6rem 1.5rem;
+}
+.tool-list li {
+  display: flex; gap: 0.75rem; align-items: baseline;
+  border-top: 1px solid var(--hairline);
+  padding: 0.55rem 0;
+  margin: 0;
+}
+.tool-list .num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-silver);
+  min-width: 1.6em;
+}
+.tool-list .name {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--parchment);
+}
+
+/* Pending checklist */
+.pending {
+  border-left: 2px solid var(--draft-amber);
+  background: rgba(217, 164, 65, 0.06);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.pending > .label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--draft-amber);
+  margin: 0 0 0.5rem;
+}
+.pending ul { margin: 0; padding-left: 1.25rem; }
+.pending li { color: var(--parchment); }
+
+/* Meta / callout block */
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--muted-silver);
+}
+.callout {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  margin: 1.5rem 0;
+  background: rgba(14, 20, 40, 0.55);
+}
+.callout p:last-child { margin-bottom: 0; }
+
+/* TOC on policy pages */
+.toc {
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: 1rem 0;
+  margin: 1.5rem 0 2.5rem;
+}
+.toc-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-silver);
+  margin: 0 0 0.5rem;
+}
+.toc ol {
+  columns: 2;
+  column-gap: 2rem;
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+@media (max-width: 640px) { .toc ol { columns: 1; } }
+.toc li { margin-bottom: 0.25rem; max-width: none; }
+
+/* Page header */
+.page-head {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 2rem;
+}
+.page-head h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  margin: 0.3rem 0 0.5rem;
+  color: var(--parchment);
+}
+.page-head .kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sacred-gold);
+  margin: 0;
+}
+.page-head p { color: var(--muted-silver); margin: 0.5rem 0 0; }
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--hairline);
+  padding: 2rem 0 3rem;
+  color: var(--muted-silver);
+  font-size: 0.9rem;
+}
+.site-footer .shell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.site-footer nav ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+}
+.site-footer a {
+  color: var(--muted-silver);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.site-footer a:hover { color: var(--parchment); }
+.footer-note {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--muted-silver);
+  max-width: 44ch;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MotionSkin — landing motion layer & shared shell enhancements
+   Added for the MotionSites Particle Field reskin. Scoped by class;
+   policy/support pages inherit only the shared shell + hero bits.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Screen-reader-only helper */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ── Mobile nav toggle (hidden without JS by default) ────────── */
+.nav-toggle {
+  display: none;
+  appearance: none;
+  background: transparent;
+  color: var(--parchment);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--sacred-gold);
+  outline-offset: 3px;
+}
+.nav-toggle .bars {
+  display: inline-block;
+  width: 14px; height: 2px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: 0.55em;
+  position: relative;
+}
+.nav-toggle .bars::before,
+.nav-toggle .bars::after {
+  content: "";
+  position: absolute; left: 0;
+  width: 14px; height: 2px;
+  background: currentColor;
+}
+.nav-toggle .bars::before { top: -5px; }
+.nav-toggle .bars::after  { top:  5px; }
+
+@media (max-width: 719px) {
+  .nav-toggle { display: inline-flex; align-items: center; }
+  .primary-nav {
+    display: none;
+    width: 100%;
+    order: 3;
+    margin-top: 0.75rem;
+  }
+  .primary-nav.is-open {
+    display: block;
+  }
+  .primary-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0 0.25rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .site-header .shell { align-items: center; }
+}
+
+/* When JS marks itself active on <html>, hide the checkbox-less fallback
+   until the toggle is opened. Progressive: no-JS keeps the list visible. */
+html.no-js .nav-toggle { display: none !important; }
+html.no-js .primary-nav { display: block !important; }
+
+/* Prevent background scroll while mobile menu is open. */
+body.nav-open { overflow: hidden; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Landing motion scene
+   ═══════════════════════════════════════════════════════════════ */
+
+.motion-page {
+  background: var(--void-black);
+}
+.motion-page main.motion-main { padding: 0; }
+
+/* Field host — fixed, behind content, pointer transparent */
+#field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  contain: strict;
+}
+#field canvas { display: block; }
+
+/* Static fallback (SVG when WebGL is unavailable or motion paused) */
+#field .pf-fallback {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(60vw, 60vh);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+#field .pf-fallback svg { width: 100%; height: 100%; display: block; }
+
+/* Baseline no-JS / pre-render fallback — same sigil, plain img */
+#field .pf-baseline {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(60vw, 60vh);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+#field .pf-baseline img { width: 100%; height: auto; display: block; }
+#field .pf-baseline[hidden] { display: none; }
+
+/* Smooth-scroll wrapper (Lenis-friendly) */
+#smooth-wrapper { position: relative; z-index: 1; }
+#smooth-content { position: relative; }
+
+/* Five scroll panels */
+.motion-page .panel {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1rem;
+  max-width: 46rem;
+  padding: 8vh clamp(1.5rem, 6vw, 7rem);
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+.motion-page .panel > * { pointer-events: auto; }
+.motion-page .panel.last { min-height: 130vh; }
+.motion-page .panel:nth-of-type(even) {
+  margin-left: auto;
+  text-align: right;
+}
+.motion-page .panel:nth-of-type(even) p,
+.motion-page .panel:nth-of-type(even) ul,
+.motion-page .panel:nth-of-type(even) ol { margin-left: auto; }
+.motion-page .panel:nth-of-type(even) li { list-style-position: inside; }
+
+.motion-page .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-silver);
+  margin: 0;
+}
+.motion-page h1#title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0.25rem 0 0.5rem;
+  color: var(--parchment);
+}
+.motion-page h2.chapter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 4vw, 2.9rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  margin: 0.25rem 0 0.75rem;
+  color: var(--parchment);
+}
+.motion-page .lede {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--parchment);
+  max-width: 34rem;
+  margin: 0 0 0.75rem;
+}
+.motion-page .panel p {
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.7;
+  color: var(--muted-silver);
+  max-width: 34rem;
+  margin: 0 0 0.6rem;
+}
+.motion-page .panel strong { color: var(--parchment); }
+.motion-page .panel ul,
+.motion-page .panel ol {
+  max-width: 34rem;
+  color: var(--muted-silver);
+  font-size: clamp(0.95rem, 1.3vw, 1.02rem);
+  line-height: 1.65;
+}
+.motion-page .hint {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted-silver);
+  margin-top: 2rem;
+}
+.motion-page .panel .cta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--sacred-gold);
+  color: var(--sacred-gold);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius);
+  background: rgba(197, 160, 23, 0.05);
+  transition: background 200ms ease, color 200ms ease;
+}
+.motion-page .panel .cta:hover,
+.motion-page .panel .cta:focus-visible {
+  background: rgba(197, 160, 23, 0.14);
+  color: var(--sacred-gold-hover);
+}
+
+/* Header/footer on the motion page: transparent so field bleeds through */
+.motion-page .site-header {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(7, 11, 29, 0.85), rgba(7, 11, 29, 0.55));
+  backdrop-filter: blur(4px);
+  border-bottom-color: rgba(240, 237, 227, 0.08);
+}
+.motion-page .site-footer {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(0deg, rgba(7, 11, 29, 0.92), rgba(7, 11, 29, 0.6));
+  border-top-color: rgba(240, 237, 227, 0.08);
+}
+
+/* Pause-motion toggle (replaces lil-gui / stats overlay) */
+.motion-controls {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 5;
+  display: flex;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+.motion-controls .pause-toggle {
+  appearance: none;
+  background: rgba(7, 11, 29, 0.72);
+  color: var(--parchment);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.motion-controls .pause-toggle:hover {
+  background: rgba(7, 11, 29, 0.9);
+  color: var(--sacred-gold);
+}
+.motion-controls .pause-toggle:focus-visible {
+  outline: 2px solid var(--sacred-gold);
+  outline-offset: 3px;
+}
+.motion-controls .pause-toggle[aria-pressed="true"] {
+  border-color: var(--sacred-gold);
+  color: var(--sacred-gold);
+}
+
+/* Reduced motion — hide the "Scroll" hint, static fallback rules apply */
+@media (prefers-reduced-motion: reduce) {
+  .motion-page .hint { display: none; }
+}
+
+/* Lenis stylesheet snippet (official) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+
+/* Controls become available only after the motion module initializes. */
+.motion-controls[hidden] { display: none; }
+.pf-baseline[hidden] { display: none; }

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#070b1d" />
+  <title>Privacy — Review Draft · Selemene Engine</title>
+  <meta name="description" content="Review draft of the Selemene Engine privacy notice. Not a published policy." />
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+  <link rel="stylesheet" href="/selemene/styles.css" />
+
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="draft-banner" role="note" aria-label="Review status">
+    <strong>REVIEW DRAFT · NOT PUBLISHED POLICY</strong>
+  </div>
+
+  <header class="site-header" role="banner">
+    <div class="shell">
+      <a class="brand-lockup" href="/selemene/">
+        <img class="brand-mark" src="/android-chrome-512x512.png" alt="" width="34" height="34" />
+        <span class="brand-wordmark">
+          <span class="name">Selemene Engine</span>
+          <span class="umbrella">Tryambakam Noesis</span>
+        </span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav-list">
+        <span class="bars" aria-hidden="true"></span>
+        <span>Menu</span>
+      </button>
+      <nav class="primary-nav" aria-label="Primary" id="primary-nav">
+        <ul id="primary-nav-list">
+          <li><a href="/selemene/">Home</a></li>
+          <li><a href="/selemene/readings/">Readings</a></li>
+          <li><a href="/selemene/privacy/" aria-current="page">Privacy</a></li>
+          <li><a href="/selemene/terms/">Terms</a></li>
+          <li><a href="/selemene/support/">Support</a></li>
+          <li><a href="/">Tryambakam</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <article>
+      <header class="page-head">
+        <p class="kicker">Selemene Engine · Privacy</p>
+        <h1>Privacy — review draft</h1>
+        <p>This is a working draft written to be reviewed against a concrete integration. It is not an effective privacy notice, and it does not carry an effective date. Where the publisher has not yet made a decision, that is stated openly rather than filled with defaults.</p>
+      </header>
+
+      <nav class="toc" aria-label="On this page">
+        <p class="toc-label">On this page</p>
+        <ol>
+          <li><a href="#scope">Scope of this draft</a></li>
+          <li><a href="#information">Information you may provide</a></li>
+          <li><a href="#uses">How that information is used</a></li>
+          <li><a href="#boundary">Where processing happens</a></li>
+          <li><a href="#chatgpt">ChatGPT as the connecting surface</a></li>
+          <li><a href="#credentials">Authorization &amp; credentials</a></li>
+          <li><a href="#retention">Retention &amp; deletion (pending)</a></li>
+          <li><a href="#security">Security posture</a></li>
+          <li><a href="#pending">Before publication</a></li>
+        </ol>
+      </nav>
+
+      <section id="scope" aria-labelledby="scope-h">
+        <h2 id="scope-h">Scope of this draft</h2>
+        <p>Selemene Engine is a symbolic‑reflection companion within the Tryambakam Noesis umbrella. This draft describes the privacy behaviour intended for its initial ChatGPT integration. The ChatGPT integration is in preparation and is not currently available or live.</p>
+        <p>This draft is not a legal notice. It is not effective. Nothing here overrides ChatGPT's own provider policies or any future signed agreement between Selemene and its users.</p>
+      </section>
+
+      <section id="information" aria-labelledby="information-h">
+        <h2 id="information-h">Information you may provide</h2>
+        <p>Depending on which tool you use, Selemene may receive information that you type or paste yourself. Not every tool needs every field; several tools work with far less.</p>
+        <ul>
+          <li>Name, when required by the selected engine.</li>
+          <li>Birth date, birth time, birth place, coordinates, and timezone — when relevant to a specific engine.</li>
+          <li>The question or intent you bring to a reading.</li>
+          <li>Calculation inputs (parameters requested by a specific engine) and the calculated results those inputs produce.</li>
+        </ul>
+        <p>Selemene does not attempt to fill in missing personal details on your behalf. If a required birth time is unknown, preparation should identify it as missing before calculation. A reading that does not require it can be considered instead.</p>
+      </section>
+
+      <section id="uses" aria-labelledby="uses-h">
+        <h2 id="uses-h">How that information is used</h2>
+        <p>When you explicitly ask for a calculation or a workflow, Selemene will use the values you provided to compute results. Those inputs and results may be saved to your Selemene account so that:</p>
+        <ul>
+          <li>You can revisit prior readings and their history.</li>
+          <li>Your profile, usage counters, XP, or current phase can be updated as designed by the engine you invoked.</li>
+        </ul>
+        <p>The current reading store can hold the supplied inputs, returned results, reflection prompt, account association and timestamps. Saving is asynchronous and can fail, so a successful calculation does not guarantee that its history record was saved. There is no verified ephemeral or "no‑storage" mode.</p>
+      </section>
+
+      <section id="boundary" aria-labelledby="boundary-h">
+        <h2 id="boundary-h">Where processing happens</h2>
+        <p>Selemene processing uses the following intended infrastructure; this is not a complete processor inventory:</p>
+        <ul>
+          <li>A <strong>Cloudflare Worker</strong> is the intended MCP / OAuth boundary — the surface through which ChatGPT reaches Selemene tools.</li>
+          <li><strong>Selemene</strong> itself is hosted on Railway and is where calculation and account state are processed and stored.</li>
+        </ul>
+        <p>The complete processor inventory, hosting regions and cross‑border transfer arrangements need verification and disclosure before publication.</p>
+      </section>
+
+      <section id="chatgpt" aria-labelledby="chatgpt-h">
+        <h2 id="chatgpt-h">ChatGPT as the connecting surface</h2>
+        <p>When you connect Selemene from within ChatGPT, your ChatGPT conversation is governed by ChatGPT's own privacy and provider policies. Anything you type into ChatGPT is subject to those policies before it reaches Selemene. The final policy must identify how the connecting service and Selemene each handle the information shared through the integration.</p>
+      </section>
+
+      <section id="credentials" aria-labelledby="credentials-h">
+        <h2 id="credentials-h">Authorization &amp; credentials</h2>
+        <p>Any authorization credential used to link Selemene to ChatGPT is entered only through the secure browser linking form provided by Selemene. Do not paste tokens, API keys, or passwords into a chat window or into any public support channel.</p>
+        <p>The demo key of the form <code>tn_free_…</code> generated by the website terminal is a demo string, not a valid credential. Treat it accordingly.</p>
+      </section>
+
+      <section id="retention" aria-labelledby="retention-h">
+        <h2 id="retention-h">Retention &amp; deletion (pending)</h2>
+        <p>The current API includes account-profile access and reading-history retrieval. A general export function and a customer account or reading deletion endpoint were not found in the source review. No timed purge of reading, profile or usage records was found. Retention periods, provider log and backup lifetimes, and an operational request-and-deletion process must be established before publication.</p>
+      </section>
+
+      <section id="security" aria-labelledby="security-h">
+        <h2 id="security-h">Security posture</h2>
+        <p>Security disclosures must be checked against the deployed integration before this policy takes effect. The current API request middleware records request metadata including method, path, trace identifier, account identifier, response status and duration; this does not establish every provider logging practice. Provider retention and backup arrangements remain under review. The API also has an error-monitoring integration configured; its processing details are being verified before policy publication.</p>
+      </section>
+
+      <div class="pending" id="pending" role="region" aria-labelledby="pending-h">
+        <p class="label">Before publication</p>
+        <h2 id="pending-h" class="sr-only">Items pending publisher decisions</h2>
+        <ul>
+          <li>Legal identity of the data controller (entity name, address, jurisdiction).</li>
+          <li>Contact channel for privacy questions, access, and deletion requests.</li>
+          <li>Retention periods for account data, calculation history, and backups.</li>
+          <li>Complete list of subprocessors and their locations.</li>
+          <li>Cross‑border transfer mechanisms and applicable safeguards.</li>
+          <li>Concrete deletion workflow and verification of completeness.</li>
+          <li>Minimum age of use, country availability, and any commerce terms.</li>
+          <li>Effective date and versioning policy for this notice.</li>
+        </ul>
+      </div>
+
+      <p class="meta">Draft revision: unpublished. No effective date.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="shell">
+      <div>
+        <p class="footer-note">Selemene Engine is part of the Tryambakam Noesis umbrella. This folio is a review draft; no install, deployment, or effective policy is implied.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/selemene/">Overview</a></li>
+          <li><a href="/selemene/privacy/">Privacy</a></li>
+          <li><a href="/selemene/terms/">Terms</a></li>
+          <li><a href="/selemene/support/">Support</a></li>
+          <li><a href="/">Tryambakam</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  <script src="/selemene/js/shell.js" defer></script>
+</body>
+</html>
