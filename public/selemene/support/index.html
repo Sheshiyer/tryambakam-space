@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex,nofollow" />
+  <meta name="robots" content="index,follow" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="theme-color" content="#070b1d" />
-  <title>Support — Review Draft · Selemene Engine</title>
-  <meta name="description" content="Review draft of the Selemene Engine support page. Not a published policy." />
+  <title>Support — Selemene Engine · Tryambakam Noesis</title>
+  <meta name="description" content="Contact Selemene support privately, request a data review, report a technical issue safely, and troubleshoot free readings." />
   <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
   <link rel="stylesheet" href="/selemene/styles.css" />
 
@@ -15,9 +15,6 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <div class="draft-banner" role="note" aria-label="Review status">
-    <strong>REVIEW DRAFT · NOT PUBLISHED POLICY</strong>
-  </div>
 
   <header class="site-header" role="banner">
     <div class="shell">
@@ -49,73 +46,59 @@
     <article>
       <header class="page-head">
         <p class="kicker">Selemene Engine · Support</p>
-        <h1>Support — review draft</h1>
-        <p>How to raise a technical issue, what to keep out of a public thread, and how to reason about the most common connection questions. This page describes intent while the ChatGPT integration is in preparation; it is not the final support surface.</p>
+        <h1>Support</h1>
+        <p class="meta">Updated 8 October 2026.</p>
+        <p>Selemene is published and operated personally by Shesh Iyer. For private support, privacy questions, data requests, or a suspected security issue, email <a href="mailto:sheshnarayan.iyer@gmail.com">sheshnarayan.iyer@gmail.com</a>. No response-time guarantee is offered.</p>
       </header>
 
-      <section aria-labelledby="channel-h">
-        <p class="section-kicker">Where to file a technical issue</p>
-        <h2 id="channel-h">Public issue tracker</h2>
-        <p>For reproducible technical problems in the Selemene engine, the public issue tracker is:</p>
-        <p><a href="https://github.com/Sheshiyer/Selemene-engine/issues" rel="noopener noreferrer">github.com/Sheshiyer/Selemene-engine/issues</a></p>
-        <p>Issues on GitHub are <strong>publicly visible</strong>. Please do not include:</p>
-        <ul>
-          <li>Personal birth information (date, exact time, place, coordinates).</li>
-          <li>Full reading outputs or personal interpretive content.</li>
-          <li>Passwords, API keys, OAuth tokens, or session cookies.</li>
-          <li>Private logs that identify you or other users.</li>
-        </ul>
-        <p>Start with the action you attempted, the error message and timestamp, using synthetic data and redacted screenshots. Maintainers may request additional non-sensitive details.</p>
+      <section id="private" aria-labelledby="private-h">
+        <h2 id="private-h">Private support and data requests</h2>
+        <p>Start with the action or tool you used, the approximate timestamp, any returned request or reading identifier, and the redacted error message. Do not include credentials, a full birth chart, or a complete private reading in the initial message.</p>
+        <p>For access or deletion requests, the publisher reviews what shared records can be identified and what action is feasible, then responds with the scope. The free connector has no linked personal account or personal history/deletion tool. Anonymous shared storage can make record matching incomplete; automatic erasure, a completion deadline, and full backup deletion are not guaranteed. See the <a href="/selemene/privacy/">privacy notice</a>.</p>
       </section>
 
-      <section aria-labelledby="account-h">
-        <p class="section-kicker">Account, privacy, deletion</p>
-        <h2 id="account-h">Account &amp; data requests</h2>
-        <p>A dedicated support channel for account, privacy, and deletion requests is pending publisher decisions. That private channel and the request-handling process must be established before this support page is ready for publication.</p>
-        <p>Until that channel is announced, please do not post account‑level or deletion requests to the public issue tracker. Wait for the published channel rather than share personal detail in public.</p>
+      <section id="technical" aria-labelledby="technical-h">
+        <h2 id="technical-h">Public technical reports</h2>
+        <p>For a reproducible engine or connector defect, use the <a href="https://github.com/Sheshiyer/Selemene-engine/issues" rel="noopener noreferrer">Selemene issue tracker</a>. GitHub issues are publicly visible. Use synthetic inputs and redacted screenshots.</p>
+        <p>Keep personal birth details, private readings, credentials, session cookies, and identifying logs out of public reports. Privacy, deletion, and suspected security issues belong in the private email channel.</p>
       </section>
 
-      <section aria-labelledby="troubleshoot-h">
-        <p class="section-kicker">Troubleshooting</p>
-        <h2 id="troubleshoot-h">Common connection questions</h2>
-
-        <h3>Which credential connects my account?</h3>
-        <p>The planned connection uses your own existing Selemene API key, entered in the secure browser authorization form. Never paste it into chat or a public issue. A shared operator key and the website’s <code>tn_free_</code> demo string cannot substitute for your account credential. This draft does not offer a self-service account or key-creation flow.</p>
-
-        <h3>Backend authorization vs. engine availability</h3>
-        <p>Two distinct things can look like the same error:</p>
-        <ul>
-          <li><strong>Backend authorization</strong> — your connected credentials or permissions were not accepted. Re‑link from the secure browser form; do not paste tokens into chat.</li>
-          <li><strong>Engine availability</strong> — the specific engine you asked for is not currently exposed by Selemene. Ask Selemene which engines it currently exposes. A catalog entry alone does not guarantee the calculation service is operational.</li>
-        </ul>
-
-        <h3>Ambiguous calculation timeouts</h3>
-        <p>If a <code>calculate</code> or <code>run_workflow</code> call appears to hang or returns an ambiguous result, <strong>do not click retry repeatedly</strong>. Selemene does not automatically re‑execute an ambiguous run, and repeated retries can create duplicate history entries. Treat the outcome as uncertain and check available account history before deciding whether to request another reading.</p>
-
-        <h3>The <code>tn_free_…</code> demo key</h3>
-        <p>The website terminal on the main Tryambakam page may present a browser‑generated string beginning with <code>tn_free_</code>. That string is a <strong>demo</strong>: it is not a valid credential for Selemene and cannot authorize access to the ChatGPT integration. If you encountered a workflow asking you to paste it as an API key, that is out of scope for this draft.</p>
+      <section id="connection" aria-labelledby="connection-h">
+        <h2 id="connection-h">Connection and availability</h2>
+        <h3>Do I need a Selemene key or account?</h3>
+        <p>No. This free connector uses a sponsor credential kept on the server. It does not ask you to paste a key into chat or complete Selemene OAuth. The main website's browser-generated <code>tn_free_…</code> string is a demo, not a valid API credential, and is not needed here.</p>
+        <h3>The service cannot authorize a request</h3>
+        <p>A sponsor-service authorization failure needs operator attention; you cannot repair it with a personal key or by relinking a Selemene account. Send the sanitized error and timestamp to <a href="mailto:sheshnarayan.iyer@gmail.com">sheshnarayan.iyer@gmail.com</a>. Do not send or request the sponsor credential.</p>
+        <h3>An engine is missing or unavailable</h3>
+        <p>Ask the connector which engines and workflows it currently exposes. A catalog entry alone does not prove the calculation backend is ready. The supported scope includes eleven reviewed non-media engines, the decision-support workflow, and a separate Vedic D1/D9 chart. It excludes administration, billing, media analysis, Suno, and full hosted witness reports.</p>
+        <h3>I cannot find a public install link</h3>
+        <p>The free calculation service is deployed and has been privately installed and tested. Public plugin-directory listing is still being prepared. These pages do not claim marketplace approval or provide an unverified installer.</p>
       </section>
 
-      <div class="pending" role="region" aria-labelledby="pending-h">
-        <p class="label">Before publication</p>
-        <h2 id="pending-h" class="sr-only">Support items pending decisions</h2>
-        <ul>
-          <li>Named support channel for account, privacy, and deletion requests.</li>
-          <li>Expected response time and hours, if any.</li>
-          <li>Escalation path for suspected security issues.</li>
-          <li>Language(s) supported.</li>
-          <li>Scope of "supported versions" for the plugin and engine.</li>
-        </ul>
-      </div>
+      <section id="requests" aria-labelledby="requests-h">
+        <h2 id="requests-h">Preparing and running a reading</h2>
+        <h3>A required input is missing</h3>
+        <p>Provide the required field or choose a reading that does not need it. Do not guess an unknown birth time. Preparation does not execute a calculation. Before an ordinary reading is requested, review this disclosure:</p>
+        <p><strong>Free readings use a shared Selemene administrator account. Birth inputs and calculated results may be stored there; usage, profile, XP and phase may change. There is no separate private user history.</strong></p>
+        <h3>A quota limit was reached</h3>
+        <p>Limits apply to connecting IP addresses and the entire sponsored service. Shared networks or host gateways may share them. Respect the retry information actually returned; do not infer a personal balance or repeatedly retry. Defaults are described in the <a href="/selemene/terms/#limits">terms</a>.</p>
+        <h3>A calculation timed out or produced an ambiguous result</h3>
+        <p>Treat its outcome as uncertain. Repeating it can create duplicate storage or usage effects. There is no personal history tool to check the record, and this connector does not silently re-execute ambiguous requests. Contact support with minimal identifiers if you need a review.</p>
+        <h3>Can it create a narrated report, PDF, photo, or audio reading?</h3>
+        <p>ChatGPT writes the explanation and final prose using your host limits. The free connector performs calculations and local symbolic draws; it does not run another hosted narration model or analyze photos/audio. Document exports depend on host-native tools that are actually available; a PDF or media generator is not included in these eight connector tools.</p>
+      </section>
 
-      <p class="meta">Draft revision: unpublished. No effective date.</p>
+      <section id="quality" aria-labelledby="quality-h">
+        <h2 id="quality-h">Understanding source limits</h2>
+        <p>I Ching primary judgments and Great Symbolism images have original Legge-edition provenance, but moving-line passages are not supplied. Gene Keys activation values preserve their Human Design gate, line, and source; complete verified meanings remain incomplete or unverified. The Vedic chart supplies D1/D9 fields, not advanced yogas, dignities, combustion findings, Atmakaraka, or Darakaraka. See the <a href="/selemene/readings/#sources">reading guide</a> before treating an absent field as a finding.</p>
+      </section>
     </article>
   </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="shell">
       <div>
-        <p class="footer-note">Selemene Engine is part of the Tryambakam Noesis umbrella. This folio is a review draft; no install, deployment, or effective policy is implied.</p>
+        <p class="footer-note">Selemene Engine · Tryambakam Noesis. Published by Shesh Iyer. Free sponsored calculations; interpretation in your ChatGPT conversation.</p>
       </div>
       <nav aria-label="Footer">
         <ul>

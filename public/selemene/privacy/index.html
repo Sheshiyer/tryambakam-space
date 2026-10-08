@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex,nofollow" />
+  <meta name="robots" content="index,follow" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="theme-color" content="#070b1d" />
-  <title>Privacy — Review Draft · Selemene Engine</title>
-  <meta name="description" content="Review draft of the Selemene Engine privacy notice. Not a published policy." />
+  <title>Privacy — Selemene Engine · Tryambakam Noesis</title>
+  <meta name="description" content="How the free Selemene connector processes inputs, shared reading storage, abuse-control data, and privacy requests." />
   <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
   <link rel="stylesheet" href="/selemene/styles.css" />
 
@@ -15,9 +15,6 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <div class="draft-banner" role="note" aria-label="Review status">
-    <strong>REVIEW DRAFT · NOT PUBLISHED POLICY</strong>
-  </div>
 
   <header class="site-header" role="banner">
     <div class="shell">
@@ -49,107 +46,70 @@
     <article>
       <header class="page-head">
         <p class="kicker">Selemene Engine · Privacy</p>
-        <h1>Privacy — review draft</h1>
-        <p>This is a working draft written to be reviewed against a concrete integration. It is not an effective privacy notice, and it does not carry an effective date. Where the publisher has not yet made a decision, that is stated openly rather than filled with defaults.</p>
+        <h1>Privacy notice</h1>
+        <p class="meta">Updated 8 October 2026.</p>
+        <p>This notice describes the free sponsored Selemene connector and these Selemene website pages. Selemene is operated personally by SHESHNARAYAN CUMBIPURAM NATESHAN, known as Shesh Iyer, within Tryambakam Noesis. For support, privacy questions, or data requests, contact <a href="mailto:sheshnarayan.iyer@gmail.com">sheshnarayan.iyer@gmail.com</a>.</p>
       </header>
 
       <nav class="toc" aria-label="On this page">
         <p class="toc-label">On this page</p>
         <ol>
-          <li><a href="#scope">Scope of this draft</a></li>
-          <li><a href="#information">Information you may provide</a></li>
-          <li><a href="#uses">How that information is used</a></li>
-          <li><a href="#boundary">Where processing happens</a></li>
-          <li><a href="#chatgpt">ChatGPT as the connecting surface</a></li>
-          <li><a href="#credentials">Authorization &amp; credentials</a></li>
-          <li><a href="#retention">Retention &amp; deletion (pending)</a></li>
-          <li><a href="#security">Security posture</a></li>
-          <li><a href="#pending">Before publication</a></li>
+          <li><a href="#inputs">Information used for a reading</a></li>
+          <li><a href="#storage">Shared account and storage</a></li>
+          <li><a href="#processing">Processing services</a></li>
+          <li><a href="#abuse">Abuse controls and logs</a></li>
+          <li><a href="#retention">Retention and data requests</a></li>
+          <li><a href="#website">Website visits and updates</a></li>
         </ol>
       </nav>
 
-      <section id="scope" aria-labelledby="scope-h">
-        <h2 id="scope-h">Scope of this draft</h2>
-        <p>Selemene Engine is a symbolic‑reflection companion within the Tryambakam Noesis umbrella. This draft describes the privacy behaviour intended for its initial ChatGPT integration. The ChatGPT integration is in preparation and is not currently available or live.</p>
-        <p>This draft is not a legal notice. It is not effective. Nothing here overrides ChatGPT's own provider policies or any future signed agreement between Selemene and its users.</p>
+      <section id="inputs" aria-labelledby="inputs-h">
+        <h2 id="inputs-h">Information used for a reading</h2>
+        <p>You choose the reading and the information you provide. Depending on the engine, tool inputs can include a name, birth date and time, coordinates, timezone, calculation date, self-reported selections, or a question for a symbolic draw. Required missing inputs are identified during preparation; an unknown birth time should not be invented.</p>
+        <p>The information sent in a tool request is used to prepare or perform the requested calculation and return its result. The free connector creates no personal Selemene login and does not require your API key or OAuth approval. Its sponsor credential stays in a server secret.</p>
+        <p>ChatGPT writes explanations and interpretation using your current host model and applicable ChatGPT limits. Optional writing context can remain in your conversation unless a tool needs it. This connector does not send a narration request to an additional operator-funded model service.</p>
       </section>
 
-      <section id="information" aria-labelledby="information-h">
-        <h2 id="information-h">Information you may provide</h2>
-        <p>Depending on which tool you use, Selemene may receive information that you type or paste yourself. Not every tool needs every field; several tools work with far less.</p>
-        <ul>
-          <li>Name, when required by the selected engine.</li>
-          <li>Birth date, birth time, birth place, coordinates, and timezone — when relevant to a specific engine.</li>
-          <li>The question or intent you bring to a reading.</li>
-          <li>Calculation inputs (parameters requested by a specific engine) and the calculated results those inputs produce.</li>
-        </ul>
-        <p>Selemene does not attempt to fill in missing personal details on your behalf. If a required birth time is unknown, preparation should identify it as missing before calculation. A reading that does not require it can be considered instead.</p>
+      <section id="storage" aria-labelledby="storage-h">
+        <h2 id="storage-h">Shared account and storage</h2>
+        <p><strong>Free readings use a shared Selemene administrator account. Birth inputs and calculated results may be stored there; usage, profile, XP and phase may change. There is no separate private user history.</strong></p>
+        <p>Ordinary engine and workflow handlers attempt to save supplied inputs and returned results, together with engine or workflow identifiers and timestamps. They can also update the shared account's profile, history, usage, XP, and phase. Authorized operators with backend access can access this shared storage. Persistence is asynchronous: a successful calculation is not confirmation that a record was saved.</p>
+        <p>The connector exposes no personal history, account administration, export, or deletion tool. The separate Vedic D1/D9 chart handler does not itself save a reading-history record; this limited route behavior is not a promise of end-to-end no-storage processing.</p>
       </section>
 
-      <section id="uses" aria-labelledby="uses-h">
-        <h2 id="uses-h">How that information is used</h2>
-        <p>When you explicitly ask for a calculation or a workflow, Selemene will use the values you provided to compute results. Those inputs and results may be saved to your Selemene account so that:</p>
-        <ul>
-          <li>You can revisit prior readings and their history.</li>
-          <li>Your profile, usage counters, XP, or current phase can be updated as designed by the engine you invoked.</li>
-        </ul>
-        <p>The current reading store can hold the supplied inputs, returned results, reflection prompt, account association and timestamps. Saving is asynchronous and can fail, so a successful calculation does not guarantee that its history record was saved. There is no verified ephemeral or "no‑storage" mode.</p>
+      <section id="processing" aria-labelledby="processing-h">
+        <h2 id="processing-h">Processing services</h2>
+        <p>A tool request passes from ChatGPT/OpenAI through the Cloudflare sponsored MCP Worker to the Railway-hosted Selemene API and its calculation services. Backend PostgreSQL storage and Redis/cache infrastructure can process or retain calculation information. These website pages are hosted on Vercel.</p>
+        <p>Your ChatGPT conversation and account are governed separately by the host's privacy policy and controls. Selemene cannot delete that conversation through a tool or an email request to the publisher. See <a href="https://openai.com/policies/privacy-policy/" rel="noopener noreferrer">OpenAI's privacy policy</a> and the privacy information applicable to your host account.</p>
+        <p>Cloudflare processes connection information at its edge; see <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer">Cloudflare's privacy policy</a>. Provider operational logs and backups have their own arrangements. This notice does not establish a complete provider-region inventory or a verified lifetime for every provider log and backup.</p>
       </section>
 
-      <section id="boundary" aria-labelledby="boundary-h">
-        <h2 id="boundary-h">Where processing happens</h2>
-        <p>Selemene processing uses the following intended infrastructure; this is not a complete processor inventory:</p>
-        <ul>
-          <li>A <strong>Cloudflare Worker</strong> is the intended MCP / OAuth boundary — the surface through which ChatGPT reaches Selemene tools.</li>
-          <li><strong>Selemene</strong> itself is hosted on Railway and is where calculation and account state are processed and stored.</li>
-        </ul>
-        <p>The complete processor inventory, hosting regions and cross‑border transfer arrangements need verification and disclosure before publication.</p>
-      </section>
-
-      <section id="chatgpt" aria-labelledby="chatgpt-h">
-        <h2 id="chatgpt-h">ChatGPT as the connecting surface</h2>
-        <p>When you connect Selemene from within ChatGPT, your ChatGPT conversation is governed by ChatGPT's own privacy and provider policies. Anything you type into ChatGPT is subject to those policies before it reaches Selemene. The final policy must identify how the connecting service and Selemene each handle the information shared through the integration.</p>
-      </section>
-
-      <section id="credentials" aria-labelledby="credentials-h">
-        <h2 id="credentials-h">Authorization &amp; credentials</h2>
-        <p>Any authorization credential used to link Selemene to ChatGPT is entered only through the secure browser linking form provided by Selemene. Do not paste tokens, API keys, or passwords into a chat window or into any public support channel.</p>
-        <p>The demo key of the form <code>tn_free_…</code> generated by the website terminal is a demo string, not a valid credential. Treat it accordingly.</p>
+      <section id="abuse" aria-labelledby="abuse-h">
+        <h2 id="abuse-h">Abuse controls and logs</h2>
+        <p>To enforce service limits, the Worker processes Cloudflare's trusted connecting IP and derives a salted hash. Its distributed counter store holds hashes, counters, and timestamps, with at most 512 active hash entries. Inactive entries are pruned using a two-minute inactivity period during requests and scheduled alarms. The service-wide daily aggregate resets by UTC day. Shared networks and ChatGPT gateways can share an IP; this is not personal account tracking.</p>
+        <p>The reviewed Worker does not log or persist raw IP addresses, reading inputs or results, or sponsor credentials, and its Worker observability is disabled. This does not establish a system-wide absence of logging. The backend logs request metadata such as method, path, trace and shared-account identifiers, response status, and duration.</p>
+        <p>The backend also has error monitoring configured. Its complete delivered payloads, provider retention, and backup lifetimes have not been verified. Do not assume that disabling the connector's own reading logs eliminates infrastructure processing.</p>
       </section>
 
       <section id="retention" aria-labelledby="retention-h">
-        <h2 id="retention-h">Retention &amp; deletion (pending)</h2>
-        <p>The current API includes account-profile access and reading-history retrieval. A general export function and a customer account or reading deletion endpoint were not found in the source review. No timed purge of reading, profile or usage records was found. Retention periods, provider log and backup lifetimes, and an operational request-and-deletion process must be established before publication.</p>
+        <h2 id="retention-h">Retention and data requests</h2>
+        <p>There is no fixed automatic deletion period currently established for shared reading, profile, or usage records. The inspected service has no scheduled purge for those records or general customer reading-deletion endpoint. Information may therefore persist after a reading or after you remove the plugin.</p>
+        <p>For an access or deletion request, email <a href="mailto:sheshnarayan.iyer@gmail.com">sheshnarayan.iyer@gmail.com</a>. Start with the action or tool used, an approximate timestamp, and a returned request or reading identifier if one is available. Send only the minimum information needed to locate the relevant record; do not send credentials, a full birth chart, or a complete private reading in your initial message.</p>
+        <p>The publisher reviews which records can be identified and what action is feasible, then responds with the scope of that review. Because this anonymous connector uses shared storage without a linked personal account, an individual request may not reliably identify every record. No automatic erasure, guaranteed completion time, or complete backup deletion is promised here. Removing the plugin is not a deletion receipt for backend records or host conversations.</p>
       </section>
 
-      <section id="security" aria-labelledby="security-h">
-        <h2 id="security-h">Security posture</h2>
-        <p>Security disclosures must be checked against the deployed integration before this policy takes effect. The current API request middleware records request metadata including method, path, trace identifier, account identifier, response status and duration; this does not establish every provider logging practice. Provider retention and backup arrangements remain under review. The API also has an error-monitoring integration configured; its processing details are being verified before policy publication.</p>
+      <section id="website" aria-labelledby="website-h">
+        <h2 id="website-h">Website visits and updates</h2>
+        <p>These Selemene pages do not provide a birth-data submission form or run a calculation when you visit. Their assets and navigation are served as website content; the hosting provider still processes normal web requests. Following a link to another website or sending an email uses that service's own arrangements.</p>
+        <p>Updates to this notice are published on this page with a revised date. Questions about the scope or current handling of your information can be sent to <a href="mailto:sheshnarayan.iyer@gmail.com">sheshnarayan.iyer@gmail.com</a>.</p>
       </section>
-
-      <div class="pending" id="pending" role="region" aria-labelledby="pending-h">
-        <p class="label">Before publication</p>
-        <h2 id="pending-h" class="sr-only">Items pending publisher decisions</h2>
-        <ul>
-          <li>Legal identity of the data controller (entity name, address, jurisdiction).</li>
-          <li>Contact channel for privacy questions, access, and deletion requests.</li>
-          <li>Retention periods for account data, calculation history, and backups.</li>
-          <li>Complete list of subprocessors and their locations.</li>
-          <li>Cross‑border transfer mechanisms and applicable safeguards.</li>
-          <li>Concrete deletion workflow and verification of completeness.</li>
-          <li>Minimum age of use, country availability, and any commerce terms.</li>
-          <li>Effective date and versioning policy for this notice.</li>
-        </ul>
-      </div>
-
-      <p class="meta">Draft revision: unpublished. No effective date.</p>
     </article>
   </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="shell">
       <div>
-        <p class="footer-note">Selemene Engine is part of the Tryambakam Noesis umbrella. This folio is a review draft; no install, deployment, or effective policy is implied.</p>
+        <p class="footer-note">Selemene Engine · Tryambakam Noesis. Published by Shesh Iyer. Free sponsored calculations; interpretation in your ChatGPT conversation.</p>
       </div>
       <nav aria-label="Footer">
         <ul>
