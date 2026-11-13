@@ -117,7 +117,7 @@ export const WINGS: WingData[] = [
       },
     ],
     cta: "Enter Witness State",
-    ctaAction: { type: "external", target: "https://18765.tryambakam.space" },
+    ctaAction: { type: "external", target: "https://synchronocities.tryambakam.space" },
     alt: "Witness Yourself - The Observer Pattern",
   },
 
@@ -196,7 +196,7 @@ export const WINGS: WingData[] = [
       },
     ],
     cta: "Explore Pillars",
-    ctaAction: { type: "external", target: "https://18765.tryambakam.space" },
+    ctaAction: { type: "external", target: "https://synchronocities.tryambakam.space" },
     alt: "Three Pillars - The Elemental Trinity",
   },
 
@@ -508,7 +508,7 @@ export const WINGS: WingData[] = [
       },
     ],
     cta: "Understand the Rule",
-    ctaAction: { type: "external", target: "https://18765.tryambakam.space" },
+    ctaAction: { type: "external", target: "https://synchronocities.tryambakam.space" },
     alt: "The First Rule - Where Consciousness Begins",
   },
 

@@ -111,12 +111,12 @@ export function BeginJourneyTemplate({ wing, imageUrl, onClose }: Props) {
                 <span className={styles.accessName}>Somatic Canticles</span>
                 <span className={styles.accessDesc}>27-chapter biorhythm-synchronized fiction</span>
               </a>
-              <a href="https://noesis.tryambakam.space" target="_blank" rel="noopener noreferrer" className={styles.accessCard}>
+              <a href="https://github.com/Sheshiyer/Selemene-engine/tree/main/crates/noesis-tui" target="_blank" rel="noopener noreferrer" className={styles.accessCard}>
                 <span className={styles.accessIcon}>&gt;_</span>
                 <span className={styles.accessName}>Noesis TUI</span>
-                <span className={styles.accessDesc}>Terminal consciousness architecture</span>
+                <span className={styles.accessDesc}>Terminal client source and setup</span>
               </a>
-              <a href="https://18765.tryambakam.space" target="_blank" rel="noopener noreferrer" className={styles.accessCard}>
+              <a href="https://synchronocities.tryambakam.space" target="_blank" rel="noopener noreferrer" className={styles.accessCard}>
                 <span className={styles.accessIcon}>✦</span>
                 <span className={styles.accessName}>The Writing</span>
                 <span className={styles.accessDesc}>Essays, reflections, and the witness in words</span>
